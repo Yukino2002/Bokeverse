@@ -25,6 +25,9 @@ public class BokemonBase : ScriptableObject {
     [SerializeField] int specialDefense;
     [SerializeField] int speed;
 
+    // list of learnable moves by bokemon and their level
+    [SerializeField] List<LearnableMove> learnableMoves;
+
     // getter properties in C#, use capital letter for the first letter to get the value of the variable
     public string Name { get => name; }
     public string Description { get => description; }
@@ -38,6 +41,18 @@ public class BokemonBase : ScriptableObject {
     public int SpecialAttack { get => specialAttack; }
     public int SpecialDefense { get => specialDefense; }
     public int Speed { get => speed; }
+    public List<LearnableMove> LearnableMoves { get => learnableMoves; }
+}
+
+// learnable move class for a bokemon
+// display in inspector
+[System.Serializable]
+public class LearnableMove {
+    [SerializeField] MoveBase moveBase;
+    [SerializeField] int level;
+
+    public MoveBase Base { get => moveBase; }
+    public int Level { get => level; }
 }
 
 public enum BokemonType {

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   description: 
-  frontSprite: {fileID: 0}
-  backSprite: {fileID: 0}
-  type1: 0
-  type2: 0
-  maxHP: 0
-  attack: 0
-  defense: 0
-  specialAttack: 0
-  specialDefense: 0
-  speed: 0
+  frontSprite: {fileID: 21300000, guid: 818cf159951cf9a4e8e810b2bbab4096, type: 3}
+  backSprite: {fileID: 21300000, guid: 18fc6e8e3f72b154fba88f358748be28, type: 3}
+  type1: 2
+  type2: 8
+  maxHP: 80
+  attack: 20
+  defense: 30
+  specialAttack: 25
+  specialDefense: 40
+  speed: 15

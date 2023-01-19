@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Babasur
   description: 
-  frontSprite: {fileID: 0}
-  backSprite: {fileID: 0}
-  type1: 0
-  type2: 0
-  maxHP: 0
-  attack: 0
-  defense: 0
-  specialAttack: 0
-  specialDefense: 0
-  speed: 0
+  frontSprite: {fileID: 21300000, guid: 0f37bf3cf5680a64d863b5f155b2a597, type: 3}
+  backSprite: {fileID: 21300000, guid: aacaae602a38f884ab9e02e43de3736d, type: 3}
+  type1: 3
+  type2: 7
+  maxHP: 100
+  attack: 25
+  defense: 20
+  specialAttack: 25
+  specialDefense: 30
+  speed: 20
