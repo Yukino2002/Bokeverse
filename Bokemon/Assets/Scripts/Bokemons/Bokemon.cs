@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bokemon {
-    BokemonBase _base;
-    int level;
+    public BokemonBase Base { get; set; }
+    public int Level { get; set; }
     public int HP { get; set; }
 
     // move list for the bokemon
@@ -12,14 +12,14 @@ public class Bokemon {
 
     // constructor
     public Bokemon(BokemonBase pBase, int pLevel) {
-        _base = pBase;
-        level = pLevel;
-        HP = _base.MaxHP;
+        Base = pBase;
+        Level = pLevel;
+        HP = MaxHP;
 
         // initialize the move list
         Moves = new List<Move>();
-        foreach (var move in _base.LearnableMoves) {
-            if (move.Level <= level) {
+        foreach (var move in Base.LearnableMoves) {
+            if (move.Level <= Level) {
                 Moves.Add(new Move(move.Base));
             }
 
@@ -30,10 +30,10 @@ public class Bokemon {
     }
 
     // actual stats for the bokenmons depend on the base stats and the level
-    public int Attack { get => Mathf.FloorToInt((_base.Attack * level) / 100f) + 5; }
-    public int Defense { get => Mathf.FloorToInt((_base.Defense * level) / 100f) + 5; }
-    public int SpecialAttack { get => Mathf.FloorToInt((_base.SpecialAttack * level) / 100f) + 5; }
-    public int SpecialDefense { get => Mathf.FloorToInt((_base.SpecialDefense * level) / 100f) + 5; }
-    public int Speed { get => Mathf.FloorToInt((_base.Speed * level) / 100f) + 5; }
-    public int MaxHP { get => Mathf.FloorToInt((_base.MaxHP * level) / 100f) + 20; }
+    public int Attack { get => Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5; }
+    public int Defense { get => Mathf.FloorToInt((Base.Defense * Level) / 100f) + 5; }
+    public int SpecialAttack { get => Mathf.FloorToInt((Base.SpecialAttack * Level) / 100f) + 5; }
+    public int SpecialDefense { get => Mathf.FloorToInt((Base.SpecialDefense * Level) / 100f) + 5; }
+    public int Speed { get => Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5; }
+    public int MaxHP { get => Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 20; }
 }

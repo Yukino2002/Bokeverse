@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed10d8fa16d9c9441ade3e83360f7715, type: 3}
   m_Name: Squirmle
   m_EditorClassIdentifier: 
-  name: 
+  name: Squirmle
   description: 
   frontSprite: {fileID: 21300000, guid: 818cf159951cf9a4e8e810b2bbab4096, type: 3}
   backSprite: {fileID: 21300000, guid: 18fc6e8e3f72b154fba88f358748be28, type: 3}
