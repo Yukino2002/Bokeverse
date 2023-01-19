@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bokemon {
     BokemonBase _base;
     int level;
-    public int HP = { get; set; }
+    public int HP { get; set; }
 
     // move list for the bokemon
     public List<Move> Moves { get; set; }
@@ -18,7 +18,7 @@ public class Bokemon {
 
         // initialize the move list
         Moves = new List<Move>();
-        Toreach (var move in _base.LearnableMoves) {
+        foreach (var move in _base.LearnableMoves) {
             if (move.Level <= level) {
                 Moves.Add(new Move(move.Base));
             }
