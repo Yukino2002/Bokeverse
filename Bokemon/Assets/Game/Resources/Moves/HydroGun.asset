@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 050a8fb68af821f4b8008d003a9a5849, type: 3}
-  m_Name: Tackle
+  m_Name: HydroGun
   m_EditorClassIdentifier: 
-  name: Tackle
-  description: Hit the damn bokemon
-  type: 0
-  power: 40
+  name: Hydro Gun
+  description: Blast the damn bokemon
+  type: 2
+  power: 60
   accuracy: 90
-  pp: 20
+  pp: 15
