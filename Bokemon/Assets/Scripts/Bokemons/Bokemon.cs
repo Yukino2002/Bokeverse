@@ -36,4 +36,27 @@ public class Bokemon {
     public int SpecialDefense { get => Mathf.FloorToInt((Base.SpecialDefense * Level) / 100f) + 5; }
     public int Speed { get => Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5; }
     public int MaxHP { get => Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 20; }
+
+    public bool TakeDamage(Move move, Bokemon attacker) {
+        // calculate the damage
+        float modifiers = Random.Range(0.85f, 1f);
+        float a = (2 * attacker.Level + 10) / 250f;
+        float b = a * move.Base.Power * (attacker.Attack / (float) Defense) + 2;
+        float damage = Mathf.FloorToInt(b * modifiers);
+
+        // apply the damage
+        HP -= Mathf.FloorToInt(damage);
+
+        // return true if the bokemon fainted
+        if (HP <= 0) {
+            HP = 0;
+        }
+        
+        return HP <= 0;
+    }
+
+    public Move GetRandomMove() {
+        int r = Random.Range(0, Moves.Count);
+        return Moves[r];
+    }
 }

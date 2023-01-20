@@ -8,7 +8,7 @@ public enum BattleState {
     Start, 
     PlayerAction, 
     PlayerMove, 
-    EnemMove, 
+    EnemyMove, 
     Busy
 }
 
@@ -60,6 +60,42 @@ public class BattleSystem : MonoBehaviour {
         dialogBox.EnableActionSelector(false);
         dialogBox.EnableDialogText(false);
         dialogBox.EnableMoveSelector(true);
+    }
+
+    IEnumerator PerformPlayerMove() {
+        state = BattleState.Busy;
+
+        var move = playerUnit.Bokemon.Moves[currentMove];
+        yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
+        yield return new WaitForSeconds(1f);
+
+        // perform the move
+        bool isFainted = enemyUnit.Bokemon.TakeDamage(move, playerUnit.Bokemon);
+        yield return enemyHud.UpdateHP();
+
+        if (isFainted) {
+            yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " fainted!");
+        } else {
+            StartCoroutine(PerformEnemyMove());
+        }
+    }
+
+    IEnumerator PerformEnemyMove() {
+        state = BattleState.EnemyMove;
+
+        var move = enemyUnit.Bokemon.GetRandomMove();
+        yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
+        yield return new WaitForSeconds(1f);
+
+        // perform the move
+        bool isFainted = playerUnit.Bokemon.TakeDamage(move, enemyUnit.Bokemon);
+        yield return playerHud.UpdateHP();
+
+        if (isFainted) {
+            yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " fainted!");
+        } else {
+            PlayerAction();
+        }        
     }
 
     private void Update() {
@@ -114,5 +150,11 @@ public class BattleSystem : MonoBehaviour {
         }
 
         dialogBox.UpdateMoveSelection(currentMove, playerUnit.Bokemon.Moves[currentMove]);
+
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            dialogBox.EnableMoveSelector(false);
+            dialogBox.EnableDialogText(true);
+            StartCoroutine(PerformPlayerMove());
+        }
     }
 }
