@@ -1894,8 +1894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fba018e297eb4be40a2f8470db67e327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  battleSystem: {fileID: 0}
+  playerController: {fileID: 155855609}
+  battleSystem: {fileID: 219090297}
+  worldCamera: {fileID: 519420031}
 --- !u!4 &773813032
 Transform:
   m_ObjectHideFlags: 0
