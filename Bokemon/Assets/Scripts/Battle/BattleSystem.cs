@@ -71,6 +71,12 @@ public class BattleSystem : MonoBehaviour {
         // display the move name
         yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
 
+        // use the attack animation
+        playerUnit.PlayAttackAnimation();
+        yield return new WaitForSeconds(1f);
+
+        enemyUnit.PlayHitAnimation();
+
         // perform the move
         var damageDetails = enemyUnit.Bokemon.TakeDamage(move, playerUnit.Bokemon);
         yield return enemyHud.UpdateHP();
@@ -78,6 +84,7 @@ public class BattleSystem : MonoBehaviour {
 
         if (damageDetails.Fainted) {
             yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " fainted!");
+            enemyUnit.PlayFaintAnimation();
         } else {
             // if not fainted, start the enemy move phase
             StartCoroutine(PerformEnemyMove());
@@ -93,6 +100,12 @@ public class BattleSystem : MonoBehaviour {
         // display the move name
         yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
 
+        // display the attack animation
+        enemyUnit.PlayAttackAnimation();
+        yield return new WaitForSeconds(1f);
+
+        playerUnit.PlayHitAnimation();
+        
         // perform the move
         var damageDetails = playerUnit.Bokemon.TakeDamage(move, enemyUnit.Bokemon);
         yield return playerHud.UpdateHP();
@@ -100,6 +113,7 @@ public class BattleSystem : MonoBehaviour {
 
         if (damageDetails.Fainted) {
             yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " fainted!");
+            playerUnit.PlayFaintAnimation();
         } else {
             // if not fainted, start the player action phase cycle again
             PlayerAction();
@@ -115,7 +129,7 @@ public class BattleSystem : MonoBehaviour {
         if (damageDetails.TypeEffectiveness > 1f) {
             yield return dialogBox.TypeDialog("   It's super effective!");
         } else if (damageDetails.TypeEffectiveness < 1f) {
-            yield return dialogBox.TypeDialog("   It's not very effective!");
+            yield return dialogBox.TypeDialog("   It's not very effective...");
         }
     }
 
