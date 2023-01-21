@@ -37,9 +37,22 @@ public class Bokemon {
     public int Speed { get => Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5; }
     public int MaxHP { get => Mathf.FloorToInt((Base.MaxHP * Level) / 100f) + 20; }
 
-    public bool TakeDamage(Move move, Bokemon attacker) {
+    public DamageDetails TakeDamage(Move move, Bokemon attacker) {
+        float critical = 1f;
+        if (Random.value * 100f <= 6.25f) {
+            critical = 2f;
+        }
+
         // calculate the damage
-        float modifiers = Random.Range(0.85f, 1f);
+        float type = TypeChart.GetEffectiveness(move.Base.Type, Base.Type1) * TypeChart.GetEffectiveness(move.Base.Type, Base.Type2);
+        
+        var damageDetails = new DamageDetails() {
+            Fainted = false,
+            Critical = critical,
+            TypeEffectiveness = type
+        };
+        
+        float modifiers = Random.Range(0.85f, 1f) * type * critical;
         float a = (2 * attacker.Level + 10) / 250f;
         float b = a * move.Base.Power * (attacker.Attack / (float) Defense) + 2;
         float damage = Mathf.FloorToInt(b * modifiers);
@@ -50,13 +63,20 @@ public class Bokemon {
         // return true if the bokemon fainted
         if (HP <= 0) {
             HP = 0;
+            damageDetails.Fainted = true;
         }
         
-        return HP <= 0;
+        return damageDetails;
     }
 
     public Move GetRandomMove() {
         int r = Random.Range(0, Moves.Count);
         return Moves[r];
     }
+}
+
+public class DamageDetails {
+    public bool Fainted { get; set; }
+    public float Critical { get; set; }
+    public float TypeEffectiveness { get; set; }
 }

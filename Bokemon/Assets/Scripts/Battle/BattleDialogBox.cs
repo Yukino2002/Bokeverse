@@ -25,6 +25,8 @@ public class BattleDialogBox : MonoBehaviour {
             dialogText.text += letter;
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
+
+        yield return new WaitForSeconds(1f);
     }
 
     // all Text based components have a enable/disable function

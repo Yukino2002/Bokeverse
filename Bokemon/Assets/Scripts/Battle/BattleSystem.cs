@@ -26,6 +26,7 @@ public class BattleSystem : MonoBehaviour {
     int currentAction;
     int currentMove;
 
+    // Start is called before the first frame update
     private void Start() {
         StartCoroutine(SetupBattle());
     }
@@ -42,7 +43,6 @@ public class BattleSystem : MonoBehaviour {
 
         // waits for the coroutine to get completed
         yield return dialogBox.TypeDialog("   A wild " + enemyUnit.Bokemon.Base.Name + " appeared!");
-        yield return new WaitForSeconds(1f);
 
         PlayerAction();
     }
@@ -62,46 +62,71 @@ public class BattleSystem : MonoBehaviour {
         dialogBox.EnableMoveSelector(true);
     }
 
+    // coroutine to perform the player move
     IEnumerator PerformPlayerMove() {
         state = BattleState.Busy;
 
+        // get the move from the player unit
         var move = playerUnit.Bokemon.Moves[currentMove];
+        // display the move name
         yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
-        yield return new WaitForSeconds(1f);
 
         // perform the move
-        bool isFainted = enemyUnit.Bokemon.TakeDamage(move, playerUnit.Bokemon);
+        var damageDetails = enemyUnit.Bokemon.TakeDamage(move, playerUnit.Bokemon);
         yield return enemyHud.UpdateHP();
+        yield return ShowDamageDetails(damageDetails);
 
-        if (isFainted) {
+        if (damageDetails.Fainted) {
             yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " fainted!");
         } else {
+            // if not fainted, start the enemy move phase
             StartCoroutine(PerformEnemyMove());
         }
     }
 
+    // coroutine to perform the enemy move
     IEnumerator PerformEnemyMove() {
         state = BattleState.EnemyMove;
 
+        // get a random move from the enemy unit
         var move = enemyUnit.Bokemon.GetRandomMove();
+        // display the move name
         yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
-        yield return new WaitForSeconds(1f);
 
         // perform the move
-        bool isFainted = playerUnit.Bokemon.TakeDamage(move, enemyUnit.Bokemon);
+        var damageDetails = playerUnit.Bokemon.TakeDamage(move, enemyUnit.Bokemon);
         yield return playerHud.UpdateHP();
+        yield return ShowDamageDetails(damageDetails);
 
-        if (isFainted) {
+        if (damageDetails.Fainted) {
             yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " fainted!");
         } else {
+            // if not fainted, start the player action phase cycle again
             PlayerAction();
         }        
     }
 
+    // to show all the damage details in the dialog box
+    IEnumerator ShowDamageDetails(DamageDetails damageDetails) {
+        if (damageDetails.Critical > 1f) {
+            yield return dialogBox.TypeDialog("   A critical hit!");
+        }
+
+        if (damageDetails.TypeEffectiveness > 1f) {
+            yield return dialogBox.TypeDialog("   It's super effective!");
+        } else if (damageDetails.TypeEffectiveness < 1f) {
+            yield return dialogBox.TypeDialog("   It's not very effective!");
+        }
+    }
+
+    // Update is called once per frame
     private void Update() {
+        // if the state is player action, handle the action selector
         if (state == BattleState.PlayerAction) {
+            // this displays the action selector component with fight and run
             HandleActionSelector();
         } else if (state == BattleState.PlayerMove) {
+            // this displays the move selector component with the moves of the player unit
             HandleMoveSelection();
         }
     }
@@ -118,10 +143,11 @@ public class BattleSystem : MonoBehaviour {
             }
         }
 
+        // highlights the selected action
         dialogBox.UpdateActionSelection(currentAction);
 
         if (Input.GetKeyDown(KeyCode.Z)) {
-            // fight
+            // if fight is selected, start the player move phase
             if (currentAction == 0) {
                 PlayerMove();
             } else if (currentAction == 1) {
@@ -149,8 +175,10 @@ public class BattleSystem : MonoBehaviour {
             }
         }
 
+        // highlights the selected move
         dialogBox.UpdateMoveSelection(currentMove, playerUnit.Bokemon.Moves[currentMove]);
 
+        // once the move is selected, remove the move selector component and display the dialog text
         if (Input.GetKeyDown(KeyCode.Z)) {
             dialogBox.EnableMoveSelector(false);
             dialogBox.EnableDialogText(true);
