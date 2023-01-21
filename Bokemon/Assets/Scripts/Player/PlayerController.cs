@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed;
     public LayerMask solidObjectsLayer;
     public LayerMask longGrassLayer;
+
+    // create an event for encounters in the long grass
+    // this is to avoid circular dependency as player controller is already referenced in the game controller
+    public event Action OnEncounter;
 
     private bool isMoving;
     private Vector2 input;
@@ -16,7 +21,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 
-    private void Update() {
+    public void HandleUpdate() {
         if (!isMoving) {
             // get axis raw returns 1, 0, or -1
             input.x = Input.GetAxisRaw("Horizontal");
@@ -73,8 +78,10 @@ public class PlayerController : MonoBehaviour {
 
     private void CheckForEncounters() {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, longGrassLayer) != null) {
-            if (Random.Range(1, 101) <= 10) {
-                Debug.Log("Encounter!");
+            if (UnityEngine.Random.Range(1, 101) <= 10) {
+                // otherwise the player will continue to move after the encounter
+                animator.SetBool("isMoving", false);
+                OnEncounter();
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,9 @@ public class BattleSystem : MonoBehaviour {
     [SerializeField] BattleHud enemyHud;
     [SerializeField] BattleDialogBox dialogBox;
 
+    // event to trigger the end of the battle
+    public event Action<bool> OnBattleOver;
+
     // create instance for battle state
     BattleState state;
 
@@ -27,7 +31,7 @@ public class BattleSystem : MonoBehaviour {
     int currentMove;
 
     // Start is called before the first frame update
-    private void Start() {
+    public void StartBattle() {
         StartCoroutine(SetupBattle());
     }
 
@@ -85,6 +89,10 @@ public class BattleSystem : MonoBehaviour {
         if (damageDetails.Fainted) {
             yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " fainted!");
             enemyUnit.PlayFaintAnimation();
+
+            // end the battle
+            yield return new WaitForSeconds(2f);
+            OnBattleOver(true);
         } else {
             // if not fainted, start the enemy move phase
             StartCoroutine(PerformEnemyMove());
@@ -114,6 +122,10 @@ public class BattleSystem : MonoBehaviour {
         if (damageDetails.Fainted) {
             yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " fainted!");
             playerUnit.PlayFaintAnimation();
+
+            // end the battle
+            yield return new WaitForSeconds(2f);
+            OnBattleOver(false);
         } else {
             // if not fainted, start the player action phase cycle again
             PlayerAction();
@@ -134,7 +146,7 @@ public class BattleSystem : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update() {
+    public void HandleUpdate() {
         // if the state is player action, handle the action selector
         if (state == BattleState.PlayerAction) {
             // this displays the action selector component with fight and run

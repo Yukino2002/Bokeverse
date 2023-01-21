@@ -31,6 +31,8 @@ public class BattleUnit : MonoBehaviour {
             image.sprite = Bokemon.Base.FrontSprite;
         }
 
+        // need to reset the alpha value after fainting, at the start of the battle
+        image.color = originalColor;
         PlaEnterAnimation();
     }
 
