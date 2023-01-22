@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Hydro Gun
   description: Blast the damn bokemon
   type: 2
-  power: 120
+  power: 1200
   accuracy: 90
   pp: 15
