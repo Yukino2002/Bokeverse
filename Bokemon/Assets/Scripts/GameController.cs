@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using Thirdweb;
 using UnityEngine.UI;
+using Thirdweb;
 
 public enum GameState {
     FreeRoam,
@@ -14,15 +14,14 @@ public class GameController : MonoBehaviour {
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
-    public Text walletInfotext;
+    [SerializeField] GameObject menuSystem;
+    
     GameState state;
 
     private ThirdwebSDK sdk;
+    public Text walletInfotext;
 
-    private void Start() {
-        sdk = new ThirdwebSDK("goerli");
-        ConnectWallet(WalletProvider.MetaMask);
-
+    public void Start() {
         // set the game state to free roam
         state = GameState.FreeRoam;
         // subscribe to the OnEncounter event
@@ -63,21 +62,21 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    private async void ConnectWallet(WalletProvider provider)
-    {
+    public async void ConnectWallet() {
+        sdk = new ThirdwebSDK("goerli");
         walletInfotext.text = "Connecting...";
-        try
-        {
-            string address = await sdk.wallet.Connect(new WalletConnection()
-            {
-                provider = provider,
-                chainId = 5 // Switch the wallet Goerli on connection
+        try {
+            string address = await sdk.wallet.Connect(new WalletConnection() {
+                provider = WalletProvider.MetaMask,
+                chainId = 5
             });
-            walletInfotext.text = "Connected as: " + address + " (" + provider + ")";
+            walletInfotext.text = address;
         }
-        catch (System.Exception e)
-        {
+        catch (System.Exception e) {
             walletInfotext.text = "Error (see console): " + e.Message;
         }
+
+        menuSystem.gameObject.SetActive(false);
+        worldCamera.gameObject.SetActive(true);
     }
 }

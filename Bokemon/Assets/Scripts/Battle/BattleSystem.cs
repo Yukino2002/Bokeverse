@@ -177,9 +177,15 @@ public class BattleSystem : MonoBehaviour {
             if (currentAction == 0) {
                 PlayerMove();
             } else if (currentAction == 1) {
-                // run
+                StartCoroutine(HandleRun());
             }
         }
+    }
+
+    // function to run from wild pokemon
+    IEnumerator HandleRun(){
+        yield return dialogBox.TypeDialog("   You decided to flee!");
+        OnBattleOver(true);
     }
 
     void HandleMoveSelection() {
