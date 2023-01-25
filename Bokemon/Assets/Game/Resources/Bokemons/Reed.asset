@@ -10,24 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed10d8fa16d9c9441ade3e83360f7715, type: 3}
-  m_Name: Squirmle
+  m_Name: Reed
   m_EditorClassIdentifier: 
-  name: Squirmle
+  name: Reed
   description: 
-  frontSprite: {fileID: 21300000, guid: 818cf159951cf9a4e8e810b2bbab4096, type: 3}
-  backSprite: {fileID: 21300000, guid: 18fc6e8e3f72b154fba88f358748be28, type: 3}
-  type1: 2
-  type2: 8
-  maxHP: 90
+  frontSprite: {fileID: 21300000, guid: a0a7970e58bb2d541ba47c6df826fbe5, type: 3}
+  backSprite: {fileID: 21300000, guid: 4d869cac7dc8ee34fa0dc90cf221c7ae, type: 3}
+  type1: 3
+  type2: 11
+  maxHP: 100
   attack: 25
-  defense: 30
+  defense: 20
   specialAttack: 25
-  specialDefense: 40
-  speed: 15
+  specialDefense: 30
+  speed: 20
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: cc2dc61bc6e3752448075f7720fae6ff, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: cbd0640c84961d641b8171174ccfc802, type: 2}
     level: 4
-  - moveBase: {fileID: 11400000, guid: 2d37d38d7d5d0f044aa9e32a460e0d57, type: 2}
-    level: 6

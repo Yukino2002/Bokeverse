@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed10d8fa16d9c9441ade3e83360f7715, type: 3}
+  m_Name: Marshal
+  m_EditorClassIdentifier: 
+  name: Marshal
+  description: 
+  frontSprite: {fileID: 21300000, guid: 0712e206e1c57d44391f0d3acfdfe635, type: 3}
+  backSprite: {fileID: 21300000, guid: 3397b5c35fd28a845bf99eb7e9e60b16, type: 3}
+  type1: 2
+  type2: 8
+  maxHP: 90
+  attack: 25
+  defense: 30
+  specialAttack: 25
+  specialDefense: 40
+  speed: 15
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: cc2dc61bc6e3752448075f7720fae6ff, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: cbd0640c84961d641b8171174ccfc802, type: 2}
+    level: 4
+  - moveBase: {fileID: 11400000, guid: 2d37d38d7d5d0f044aa9e32a460e0d57, type: 2}
+    level: 6

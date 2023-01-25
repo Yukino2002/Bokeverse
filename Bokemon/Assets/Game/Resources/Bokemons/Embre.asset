@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed10d8fa16d9c9441ade3e83360f7715, type: 3}
-  m_Name: Babasur
+  m_Name: Embre
   m_EditorClassIdentifier: 
-  name: Babasur
+  name: Embre
   description: 
-  frontSprite: {fileID: 21300000, guid: 0f37bf3cf5680a64d863b5f155b2a597, type: 3}
-  backSprite: {fileID: 21300000, guid: aacaae602a38f884ab9e02e43de3736d, type: 3}
-  type1: 3
-  type2: 11
+  frontSprite: {fileID: 21300000, guid: 09e43006797c73741a68facdb893e1e8, type: 3}
+  backSprite: {fileID: 21300000, guid: a386abcb1a0085f46825d9bdfa4b8226, type: 3}
+  type1: 2
+  type2: 5
   maxHP: 100
-  attack: 25
-  defense: 20
-  specialAttack: 25
-  specialDefense: 30
-  speed: 20
+  attack: 50
+  defense: 50
+  specialAttack: 50
+  specialDefense: 50
+  speed: 50
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: cc2dc61bc6e3752448075f7720fae6ff, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: cbd0640c84961d641b8171174ccfc802, type: 2}
-    level: 4
+    level: 5
+  - moveBase: {fileID: 11400000, guid: 9b486548b21f8f14897d32e6feb66cac, type: 2}
+    level: 8
