@@ -14,7 +14,9 @@ public class GameController : MonoBehaviour {
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
+    [SerializeField] Camera minimapCamera;
     [SerializeField] GameObject menuSystem;
+
     
     GameState state;
 
@@ -78,5 +80,6 @@ public class GameController : MonoBehaviour {
 
         menuSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
+        minimapCamera.gameObject.SetActive(true);
     }
 }
