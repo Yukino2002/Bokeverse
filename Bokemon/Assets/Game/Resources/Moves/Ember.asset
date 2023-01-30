@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ember
   description: Burn the damn bokemon
-  type: 1
+  type: 2
   power: 60
   accuracy: 90
   pp: 15

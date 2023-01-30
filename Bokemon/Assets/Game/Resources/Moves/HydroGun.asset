@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hydro Gun
   description: Blast the damn bokemon
-  type: 2
+  type: 3
   power: 1200
   accuracy: 90
   pp: 15

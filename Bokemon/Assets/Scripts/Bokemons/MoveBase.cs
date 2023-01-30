@@ -20,4 +20,5 @@ public class MoveBase : ScriptableObject {
     public int Power { get => power; }
     public int Accuracy { get => accuracy; }
     public int PP { get => pp; }
+    public bool isSpecial { get => type == BokemonType.Fire || type == BokemonType.Water || type == BokemonType.Grass; }
 }

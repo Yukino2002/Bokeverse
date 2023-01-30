@@ -51,10 +51,13 @@ public class Bokemon {
             Critical = critical,
             TypeEffectiveness = type
         };
+
+        float attack = move.Base.isSpecial ? attacker.SpecialAttack : attacker.Attack;
+        float defense = move.Base.isSpecial ? SpecialDefense : Defense;
         
         float modifiers = Random.Range(0.85f, 1f) * type * critical;
         float a = (2 * attacker.Level + 10) / 250f;
-        float b = a * move.Base.Power * (attacker.Attack / (float) Defense) + 2;
+        float b = a * move.Base.Power * (attack / (float) defense) + 2;
         float damage = Mathf.FloorToInt(b * modifiers);
 
         // apply the damage

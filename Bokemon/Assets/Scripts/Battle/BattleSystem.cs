@@ -72,6 +72,7 @@ public class BattleSystem : MonoBehaviour {
 
         // get the move from the player unit
         var move = playerUnit.Bokemon.Moves[currentMove];
+        move.PP--;
         // display the move name
         yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
 
@@ -105,6 +106,7 @@ public class BattleSystem : MonoBehaviour {
 
         // get a random move from the enemy unit
         var move = enemyUnit.Bokemon.GetRandomMove();
+        move.PP--;
         // display the move name
         yield return dialogBox.TypeDialog("   " + enemyUnit.Bokemon.Base.Name + " used " + move.Base.Name + "!");
 
