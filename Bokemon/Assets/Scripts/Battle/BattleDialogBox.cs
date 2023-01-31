@@ -18,6 +18,10 @@ public class BattleDialogBox : MonoBehaviour {
     [SerializeField] Text ppText;
     [SerializeField] Text typeText;
 
+    public void SetDialog(string dialog) {
+        dialogText.text = dialog;
+    }
+
     // coroutine to type out the dialog, one letter at a time
     public IEnumerator TypeDialog(string dialog) {
         dialogText.text = "";

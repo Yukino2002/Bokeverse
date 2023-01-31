@@ -4,7 +4,9 @@ using System.Linq;
 using UnityEngine;
 
 public class BokemonParty : MonoBehaviour {
-    [SerializeField] List<Bokemon> bokemons;    
+    [SerializeField] List<Bokemon> bokemons;
+
+    public List<Bokemon> Bokemons => bokemons;
 
     private void Start() {
         // initialize the bokemons

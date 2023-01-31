@@ -20,6 +20,7 @@ public class BattleSystem : MonoBehaviour {
     [SerializeField] BattleHud playerHud;
     [SerializeField] BattleHud enemyHud;
     [SerializeField] BattleDialogBox dialogBox;
+    [SerializeField] PartyScreen partyScreen;
 
     // event to trigger the end of the battle
     public event Action<bool> OnBattleOver;
@@ -49,6 +50,8 @@ public class BattleSystem : MonoBehaviour {
         enemyUnit.Setup(wildBokemon);
         enemyHud.SetData(enemyUnit.Bokemon);
 
+        partyScreen.Init();
+
         // set the moves of the player unit
         dialogBox.SetMoveNames(playerUnit.Bokemon.Moves);
 
@@ -61,8 +64,13 @@ public class BattleSystem : MonoBehaviour {
     // the series of events that happen during the player action state
     public void PlayerAction() {
         state = BattleState.PlayerAction;
-        StartCoroutine(dialogBox.TypeDialog("   Choose an action."));
+        dialogBox.SetDialog("   Choose an action.");
         dialogBox.EnableActionSelector(true);
+    }
+
+    void openPartyScreen() {
+        partyScreen.SetPartyData(playerParty.Bokemons);
+        partyScreen.gameObject.SetActive(true);
     }
 
     // the series of events that happen during the player move state
@@ -184,14 +192,21 @@ public class BattleSystem : MonoBehaviour {
     // fight text is at index 0, run text is at index 1
     void HandleActionSelector() {
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
-            if (currentAction < 1) {
-                currentAction += 1;
-            }
+            // if down arrow is pressed, increment the current action
+            currentAction += 2;
         } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            if (currentAction > 0) {
-                currentAction -= 1;
-            }
+            // if up arrow is pressed, decrement the current action
+            currentAction -= 2;
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            // if right arrow is pressed, increment the current action by 2
+            currentAction += 1;
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            // if left arrow is pressed, decrement the current action by 2
+            currentAction -= 1;
         }
+
+        // clamp the current action to 0, 1, 2
+        currentAction = Mathf.Clamp(currentAction, 0, 2);
 
         // highlights the selected action
         dialogBox.UpdateActionSelection(currentAction);
@@ -201,6 +216,8 @@ public class BattleSystem : MonoBehaviour {
             if (currentAction == 0) {
                 PlayerMove();
             } else if (currentAction == 1) {
+                openPartyScreen();
+            } else if (currentAction == 2) {
                 StartCoroutine(HandleRun());
             }
         }
@@ -213,23 +230,21 @@ public class BattleSystem : MonoBehaviour {
     }
 
     void HandleMoveSelection() {
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            if (currentMove < playerUnit.Bokemon.Moves.Count - 1) {
-                currentMove += 1;
-            }
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            if (currentMove > 0) {
-                currentMove -= 1;
-            }
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-            if (currentMove < playerUnit.Bokemon.Moves.Count - 2) {
-                currentMove += 2;
-            }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            // if down arrow is pressed, increment the current move
+            currentMove += 2;
         } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            if (currentMove > 1) {
-                currentMove -= 2;
-            }
+            // if up arrow is pressed, decrement the current move
+            currentMove -= 2;
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            // if right arrow is pressed, increment the current move by 2
+            currentMove += 1;
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            // if left arrow is pressed, decrement the current move by 2
+            currentMove -= 1;
         }
+
+        currentMove = Mathf.Clamp(currentMove, 0, playerUnit.Bokemon.Moves.Count - 1);
 
         // highlights the selected move
         dialogBox.UpdateMoveSelection(currentMove, playerUnit.Bokemon.Moves[currentMove]);
@@ -239,6 +254,11 @@ public class BattleSystem : MonoBehaviour {
             dialogBox.EnableMoveSelector(false);
             dialogBox.EnableDialogText(true);
             StartCoroutine(PerformPlayerMove());
+        } else if (Input.GetKeyDown(KeyCode.X)) {
+            // if x is pressed, remove the move selector component and display the action selector component
+            dialogBox.EnableMoveSelector(false);
+            dialogBox.EnableDialogText(true);
+            PlayerAction();
         }
     }
 }
