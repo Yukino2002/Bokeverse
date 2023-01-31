@@ -40,8 +40,9 @@ public class GameController : MonoBehaviour {
         state = GameState.Battle;
         // as the battle system is initially disabled, enable it
         battleSystem.gameObject.SetActive(true);
-        // disable our main camera, so that the battle camera can be used
+        // disable our main and minimap camera, so that the battle camera can be used
         worldCamera.gameObject.SetActive(false);
+        minimapCamera.gameObject.SetActive(false);
 
         // reset and start a new battle
         var playerParty = playerController.GetComponent<BokemonParty>();
@@ -54,8 +55,9 @@ public class GameController : MonoBehaviour {
         state = GameState.FreeRoam;
         // disable the battle system
         battleSystem.gameObject.SetActive(false);
-        // enable the main camera
+        // enable the main camera and minimap
         worldCamera.gameObject.SetActive(true);
+        minimapCamera.gameObject.SetActive(true);
     }
 
     private void Update() {
