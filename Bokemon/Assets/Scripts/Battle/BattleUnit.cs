@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class BattleUnit : MonoBehaviour {
-    [SerializeField] BokemonBase _base;
-    [SerializeField] int level;
     [SerializeField] bool isPlayerUnit;
 
     public Bokemon Bokemon { get; set; }
@@ -23,8 +21,8 @@ public class BattleUnit : MonoBehaviour {
     }
 
     // set up the image of the bokemon units
-    public void Setup() {
-        Bokemon = new Bokemon(_base, level);
+    public void Setup(Bokemon bokemon) {
+        Bokemon = bokemon;
         if (isPlayerUnit) {
             image.sprite = Bokemon.Base.BackSprite;
         } else {

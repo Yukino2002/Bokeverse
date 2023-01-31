@@ -27,19 +27,26 @@ public class BattleSystem : MonoBehaviour {
     // create instance for battle state
     BattleState state;
 
+    // variables to highlight the selected action and move
     int currentAction;
     int currentMove;
 
+    // variables to store the player party and wild bokemon
+    BokemonParty playerParty;
+    Bokemon wildBokemon;
+
     // Start is called before the first frame update
-    public void StartBattle() {
+    public void StartBattle(BokemonParty playerParty, Bokemon wildBokemon) {
+        this.playerParty = playerParty;
+        this.wildBokemon = wildBokemon;
         StartCoroutine(SetupBattle());
     }
 
     // the initial coroutine to display dialog and switch to player action state
     public IEnumerator SetupBattle() {
-        playerUnit.Setup();
+        playerUnit.Setup(playerParty.GetHealthyBokemon());
         playerHud.SetData(playerUnit.Bokemon);
-        enemyUnit.Setup();
+        enemyUnit.Setup(wildBokemon);
         enemyHud.SetData(enemyUnit.Bokemon);
 
         // set the moves of the player unit
@@ -127,7 +134,22 @@ public class BattleSystem : MonoBehaviour {
 
             // end the battle
             yield return new WaitForSeconds(2f);
-            OnBattleOver(false);
+
+            // check if the player has any healthy bokemon
+            var nextBokemon = playerParty.GetHealthyBokemon();
+            if (nextBokemon != null) {
+                // if yes, switch to the next bokemon
+                playerUnit.Setup(nextBokemon);
+                playerHud.SetData(playerUnit.Bokemon);
+                dialogBox.SetMoveNames(playerUnit.Bokemon.Moves);
+                yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " is sent out!");
+
+                // start the player action phase again
+                PlayerAction();
+            } else {
+                // if no, end the battle
+                OnBattleOver(false);
+            }
         } else {
             // if not fainted, start the player action phase cycle again
             PlayerAction();

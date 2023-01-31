@@ -42,9 +42,11 @@ public class GameController : MonoBehaviour {
         battleSystem.gameObject.SetActive(true);
         // disable our main camera, so that the battle camera can be used
         worldCamera.gameObject.SetActive(false);
-        // await EnsureCorrectWalletState();
+
         // reset and start a new battle
-        battleSystem.StartBattle();
+        var playerParty = playerController.GetComponent<BokemonParty>();
+        var wildBokemon = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildBokemon();
+        battleSystem.StartBattle(playerParty, wildBokemon);
     }
 
     void EndBattle(bool won) {

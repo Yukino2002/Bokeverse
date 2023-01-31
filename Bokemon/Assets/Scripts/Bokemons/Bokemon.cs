@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Bokemon {
-    public BokemonBase Base { get; set; }
-    public int Level { get; set; }
+    // need private variables to store the base and level of the bokemon
+    [SerializeField] BokemonBase _base;
+    [SerializeField] int _level;
+
+    public BokemonBase Base { get => _base; set => _base = value; }
+    public int Level { get => _level; set => _level = value; }
     public int HP { get; set; }
 
     // move list for the bokemon
     public List<Move> Moves { get; set; }
 
-    // constructor
-    public Bokemon(BokemonBase pBase, int pLevel) {
-        Base = pBase;
-        Level = pLevel;
+    // no requirement of a constructor, because we initialize the bokemon from the inspector
+    public void Init() {
         HP = MaxHP;
 
         // initialize the move list
