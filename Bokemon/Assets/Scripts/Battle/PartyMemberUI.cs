@@ -8,6 +8,8 @@ public class PartyMemberUI : MonoBehaviour {
     [SerializeField] Text levelText;
     [SerializeField] HPBar hpBar;
 
+    [SerializeField] Color highlightedColor;
+
     Bokemon _bokemon;
 
     public void SetData(Bokemon bokemon) {
@@ -16,5 +18,9 @@ public class PartyMemberUI : MonoBehaviour {
         nameText.text = bokemon.Base.Name;
         levelText.text = "Lvl " + bokemon.Level;
         hpBar.SetHP((float)bokemon.HP / bokemon.MaxHP);
+    }
+
+    public void SetSelected(bool selected) {
+       nameText.color = selected ? highlightedColor : Color.black;
     }
 }

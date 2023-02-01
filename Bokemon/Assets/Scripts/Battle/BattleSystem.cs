@@ -10,7 +10,8 @@ public enum BattleState {
     PlayerAction, 
     PlayerMove, 
     EnemyMove, 
-    Busy
+    Busy,
+    PartyScreen
 }
 
 // main battle system
@@ -31,6 +32,7 @@ public class BattleSystem : MonoBehaviour {
     // variables to highlight the selected action and move
     int currentAction;
     int currentMove;
+    int currentPartyMember;
 
     // variables to store the player party and wild bokemon
     BokemonParty playerParty;
@@ -69,6 +71,7 @@ public class BattleSystem : MonoBehaviour {
     }
 
     void openPartyScreen() {
+        state = BattleState.PartyScreen;
         partyScreen.SetPartyData(playerParty.Bokemons);
         partyScreen.gameObject.SetActive(true);
     }
@@ -146,14 +149,7 @@ public class BattleSystem : MonoBehaviour {
             // check if the player has any healthy bokemon
             var nextBokemon = playerParty.GetHealthyBokemon();
             if (nextBokemon != null) {
-                // if yes, switch to the next bokemon
-                playerUnit.Setup(nextBokemon);
-                playerHud.SetData(playerUnit.Bokemon);
-                dialogBox.SetMoveNames(playerUnit.Bokemon.Moves);
-                yield return dialogBox.TypeDialog("   " + playerUnit.Bokemon.Base.Name + " is sent out!");
-
-                // start the player action phase again
-                PlayerAction();
+                openPartyScreen();
             } else {
                 // if no, end the battle
                 OnBattleOver(false);
@@ -186,6 +182,9 @@ public class BattleSystem : MonoBehaviour {
         } else if (state == BattleState.PlayerMove) {
             // this displays the move selector component with the moves of the player unit
             HandleMoveSelection();
+        } else if (state == BattleState.PartyScreen) {
+            // this displays the party screen component with the bokemon of the player
+            HandlePartySelection();
         }
     }
 
@@ -260,5 +259,59 @@ public class BattleSystem : MonoBehaviour {
             dialogBox.EnableDialogText(true);
             PlayerAction();
         }
+    }
+
+    void HandlePartySelection() {
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            currentPartyMember += 2;
+        } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            currentPartyMember -= 2;
+        } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            currentPartyMember += 1;
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            currentPartyMember -= 1;
+        }
+
+        currentPartyMember = Mathf.Clamp(currentPartyMember, 0, playerParty.Bokemons.Count - 1);
+
+        // highlights the selected bokemon
+        partyScreen.UpdateMemberSelection(currentPartyMember);
+
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            var selectedBokemon = playerParty.Bokemons[currentPartyMember];
+            if (selectedBokemon.HP <= 0) {
+                partyScreen.SetMessageText("Can't send out a fainted Bokemon!");
+                return;
+            }
+            if (selectedBokemon == playerUnit.Bokemon) {
+                partyScreen.SetMessageText("That Bokemon is already out!");
+                return;
+            }
+
+            partyScreen.gameObject.SetActive(false);
+            state = BattleState.Busy;
+            StartCoroutine(SwitchBokemon(selectedBokemon));
+
+        } else if (Input.GetKeyDown(KeyCode.X)) {
+            partyScreen.gameObject.SetActive(false);
+            PlayerAction();
+        }
+    }
+
+    // Coroutine to switch the bokemon
+    IEnumerator SwitchBokemon(Bokemon newBokemon) {
+        if (playerUnit.Bokemon.HP > 0) {
+            yield return dialogBox.TypeDialog("   Come back, " + playerUnit.Bokemon.Base.Name + "!");
+            playerUnit.PlayFaintAnimation();
+            yield return new WaitForSeconds(2f);
+        }
+
+        playerUnit.Setup(newBokemon);
+        playerHud.SetData(newBokemon);
+        dialogBox.SetMoveNames(newBokemon.Moves);
+
+        yield return dialogBox.TypeDialog("   " + newBokemon.Base.Name + " is sent out!");
+
+        StartCoroutine(PerformEnemyMove());
     }
 }
