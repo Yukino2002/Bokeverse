@@ -14,11 +14,11 @@ public class MoveBase : ScriptableObject {
     [SerializeField] int accuracy;
     [SerializeField] int pp;
 
-    public string Name { get => name; }
-    public string Description { get => description; }
-    public BokemonType Type { get => type; }
-    public int Power { get => power; }
-    public int Accuracy { get => accuracy; }
-    public int PP { get => pp; }
+    public string Name { get => name; set => name = value; }
+    public string Description { get => description; set => description = value; }
+    public BokemonType Type { get => type; set => type = value; }
+    public int Power { get => power; set => power = value; }
+    public int Accuracy { get => accuracy; set => accuracy = value; }
+    public int PP { get => pp; set => pp = value; }
     public bool isSpecial { get => type == BokemonType.Fire || type == BokemonType.Water || type == BokemonType.Grass; }
 }

@@ -29,19 +29,19 @@ public class BokemonBase : ScriptableObject {
     [SerializeField] List<LearnableMove> learnableMoves;
 
     // getter properties in C#, use capital letter for the first letter to get the value of the variable
-    public string Name { get => name; }
-    public string Description { get => description; }
-    public Sprite FrontSprite { get => frontSprite; }
-    public Sprite BackSprite { get => backSprite; }
-    public BokemonType Type1 { get => type1; }
-    public BokemonType Type2 { get => type2; }
-    public int MaxHP { get => maxHP; }
-    public int Attack { get => attack; }
-    public int Defense { get => defense; }
-    public int SpecialAttack { get => specialAttack; }
-    public int SpecialDefense { get => specialDefense; }
-    public int Speed { get => speed; }
-    public List<LearnableMove> LearnableMoves { get => learnableMoves; }
+    public string Name { get => name; set => name = value; }
+    public string Description { get => description; set => description = value; }
+    public Sprite FrontSprite { get => frontSprite; set => frontSprite = value; }
+    public Sprite BackSprite { get => backSprite; set => backSprite = value; }
+    public BokemonType Type1 { get => type1; set => type1 = value; }
+    public BokemonType Type2 { get => type2; set => type2 = value; }
+    public int MaxHP { get => maxHP; set => maxHP = value; }
+    public int Attack { get => attack; set => attack = value; }
+    public int Defense { get => defense; set => defense = value; }
+    public int SpecialAttack { get => specialAttack; set => specialAttack = value; }
+    public int SpecialDefense { get => specialDefense; set => specialDefense = value; }
+    public int Speed { get => speed; set => speed = value; }
+    public List<LearnableMove> LearnableMoves { get => learnableMoves; set => learnableMoves = value; }
 }
 
 // learnable move class for a bokemon
@@ -51,8 +51,8 @@ public class LearnableMove {
     [SerializeField] MoveBase moveBase;
     [SerializeField] int level;
 
-    public MoveBase Base { get => moveBase; }
-    public int Level { get => level; }
+    public MoveBase Base { get => moveBase; set => moveBase = value; }
+    public int Level { get => level; set => level = value; }
 }
 
 public enum BokemonType {
