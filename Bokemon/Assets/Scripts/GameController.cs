@@ -12,6 +12,7 @@ public enum GameState {
 
 public class GameController : MonoBehaviour {
     [SerializeField] PlayerController playerController;
+    [SerializeField] BokemonParty bokemonParty;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
     [SerializeField] Camera minimapCamera;
@@ -20,9 +21,8 @@ public class GameController : MonoBehaviour {
     
     GameState state;
 
-    private ThirdwebSDK sdk;
     public Text walletInfotext;
-
+    string address;
     public void Start() {
         // set the game state to free roam
         state = GameState.FreeRoam;
@@ -69,21 +69,20 @@ public class GameController : MonoBehaviour {
     }
 
     public async void ConnectWallet() {
-        sdk = new ThirdwebSDK("goerli");
-        walletInfotext.text = "Connecting...";
         try {
-            string address = await sdk.wallet.Connect(new WalletConnection() {
+            address = await SDKManager.Instance.SDK.wallet.Connect(new WalletConnection() {
                 provider = WalletProvider.MetaMask,
                 chainId = 5
             });
             walletInfotext.text = address;
+            menuSystem.gameObject.SetActive(false);
+            worldCamera.gameObject.SetActive(true);
+            minimapCamera.gameObject.SetActive(true);
+            
         }
         catch (System.Exception e) {
             walletInfotext.text = "Error (see console): " + e.Message;
         }
-
-        menuSystem.gameObject.SetActive(false);
-        worldCamera.gameObject.SetActive(true);
-        minimapCamera.gameObject.SetActive(true);
+        bokemonParty.StartPokemonImport();
     }
 }

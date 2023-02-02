@@ -1,7 +1,6 @@
 using UnityEngine;
 using Thirdweb;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine.UI;
 
 public class ThirdwebSDKDemos : MonoBehaviour
@@ -12,7 +11,6 @@ public class ThirdwebSDKDemos : MonoBehaviour
     public GameObject connectButtonsContainer;
     public GameObject walletInfoContainer;
     public Text resultText;
-    public Text textElement;
 
     void Start()
     {

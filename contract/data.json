@@ -1,0 +1,42 @@
+[
+    {
+      "name": "Steeleton",
+      "type": "steel",
+      "hp": 12,
+      "attack": 43,
+      "defense": 55,
+      "speed": 10
+    },
+    {
+      "name": "Dewena",
+      "type": "earth",
+      "hp": 10,
+      "attack": 63,
+      "defense": 35,
+      "speed": 8
+    },
+    {
+      "name": "Walruse",
+      "type": "ice",
+      "hp": 16,
+      "attack": 33,
+      "defense": 65,
+      "speed": 6
+    },
+    {
+      "name": "Wolvoom",
+      "type": "grass",
+      "hp": 9,
+      "attack": 75,
+      "defense": 30,
+      "speed": 13
+    },
+    {
+      "name": "Girasion",
+      "type": "fire",
+      "hp": 14,
+      "attack": 39,
+      "defense": 42,
+      "speed": 9
+    }
+  ]
