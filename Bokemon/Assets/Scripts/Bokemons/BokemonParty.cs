@@ -47,7 +47,9 @@ public class BokemonParty : MonoBehaviour {
         string addressArg = await SDKManager.Instance.SDK.wallet.GetAddress();
         _title.text = addressArg;
         List<string> contractRaw = await contract.Read<List<string>>("getMetaDataBokemonPerUser", addressArg);
+        List<int> contractRaw2 = await contract.Read<List<int>>("getBokemonPerUser", addressArg);
         string ipfs = contractRaw[0];
+        _title.text = contractRaw2[0].ToString();
         // string ipfs = "bafkreickp2dvdvz4rzd62hkzv2m2agi6tfsfhj2so5s3dpu5vjbr2cxswi";
         StartCoroutine(LoadString("https://cloudflare-ipfs.com/ipfs/"+ipfs));
     }
@@ -66,7 +68,7 @@ public class BokemonParty : MonoBehaviour {
             {
                 // Show results as text
                 json = www.downloadHandler.text;
-                _title.text = json;
+                // _title.text = json;
                 player = JsonUtility.FromJson<Player>(json);
                 Debug.Log(player.name);
                 // Or retrieve results as binary data
@@ -140,13 +142,13 @@ public class BokemonParty : MonoBehaviour {
 
             Debug.Log(bokemons[0].Base.Name);
 
-            _title.text = "Work";
+            // _title.text = "Work";
             
             foreach (var boke in bokemons) {
                 boke.Init();
             
             }
-            _title.text = "No_Work";
+            // _title.text = "No_Work";
         }
     }
 }
