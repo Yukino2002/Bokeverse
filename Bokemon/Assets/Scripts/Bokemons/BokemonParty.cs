@@ -12,8 +12,7 @@ using System.IO;
 public class BokemonParty : MonoBehaviour {
     List<Bokemon> bokemons;
 
-    public class Player
-    {
+    public class Player {
         public string name;
         public string type;
         public int hp;
@@ -22,12 +21,16 @@ public class BokemonParty : MonoBehaviour {
         public int speed;
         public string imageCID;
     }
+
     public string json;
     public Player player;
+
     [SerializeField] string test123;
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private Image image;
+    
     public List<Bokemon> Bokemons => bokemons;
+    
     private void Start() {
         // MyScriptableObject someInstance = ScriptableObject.CreateInstance("MyScriptableObject") as MyScriptableObject;
         // someInstance.init (5, "Gorlock", 15, owningMap, someOtherParameter);
@@ -41,8 +44,7 @@ public class BokemonParty : MonoBehaviour {
         return bokemons.Where(b => b.HP > 0).OrderBy(b => b.HP).FirstOrDefault();
     }
 
-    public async void StartPokemonImport()
-    {
+    public async void fetchBokemons() {
         var contract = SDKManager.Instance.SDK.GetContract("0xA6565eA363C92430fB674bc056e618D34f1Bf61C");
         string addressArg = await SDKManager.Instance.SDK.wallet.GetAddress();
         _title.text = addressArg;
@@ -51,21 +53,17 @@ public class BokemonParty : MonoBehaviour {
         string ipfs = contractRaw[0];
         _title.text = contractRaw2[0].ToString();
         // string ipfs = "bafkreickp2dvdvz4rzd62hkzv2m2agi6tfsfhj2so5s3dpu5vjbr2cxswi";
-        StartCoroutine(LoadString("https://cloudflare-ipfs.com/ipfs/"+ipfs));
+        StartCoroutine(LoadString("https://cloudflare-ipfs.com/ipfs/" + ipfs));
     }
 
-    IEnumerator LoadString(string url)
-    {
+    IEnumerator LoadString(string url) {
         using (UnityWebRequest www = UnityWebRequest.Get(url))
         {
             yield return www.SendWebRequest();
 
-            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-            {
+            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
                 Debug.Log(www.error);
-            }
-            else
-            {
+            } else {
                 // Show results as text
                 json = www.downloadHandler.text;
                 // _title.text = json;
@@ -73,23 +71,19 @@ public class BokemonParty : MonoBehaviour {
                 Debug.Log(player.name);
                 // Or retrieve results as binary data
                 byte[] results = www.downloadHandler.data;
-                StartCoroutine(GenerateBokemon("https://cloudflare-ipfs.com/ipfs/"+player.imageCID, player));
+                StartCoroutine(GenerateBokemon("https://cloudflare-ipfs.com/ipfs/" + player.imageCID, player));
 
             }
         }
     }
     
-    IEnumerator GenerateBokemon(string url, Player bokemon)
-    {
+    IEnumerator GenerateBokemon(string url, Player bokemon) {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
 
-        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-        {
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
             Debug.Log(www.error);
-        }
-        else
-        {
+        } else {
             // Get downloaded asset bundle
             Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
             Sprite sprite = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
@@ -118,6 +112,7 @@ public class BokemonParty : MonoBehaviour {
             charaBase.BackSprite = sprite;
             charaBase.Type1 = BokemonType.Fire; 
             charaBase.Type2 = BokemonType.None;
+            charaBase.UID = 1;
             charaBase.MaxHP = bokemon.hp;
             charaBase.Attack = bokemon.attack;
             charaBase.Defense = bokemon.defence;
