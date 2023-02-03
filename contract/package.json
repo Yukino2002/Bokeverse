@@ -12,7 +12,6 @@
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",
     "hardhat": "^2.12.6"
   },
-  "type": "module",
   "dependencies": {
     "@nomiclabs/hardhat-etherscan": "^3.1.5",
     "@openzeppelin/contracts": "^4.8.1",
