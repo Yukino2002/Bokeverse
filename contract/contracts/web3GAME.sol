@@ -32,13 +32,13 @@ contract web3GAME is ERC1155 {
     }
 
     function getBokemon(uint256 _id) public view returns (string memory, uint256) {
-        return (metadata[_id], experience[_id]);
+        return (uri(_id), experience[_id]);
     }
 
     function getBokemonPerUser(address _user) public view returns (uint256[] memory) {
         // first count the number of bokemons the user has
         uint256 count = 0;
-        for (uint i = 1; i <= _tokenIds.current(); i++) {
+        for (uint i = 0; i < _tokenIds.current(); i++) {
             if (balanceOf(_user, i) == 1) {
                 count++;
             }
@@ -46,7 +46,7 @@ contract web3GAME is ERC1155 {
         // create an array of the size of the number of bokemons
         uint256[] memory bokemons = new uint256[](count);
         uint256 index = 0;
-        for (uint i = 1; i <= _tokenIds.current(); i++) {
+        for (uint i = 0; i < _tokenIds.current(); i++) {
             if (balanceOf(_user, i) == 1) {
                 bokemons[index] = i;
                 index++;
@@ -58,7 +58,7 @@ contract web3GAME is ERC1155 {
     function getMetaDataBokemonPerUser(address _user) public view returns (string[] memory) {
         // first count the number of bokemons the user has
         uint256 count = 0;
-        for (uint i = 1; i <= _tokenIds.current(); i++) {
+        for (uint i = 0; i < _tokenIds.current(); i++) {
             if (balanceOf(_user, i) == 1) {
                 count++;
             }
@@ -66,7 +66,7 @@ contract web3GAME is ERC1155 {
         // create an array of the size of the number of bokemons
         string[] memory bokemons = new string[](count);
         uint256 index = 0;
-        for (uint i = 1; i <= _tokenIds.current(); i++) {
+        for (uint i = 0; i < _tokenIds.current(); i++) {
             if (balanceOf(_user, i) == 1) {
                 bokemons[index] = metadata[i];
                 index++;

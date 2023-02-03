@@ -1,9 +1,7 @@
-// import '../src/App.css';
-
 import React from 'react';
 import Html5QrcodePlugin from '../components/qrcode/Html5QrcodePlugin.jsx'
 import ResultContainerPlugin from '../components/qrcode/ResultContainerPlugin.jsx'
-import { ConnectWallet, useContract, useContractRead, useContractWrite} from "@thirdweb-dev/react";
+import { ConnectWallet, Web3Button} from "@thirdweb-dev/react";
 import { ethers } from 'ethers'
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
@@ -11,11 +9,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      decodedResults: []
+      decodedResults: [],
+      showButton: false,
+      result: ''
     }
 
     // This binding is necessary to make `this` work in the callback.
     this.onNewScanResult = this.onNewScanResult.bind(this);
+    this.redeemItem = this.redeemItem.bind(this);
   }
   render() {
     return (
@@ -34,7 +35,17 @@ class App extends React.Component {
               disableFlip={false}
               qrCodeSuccessCallback={this.onNewScanResult}/>
             <ResultContainerPlugin results={this.state.decodedResults} />
-            
+            {
+              this.state.showButton &&
+              <Web3Button
+                contractAddress="0xA6565eA363C92430fB674bc056e618D34f1Bf61C"
+                action={(contract) =>
+                  contract.call("redeemItem", this.state.result)
+                }
+              >
+                Redeem NFT
+              </Web3Button>
+            }
           </section>
         </div>
       </div>
@@ -44,7 +55,10 @@ class App extends React.Component {
   onNewScanResult(decodedText, decodedResult) {
     console.log(
       "App [result]", decodedResult['decodedText']);
-    this.redeemItem(decodedResult['decodedText']);
+    this.setState({
+      showButton: true,
+      result: decodedResult['decodedText']
+    });
     this.setState((state, props) => {
       state.decodedResults.push(decodedResult);
       console.log( state.decodedResults);
@@ -53,19 +67,12 @@ class App extends React.Component {
   }
   
   async redeemItem(result) {
-    // const MetaMask = Wallet.MetaMask;
-    // const wallet = new MetaMask({ appName: "Phaser-Platformer" });
-    // const { address, chainId } = await wallet.connect(ChainId.Goerli);
+    // let ethProvider = new ethers.providers.Web3Provider(window.ethereum);
+    // let signer = ethProvider.getSigner()
+    // const sdk = ThirdwebSDK.fromSigner(signer);
 
-    let ethProvider = new ethers.providers.Web3Provider(window.ethereum);
-    // const signer = await wallet.getSigner(chainId);
-    let signer = ethProvider.getSigner()
-    const sdk = ThirdwebSDK.fromSigner(signer);
-
-    const contract = await sdk.getContract("0xA6565eA363C92430fB674bc056e618D34f1Bf61C");
-    // // get signer
-    // const signer = await sdk.getSigner();
-    var result = await contract.call("redeemItem", result);
+    // const contract = await sdk.getContract("0xA6565eA363C92430fB674bc056e618D34f1Bf61C");
+    // var result = await contract.call("redeemItem", result);
     console.log(result);
   }
 }
