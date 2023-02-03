@@ -24,7 +24,7 @@ public class BokemonParty : MonoBehaviour {
 
     public string json;
     public Player player;
-
+    public int experience;
     [SerializeField] string test123;
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private Image image;
@@ -95,9 +95,11 @@ public class BokemonParty : MonoBehaviour {
         string addressArg = await SDKManager.Instance.SDK.wallet.GetAddress();
         _title.text = addressArg;
         List<string> contractRaw = await contract.Read<List<string>>("getMetaDataBokemonPerUser", addressArg);
-        List<int> contractRaw2 = await contract.Read<List<int>>("getBokemonPerUser", addressArg);
         string ipfs = contractRaw[0];
-        _title.text = contractRaw2[0].ToString();
+        Debug.Log("Trying to fetch experience");
+        experience  =  await contract.Read<int>("experience", 1);
+        Debug.Log(experience);
+        Debug.Log("Fetched experience");
         // string ipfs = "bafkreickp2dvdvz4rzd62hkzv2m2agi6tfsfhj2so5s3dpu5vjbr2cxswi";
         StartCoroutine(LoadString("https://cloudflare-ipfs.com/ipfs/" + ipfs));
     }
@@ -111,7 +113,7 @@ public class BokemonParty : MonoBehaviour {
             } else {
                 // Show results as text
                 json = www.downloadHandler.text;
-                // _title.text = json;
+                _title.text = json;
                 player = JsonUtility.FromJson<Player>(json);
                 Debug.Log(player.name);
                 // Or retrieve results as binary data
@@ -132,62 +134,29 @@ public class BokemonParty : MonoBehaviour {
             Texture2D myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
             Sprite sprite = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
             image.sprite = sprite;
-            // Don't Change Start
-            MoveBase emberBase = ScriptableObject.CreateInstance("MoveBase") as MoveBase;
-            emberBase.Name = "Ember";
-            emberBase.Description = "Mild fire move";
-            emberBase.Type = BokemonType.Fire;
-            emberBase.Power = 40;
-            emberBase.Accuracy = 100;
-            emberBase.PP = 25;
 
-            Debug.Log(emberBase.Name);
+            Debug.Log("Trying to fetch contract");
+            var contract = SDKManager.Instance.SDK.GetContract("0xA6565eA363C92430fB674bc056e618D34f1Bf61C");
+            Debug.Log("Contract fetched");
+            
 
-            LearnableMove ember = new LearnableMove();
-            ember.Base = emberBase;
-            ember.Level = 5;
+            // // int experience;
+            // int experience  =  await contract.Read<int>("experience", 1);
+            // // experience = task.Result;
+            // Debug.Log("Experience fetched");
+            // Debug.Log(experience);
 
-            Debug.Log(ember.Base.Name);
-            // Dont Change End
-            BokemonBase charaBase = ScriptableObject.CreateInstance("BokemonBase") as BokemonBase;
-            charaBase.Name = bokemon.name;
-            charaBase.Description = bokemon.name + " is a handsome like asim type bokemon";
-            charaBase.FrontSprite = sprite;
-            charaBase.BackSprite = sprite;
-            charaBase.Type1 = BokemonType.Fire; 
-            charaBase.Type2 = BokemonType.None;
-            charaBase.UID = 1;
-            charaBase.MaxHP = bokemon.hp;
-            charaBase.Attack = bokemon.attack;
-            charaBase.Defense = bokemon.defence;
-            charaBase.SpecialAttack = bokemon.attack;
-            charaBase.SpecialDefense = bokemon.defence;
-            charaBase.Speed = bokemon.speed;
-            charaBase.LearnableMoves = new List<LearnableMove>();
-            charaBase.LearnableMoves.Add(ember);
+            Bokemon bokemon1 = CreateBokemon(bokemon.name, bokemon.name + " is a handsome like asim type bokemon", sprite, BokemonType.Fire, 1, bokemon.hp, bokemon.attack, bokemon.defence, bokemon.speed, experience, new List<LearnableMove> { ember, scratch, tackle });
+            bokemons.Add(bokemon1);
 
-            Debug.Log(charaBase.Name);
-            Debug.Log(charaBase.LearnableMoves[0].Base.Name);
-
-            Bokemon chara = new Bokemon();
-            chara.Base = charaBase;
-            chara.Level = 5;
-
-            Debug.Log(chara.Base.Name);
-            Debug.Log(chara.Base.LearnableMoves[0].Base.Name);
-
-            bokemons = new List<Bokemon>();
-            bokemons.Add(chara);
-
-            Debug.Log(bokemons[0].Base.Name);
-
-            _title.text = "Work";
+            _title.text = "No_Work";
             
             foreach (var boke in bokemons) {
                 boke.Init();
             
             }
-            _title.text = "No_Work";
+            _title.text = "Work";
+            
         }
     }
 }
