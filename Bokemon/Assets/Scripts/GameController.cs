@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour {
         battleSystem.StartBattle(playerParty, wildBokemon);
     }
 
+    // function to end the battle, and exit back to free roam
     void EndBattle(bool won) {
         // set the game state to free roam
         state = GameState.FreeRoam;
@@ -60,6 +61,7 @@ public class GameController : MonoBehaviour {
         minimapCamera.gameObject.SetActive(true);
     }
 
+    // Update is called once per frame
     private void Update() {
         if (state == GameState.FreeRoam) {
             playerController.HandleUpdate();
@@ -68,10 +70,11 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public async void ConnectWallet() {
+    // common function to connect to a wallet, then
+    public async void ConnectWallet(WalletProvider provider) {
         try {
             address = await SDKManager.Instance.SDK.wallet.Connect(new WalletConnection() {
-                provider = WalletProvider.MetaMask,
+                provider = provider,
                 chainId = 5
             });
             walletInfotext.text = address;
@@ -83,6 +86,18 @@ public class GameController : MonoBehaviour {
         catch (System.Exception e) {
             walletInfotext.text = "Error (see console): " + e.Message;
         }
-        bokemonParty.StartPokemonImport();
+        bokemonParty.fetchBokemons();
+    }
+
+    public async void MetamaskLogin() {
+        ConnectWallet(WalletProvider.MetaMask);
+    }
+
+    public async void CoinbaseWalletLogin() {
+        ConnectWallet(WalletProvider.CoinbaseWallet);
+    }
+
+    public async void WalletConnectLogin() {
+        ConnectWallet(WalletProvider.WalletConnect);
     }
 }

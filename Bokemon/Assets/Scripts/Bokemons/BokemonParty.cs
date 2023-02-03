@@ -12,8 +12,7 @@ using System.IO;
 public class BokemonParty : MonoBehaviour {
     List<Bokemon> bokemons;
 
-    public class Player
-    {
+    public class Player {
         public string name;
         public string type;
         public int hp;
@@ -22,12 +21,16 @@ public class BokemonParty : MonoBehaviour {
         public int speed;
         public string imageCID;
     }
+
     public string json;
     public Player player;
+
     [SerializeField] string test123;
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private Image image;
+    
     public List<Bokemon> Bokemons => bokemons;
+    
     private void Start() {
         // MyScriptableObject someInstance = ScriptableObject.CreateInstance("MyScriptableObject") as MyScriptableObject;
         // someInstance.init (5, "Gorlock", 15, owningMap, someOtherParameter);
@@ -41,8 +44,7 @@ public class BokemonParty : MonoBehaviour {
         return bokemons.Where(b => b.HP > 0).OrderBy(b => b.HP).FirstOrDefault();
     }
 
-    public async void StartPokemonImport()
-    {
+    public async void fetchBokemons() {
         var contract = SDKManager.Instance.SDK.GetContract("0xA6565eA363C92430fB674bc056e618D34f1Bf61C");
         string addressArg = await SDKManager.Instance.SDK.wallet.GetAddress();
         _title.text = addressArg;

@@ -6864,7 +6864,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 773813031}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ConnectWallet
+        m_MethodName: CoinbaseWalletLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6998,7 +6998,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 773813031}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ConnectWallet
+        m_MethodName: MetamaskLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -64400,7 +64400,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 773813031}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ConnectWallet
+        m_MethodName: WalletConnectLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
