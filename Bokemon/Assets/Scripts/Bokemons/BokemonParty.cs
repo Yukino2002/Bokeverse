@@ -128,12 +128,12 @@ public class BokemonParty : MonoBehaviour {
         // StartCoroutine(LoadString("https://cloudflare-ipfs.com/ipfs/" + ipfs, 1));
 
         // loop through the list of metadata and uid parallelly
-        for (int i = 0; i < metadata.Count; i++) {
-            string ipfs = metadata[i];
-            int experience = await contract.Read<int>("experience", uid[i]);
-            Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
-            StartCoroutine(LoadString("https://cloudflare-ipfs.com/ipfs/" + ipfs, experience));
-        }
+        // for (int i = 0; i < metadata.Count; i++) {
+        //     string ipfs = metadata[i];
+        //     int experience = await contract.Read<int>("experience", uid[i]);
+        //     Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
+        //     StartCoroutine(LoadString("https://cloudflare-ipfs.com/ipfs/" + ipfs, experience));
+        // }
     }
 
     IEnumerator LoadString(string url, int experience) {

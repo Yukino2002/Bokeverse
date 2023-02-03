@@ -14,19 +14,17 @@ contract web3GAME is ERC1155 {
     }
 
     mapping (address => uint256[3]) public party; // mapping to store the party of bokemons for each address
-    mapping (uint256 => string) public metadata;
     // mapping to store experience of each bokemon
     mapping (uint256 => uint256) public experience;
 
-    function mint(address account, string memory _metadata, uint256 _experience) public returns (uint256) {
-        require(bytes(_metadata).length > 0, "Metadata must be provided");
+    function mint(address account, bytes memory uri, uint256 _experience) public returns (uint256) {
+        require(uri.length > 0, "Metadata must be provided");
         require(_experience > 0, "Experience must be provided");
         require(account != address(0), "Account must be provided");
         // requrie size of metadata and experience to be the same
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-        _mint(account, newItemId, 1, "");
-        metadata[newItemId] = _metadata;
+        _mint(account, newItemId, 1, uri);
         experience[newItemId] = _experience;
         return newItemId;
     }
@@ -34,7 +32,9 @@ contract web3GAME is ERC1155 {
     function getBokemon(uint256 _id) public view returns (string memory, uint256) {
         return (uri(_id), experience[_id]);
     }
-
+    function getBokemonUri(uint256 _id) public view returns (string memory) {
+        return uri(_id);
+    }
     function getBokemonPerUser(address _user) public view returns (uint256[] memory) {
         // first count the number of bokemons the user has
         uint256 count = 0;
@@ -55,45 +55,25 @@ contract web3GAME is ERC1155 {
         return bokemons;
     }
 
-    function getMetaDataBokemonPerUser(address _user) public view returns (string[] memory) {
-        // first count the number of bokemons the user has
-        uint256 count = 0;
-        for (uint i = 0; i < _tokenIds.current(); i++) {
-            if (balanceOf(_user, i) == 1) {
-                count++;
-            }
-        }
-        // create an array of the size of the number of bokemons
-        string[] memory bokemons = new string[](count);
-        uint256 index = 0;
-        for (uint i = 0; i < _tokenIds.current(); i++) {
-            if (balanceOf(_user, i) == 1) {
-                bokemons[index] = metadata[i];
-                index++;
-            }
-        }
-        return bokemons;
-    }
-
     function increaseExperience(uint256 _id, uint256 _experience) public {
         experience[_id] += _experience;
     }
 
     // create redeemable bokemon if code is correct give the user a bokemon
     mapping (string => uint256) private redeemableItems;
-    mapping (uint256 => string) private redeemableItemsMetadata;
+    mapping (uint256 => bytes) private redeemableItemsUri;
     mapping (uint256 => uint256) private redeemableItemsExperience;
     mapping (uint256 => bool) private isRedeemed;
     Counters.Counter private _redeemableTokenIds;
 
-    function createRedeemableItem(string memory _code, string memory _metadata, uint256 _experience) public {
+    function createRedeemableItem(string memory _code, bytes memory _uri, uint256 _experience) public {
         require(bytes(_code).length > 0, "Code must be provided");
-        require(bytes(_metadata).length > 0, "Metadata must be provided");
+        require(_uri.length > 0, "Metadata must be provided");
         require(_experience > 0, "Experience must be provided");
         _redeemableTokenIds.increment();
         uint256 newItemId = _redeemableTokenIds.current();
         redeemableItems[_code] = newItemId;
-        redeemableItemsMetadata[newItemId] = _metadata;
+        redeemableItemsUri[newItemId] = _uri;
         redeemableItemsExperience[newItemId] = _experience;
     }
 
@@ -102,6 +82,6 @@ contract web3GAME is ERC1155 {
         require(redeemableItems[_code] != 0, "Code does not exist");
         require(isRedeemed[redeemableItems[_code]] == false, "Item already redeemed");
         isRedeemed[redeemableItems[_code]] = true;
-        mint(msg.sender, redeemableItemsMetadata[redeemableItems[_code]], redeemableItemsExperience[redeemableItems[_code]]);
+        mint(msg.sender, redeemableItemsUri[redeemableItems[_code]], redeemableItemsExperience[redeemableItems[_code]]);
     }
 }
