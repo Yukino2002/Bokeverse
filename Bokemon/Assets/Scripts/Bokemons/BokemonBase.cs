@@ -18,6 +18,7 @@ public class BokemonBase : ScriptableObject {
     [SerializeField] BokemonType type1;
     [SerializeField] BokemonType type2;
 
+    [SerializeField] int uid;
     [SerializeField] int maxHP;
     [SerializeField] int attack;
     [SerializeField] int defense;
@@ -35,6 +36,7 @@ public class BokemonBase : ScriptableObject {
     public Sprite BackSprite { get => backSprite; set => backSprite = value; }
     public BokemonType Type1 { get => type1; set => type1 = value; }
     public BokemonType Type2 { get => type2; set => type2 = value; }
+    public int UID { get => uid; set => uid = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int Attack { get => attack; set => attack = value; }
     public int Defense { get => defense; set => defense = value; }

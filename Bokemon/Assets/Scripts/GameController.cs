@@ -89,14 +89,17 @@ public class GameController : MonoBehaviour {
         bokemonParty.fetchBokemons();
     }
 
+    // function to connect to Metamask Wallet
     public async void MetamaskLogin() {
         ConnectWallet(WalletProvider.MetaMask);
     }
 
+    // function to connect to Coinbase Wallet
     public async void CoinbaseWalletLogin() {
         ConnectWallet(WalletProvider.CoinbaseWallet);
     }
 
+    // function to connect to other popular wallets
     public async void WalletConnectLogin() {
         ConnectWallet(WalletProvider.WalletConnect);
     }
