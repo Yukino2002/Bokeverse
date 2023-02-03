@@ -1,31 +1,41 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import"@openzeppelin/contracts/utils/Counters.sol";
+import "@thirdweb-dev/contracts/base/ERC1155Base.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@thirdweb-dev/contracts/extension/interface/IMintableERC1155.sol";
 
-contract web3GAME is ERC1155 {
+contract web3GAME is ERC1155Base {
     
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() ERC1155("") {
+      constructor(
+        string memory _name,
+        string memory _symbol,
+        address _royaltyRecipient,
+        uint128 _royaltyBps
+    )
+        ERC1155Base(
+            _name,
+            _symbol,
+            _royaltyRecipient,
+            _royaltyBps
+        )
+    {}
 
-    }
-
-    mapping (address => uint256[3]) public party; // mapping to store the party of bokemons for each address
     // mapping to store experience of each bokemon
     mapping (uint256 => uint256) public experience;
 
-    function mint(address account, bytes memory uri, uint256 _experience) public returns (uint256) {
-        require(uri.length > 0, "Metadata must be provided");
+    function mint(address account, string memory uri, uint256 _experience) public returns (uint256) {
+        require(bytes(uri).length > 0, "Metadata must be provided");
         require(_experience > 0, "Experience must be provided");
         require(account != address(0), "Account must be provided");
         // requrie size of metadata and experience to be the same
-        _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-        _mint(account, newItemId, 1, uri);
+        mintTo(account, type(uint256).max, uri, 1);
         experience[newItemId] = _experience;
+        _tokenIds.increment();
         return newItemId;
     }
 
@@ -39,7 +49,7 @@ contract web3GAME is ERC1155 {
         // first count the number of bokemons the user has
         uint256 count = 0;
         for (uint i = 0; i < _tokenIds.current(); i++) {
-            if (balanceOf(_user, i) == 1) {
+            if (balanceOf[_user][i] == 1) {
                 count++;
             }
         }
@@ -47,7 +57,7 @@ contract web3GAME is ERC1155 {
         uint256[] memory bokemons = new uint256[](count);
         uint256 index = 0;
         for (uint i = 0; i < _tokenIds.current(); i++) {
-            if (balanceOf(_user, i) == 1) {
+            if (balanceOf[_user][i] == 1) {
                 bokemons[index] = i;
                 index++;
             }
@@ -61,14 +71,14 @@ contract web3GAME is ERC1155 {
 
     // create redeemable bokemon if code is correct give the user a bokemon
     mapping (string => uint256) private redeemableItems;
-    mapping (uint256 => bytes) private redeemableItemsUri;
+    mapping (uint256 => string) private redeemableItemsUri;
     mapping (uint256 => uint256) private redeemableItemsExperience;
     mapping (uint256 => bool) private isRedeemed;
     Counters.Counter private _redeemableTokenIds;
 
-    function createRedeemableItem(string memory _code, bytes memory _uri, uint256 _experience) public {
+    function createRedeemableItem(string memory _code, string memory _uri, uint256 _experience) public {
         require(bytes(_code).length > 0, "Code must be provided");
-        require(_uri.length > 0, "Metadata must be provided");
+        require(bytes(_uri).length > 0, "Metadata must be provided");
         require(_experience > 0, "Experience must be provided");
         _redeemableTokenIds.increment();
         uint256 newItemId = _redeemableTokenIds.current();

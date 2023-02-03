@@ -5,11 +5,11 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import {} from 'dotenv/config' 
 
 
-const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
+const GOERLI_PRIVATE_KEY = "a12e71ebe9a4bc009a99f6b0a99c8f24163ce13d39979100adb2a1a74c7519b7";
 const sdk = ThirdwebSDK.fromPrivateKey(GOERLI_PRIVATE_KEY, "goerli");
 // First, instantiate the SDK
 const storage = new ThirdwebStorage();
-const contract = await sdk.getContract("0xFaFE383B0c49B06d121D85D8d47cEE69324992Fe");
+const contract = await sdk.getContract("0xcA84E4960d562642a7Ca868Aadcb1D45F38628dC");
 
 for (let i = 0; i < dataMonster.length; i++) {
     const filepath="../contract/images/"+dataMonster[i].name+".png";
@@ -32,5 +32,6 @@ for (let i = 0; i < dataMonster.length; i++) {
     const uri = await storage.upload(metadata);
     // console.log("https://cloudflare-ipfs.com/ipfs/"+jsonCID);
     console.log("https://gateway.ipfscdn.io/ipfs/"+uri.slice(7));
-    var result = await contract.call("mint", "0xB7E99669e9eDdD2975511FBF059d01969f43D409", uri, "1");
+    var result = await contract.call("mint", "0xB7E99669e9eDdD2975511FBF059d01969f43D409", uri, 1);
+    console.log(result);
 }

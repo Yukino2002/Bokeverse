@@ -19,7 +19,6 @@
     "dotenv": "^16.0.3",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
-    "ethers": "^5.7.2",
     "html5-qrcode": "^2.3.4",
     "next": "13.1.6",
     "nft.storage": "^7.0.0",
@@ -27,9 +26,5 @@
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
   },
-  "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.4"
-  }
+  "type": "module"
 }
