@@ -30,14 +30,60 @@ public class BokemonParty : MonoBehaviour {
     [SerializeField] private Image image;
     
     public List<Bokemon> Bokemons => bokemons;
+    LearnableMove scratch = new LearnableMove();
+    LearnableMove ember = new LearnableMove();
+    LearnableMove tackle = new LearnableMove();
+    LearnableMove waterBlaster = new LearnableMove();
     
     private void Start() {
-        // MyScriptableObject someInstance = ScriptableObject.CreateInstance("MyScriptableObject") as MyScriptableObject;
-        // someInstance.init (5, "Gorlock", 15, owningMap, someOtherParameter);
+        ember = CreateMove("Ember", "A weak fire attack", BokemonType.Fire, 100, 100, 25, 7);
+        scratch = CreateMove("Scratch", "A weak cutting attack", BokemonType.Normal, 40, 100, 35, 3);
+        tackle = CreateMove("Tackle", "A weak physical hit attack", BokemonType.Normal, 60, 100, 30, 5);
+        waterBlaster = CreateMove("Water Blaster", "A strong water attack", BokemonType.Water, 150, 100, 25, 7);
 
-        // StartPokemonImport();
-        // initialize the bokemons
+        bokemons = new List<Bokemon>();
+    }
 
+    private LearnableMove CreateMove(string name, string description, BokemonType type, int power, int accuracy, int pp, int level) {
+        MoveBase move = ScriptableObject.CreateInstance<MoveBase>();
+        move.Name = name;
+        move.Description = description;
+        move.Type = type;
+        move.Power = power;
+        move.Accuracy = accuracy;
+        move.PP = pp;
+        
+        LearnableMove learnableMove = new LearnableMove();
+        learnableMove.Base = move;
+        learnableMove.Level = level;
+
+        return learnableMove;
+    }
+
+    private Bokemon CreateBokemon(string name, string description, Sprite sprite, BokemonType type, int uid, int hp, int attack, int defense, int speed, int exp, List<LearnableMove> learnableMoves) {
+        BokemonBase bokemonBase = ScriptableObject.CreateInstance<BokemonBase>();
+        bokemonBase.Name = name;
+        bokemonBase.Description = description;
+        bokemonBase.FrontSprite = sprite;
+        bokemonBase.BackSprite = sprite;
+        bokemonBase.Type1 = type;
+        bokemonBase.Type2 = BokemonType.None;
+        bokemonBase.UID = uid;
+        bokemonBase.MaxHP = hp;
+        bokemonBase.Attack = attack;
+        bokemonBase.Defense = defense;
+        bokemonBase.SpecialAttack = attack + 20;
+        bokemonBase.SpecialDefense = defense + 20;
+        bokemonBase.Speed = speed;
+
+        bokemonBase.LearnableMoves = new List<LearnableMove>();
+        bokemonBase.LearnableMoves.AddRange(learnableMoves);
+
+        Bokemon bokemon = new Bokemon();
+        bokemon.Base = bokemonBase;
+        bokemon.Level = 10 + exp / 100;
+
+        return bokemon;
     }
 
     public Bokemon GetHealthyBokemon() {
@@ -57,8 +103,7 @@ public class BokemonParty : MonoBehaviour {
     }
 
     IEnumerator LoadString(string url) {
-        using (UnityWebRequest www = UnityWebRequest.Get(url))
-        {
+        using (UnityWebRequest www = UnityWebRequest.Get(url)) {
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
@@ -71,8 +116,7 @@ public class BokemonParty : MonoBehaviour {
                 Debug.Log(player.name);
                 // Or retrieve results as binary data
                 byte[] results = www.downloadHandler.data;
-                StartCoroutine(GenerateBokemon("https://cloudflare-ipfs.com/ipfs/" + player.imageCID, player));
-
+                yield return StartCoroutine(GenerateBokemon("https://cloudflare-ipfs.com/ipfs/" + player.imageCID, player));
             }
         }
     }
@@ -137,13 +181,13 @@ public class BokemonParty : MonoBehaviour {
 
             Debug.Log(bokemons[0].Base.Name);
 
-            // _title.text = "Work";
+            _title.text = "Work";
             
             foreach (var boke in bokemons) {
                 boke.Init();
             
             }
-            // _title.text = "No_Work";
+            _title.text = "No_Work";
         }
     }
 }
