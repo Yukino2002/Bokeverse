@@ -21,9 +21,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="pt-24">
-        <div>
+        {/* <div>
           <ConnectWallet />
-        </div>
+        </div> */}
         <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
           <section className="App-section w-1/2">
             <br />

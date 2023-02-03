@@ -13,7 +13,7 @@ export default function Navbar() {
 			name: 'Redeem',
 		},
 		{
-			link: '/redeem',
+			link: '/marketplace',
 			name: 'Marketplace',
 		},
 	];
