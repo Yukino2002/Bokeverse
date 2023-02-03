@@ -19,6 +19,7 @@ MonoBehaviour:
   type1: 3
   type2: 9
   uid: 999
+  experience: 100
   maxHP: 90
   attack: 25
   defense: 30

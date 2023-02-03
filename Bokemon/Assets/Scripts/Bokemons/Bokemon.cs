@@ -7,9 +7,11 @@ public class Bokemon {
     // need private variables to store the base and level of the bokemon
     [SerializeField] BokemonBase _base;
     [SerializeField] int _level;
+    [SerializeField] int _experience;
 
     public BokemonBase Base { get => _base; set => _base = value; }
     public int Level { get => _level; set => _level = value; }
+    public int Experience { get => _experience; set => _experience = value; }
     public int HP { get; set; }
 
     // move list for the bokemon

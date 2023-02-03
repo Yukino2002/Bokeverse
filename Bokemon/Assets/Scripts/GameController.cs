@@ -30,9 +30,6 @@ public class GameController : MonoBehaviour {
         playerController.OnEncounter += StartBattle;
         // subscribe to the OnBattleOver event
         battleSystem.OnBattleOver += EndBattle;
-
-        // // Instantise the ThirdwebSDK
-        // sdk = new ThirdwebSDK("optimism-goerli");
     }
 
     private void StartBattle() {
@@ -59,6 +56,10 @@ public class GameController : MonoBehaviour {
         // enable the main camera and minimap
         worldCamera.gameObject.SetActive(true);
         minimapCamera.gameObject.SetActive(true);
+
+        if (won) {
+            bokemonParty.PartyGainExperience(UnityEngine.Random.Range(1, 100) * 10);
+        }
     }
 
     // Update is called once per frame

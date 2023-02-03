@@ -225,7 +225,7 @@ public class BattleSystem : MonoBehaviour {
     // function to run from wild pokemon
     IEnumerator HandleRun(){
         yield return dialogBox.TypeDialog("   You decided to flee!");
-        OnBattleOver(true);
+        OnBattleOver(false);
     }
 
     void HandleMoveSelection() {
