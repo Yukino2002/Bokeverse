@@ -4,7 +4,7 @@ import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import type { NextPage } from "next";
 import { useActiveListings, useContract } from "@thirdweb-dev/react";
-import NFTCard from "../components/NFTCard";
+import NFTCard from "../components/NFTCard/NFTCard";
 import Link from "next/link";
 const inter = Inter({ subsets: ['latin'] })
 
