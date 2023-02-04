@@ -114,16 +114,16 @@ public class BokemonParty : MonoBehaviour {
         bokemons[0].Experience += experience;
         bokemons[0].Level = 15 + bokemons[0].Experience / 100;
 
-        // var contract = SDKManager.Instance.SDK.GetContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
+        // var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
         // var result = await contract.Write("increaseExperience", bokemon.Base.UID, experience);
         // Debug.Log(result);
     }
 
     // function to reward a starter bokemon to the player
     public async void GetStarterBokemon() {
-        var contract = SDKManager.Instance.SDK.GetContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
+        var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
         string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
-        var result = await contract.Write("mintTo", playerAddress, 2, "ipfs://QmSgbfYSXEN1mZKwf4uWdUX1XgT7nyXB2KXBb6DxzB2jN2/0", 1);
+        var result = await contract.Write("mintSimilar", playerAddress, "ipfs://QmSgbfYSXEN1mZKwf4uWdUX1XgT7nyXB2KXBb6DxzB2jN2/0", 1, 2);
         Debug.Log(result);
         if (result.isSuccessful()) {
             Debug.Log("Transaction successful");
@@ -136,7 +136,7 @@ public class BokemonParty : MonoBehaviour {
     // function to fetch the bokemon in the party from the contract
     public async void fetchBokemons() {
         // create a contract instance
-        var contract = SDKManager.Instance.SDK.GetContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
+        var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
         // get the player's wallet address
         string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
         
