@@ -13,7 +13,7 @@ TagManager:
   - UI
   - SolidObjects
   - LongGrass
-  - 
+  - Sensei
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3020752563
+    locked: 0
+  - name: Sensei
+    uniqueID: 2148876567
     locked: 0
   - name: Player
     uniqueID: 133017135

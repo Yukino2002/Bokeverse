@@ -50,13 +50,13 @@ public class BokemonParty : MonoBehaviour {
 
     
     private void Start() {
+        bokemons = new List<Bokemon>();
+
         // create the learnable moves in the game
         ember = CreateMove("Ember", "A weak fire attack", BokemonType.Fire, 100, 100, 25, 7);
         scratch = CreateMove("Scratch", "A weak cutting attack", BokemonType.Normal, 40, 100, 35, 3);
         tackle = CreateMove("Tackle", "A weak physical hit attack", BokemonType.Normal, 60, 100, 30, 5);
         waterBlaster = CreateMove("Water Blaster", "A strong water attack", BokemonType.Water, 150, 100, 25, 7);
-
-        bokemons = new List<Bokemon>();
     }
 
     // function to create a learnable move object in the game
@@ -115,35 +115,35 @@ public class BokemonParty : MonoBehaviour {
         bokemon.Experience += experience;
         bokemon.Level = 15 + bokemon.Experience / 100;
 
-        var contract = SDKManager.Instance.SDK.GetContract("0xcA84E4960d562642a7Ca868Aadcb1D45F38628dC");
-        var result = await contract.Write("increaseExperience", bokemon.Base.UID, experience);
-        Debug.Log(result);
+        // var contract = SDKManager.Instance.SDK.GetContract("0xcA84E4960d562642a7Ca868Aadcb1D45F38628dC");
+        // var result = await contract.Write("increaseExperience", bokemon.Base.UID, experience);
+        // Debug.Log(result);
     }
 
     // function to fetch the bokemon in the party from the contract
     public async void fetchBokemons() {
-        // create a contract instance
-        var contract = SDKManager.Instance.SDK.GetContract("0xcA84E4960d562642a7Ca868Aadcb1D45F38628dC");
-        // get the player's wallet address
-        string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
+        // // create a contract instance
+        // var contract = SDKManager.Instance.SDK.GetContract("0xcA84E4960d562642a7Ca868Aadcb1D45F38628dC");
+        // // get the player's wallet address
+        // string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
         
-        // debug purposes to print the player's wallet address
-        _title.text = playerAddress;
+        // // debug purposes to print the player's wallet address
+        // _title.text = playerAddress;
         
-        // get the list of metadata and uid from the blockchain
-        // List<string> metadata = await contract.Read<List<string>>("getMetaDataBokemonPerUser", playerAddress);
-        List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
+        // // get the list of metadata and uid from the blockchain
+        // // List<string> metadata = await contract.Read<List<string>>("getMetaDataBokemonPerUser", playerAddress);
+        // List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
 
         // string ipfs = "ipfs://QmT53i4kjSKGkNZgi8tprkBt7vk6PffuT1LKdPGXQud742/0";
         // StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1));
 
-        // loop through the list of metadata and uid parallelly
-        for (int i = 0; i < uid.Count; i++) {
-            string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
-            int experience = await contract.Read<int>("experience", uid[i]);
-            Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
-            StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1));
-        }
+        // // loop through the list of metadata and uid parallelly
+        // for (int i = 0; i < uid.Count; i++) {
+        //     string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
+        //     int experience = await contract.Read<int>("experience", uid[i]);
+        //     Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
+        //     StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1));
+        // }
     }
 
     IEnumerator LoadString(string url, int experience) {
@@ -158,6 +158,7 @@ public class BokemonParty : MonoBehaviour {
                 _title.text = json;
                 player = JsonUtility.FromJson<Player>(json);
                 Debug.Log(player.properties[0].type);
+
                 // Or retrieve results as binary data
                 byte[] results = www.downloadHandler.data;
                 yield return StartCoroutine(GenerateBokemon("https://gateway.ipfscdn.io/ipfs/" + player.image.Substring(7), player, experience));
@@ -192,8 +193,8 @@ public class BokemonParty : MonoBehaviour {
                 experience, 
                 new List<LearnableMove> { ember, scratch, tackle }
             );
-            bokemons.Add(playerBokemon);
 
+            bokemons.Add(playerBokemon);
             playerBokemon.Init();
         }
     }
