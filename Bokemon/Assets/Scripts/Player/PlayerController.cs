@@ -8,16 +8,10 @@ public class PlayerController : MonoBehaviour {
     public LayerMask solidObjectsLayer;
     public LayerMask longGrassLayer;
 
-    private float initialX;
-    private float initialY;
     private int partyCount;
 
+    [SerializeField] GameObject canvas;
     [SerializeField] BokemonParty bokemonParty;
-
-    private void Start() {
-        initialX = transform.position.x;
-        initialY = transform.position.y;
-    }
 
     // create an event for encounters in the long grass
     // this is to avoid circular dependency as player controller is already referenced in the game controller
@@ -56,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 
                 // checks and starts the coroutine
                 if (IsWalkable(targetPos, partyCount)){
+                    canvas.SetActive(false);
                     StartCoroutine(Move(targetPos));
                 }
             }
@@ -87,6 +82,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (partyCount == 0 && Physics2D.OverlapCircle(targetPos, 0.2f, longGrassLayer) != null) {
+            canvas.SetActive(true);
             return false;
         }
 
