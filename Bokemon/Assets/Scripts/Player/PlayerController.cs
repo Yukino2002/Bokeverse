@@ -8,6 +8,17 @@ public class PlayerController : MonoBehaviour {
     public LayerMask solidObjectsLayer;
     public LayerMask longGrassLayer;
 
+    private float initialX;
+    private float initialY;
+    private int partyCount;
+
+    [SerializeField] BokemonParty bokemonParty;
+
+    private void Start() {
+        initialX = transform.position.x;
+        initialY = transform.position.y;
+    }
+
     // create an event for encounters in the long grass
     // this is to avoid circular dependency as player controller is already referenced in the game controller
     public event Action OnEncounter;
@@ -22,6 +33,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void HandleUpdate() {
+        partyCount = bokemonParty.Bokemons.Count;
+
         if (!isMoving) {
             // get axis raw returns 1, 0, or -1
             input.x = Input.GetAxisRaw("Horizontal");
@@ -42,7 +55,7 @@ public class PlayerController : MonoBehaviour {
                 targetPos.y += input.y;
 
                 // checks and starts the coroutine
-                if (IsWalkable(targetPos)){
+                if (IsWalkable(targetPos, partyCount)){
                     StartCoroutine(Move(targetPos));
                 }
             }
@@ -67,9 +80,13 @@ public class PlayerController : MonoBehaviour {
         CheckForEncounters();
     }
 
-    private bool IsWalkable(Vector3 targetPos) {
+    private bool IsWalkable(Vector3 targetPos, int partyCount) {
         // first parameter is the position, second is the radius, third is the layer of the object we want to check
         if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer) != null) {
+            return false;
+        }
+
+        if (partyCount == 0 && Physics2D.OverlapCircle(targetPos, 0.2f, longGrassLayer) != null) {
             return false;
         }
 

@@ -203,7 +203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155855606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.18, y: 6, z: 0}
+  m_LocalPosition: {x: 6.2, y: -1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -231,6 +231,7 @@ MonoBehaviour:
   longGrassLayer:
     serializedVersion: 2
     m_Bits: 128
+  bokemonParty: {fileID: 155855611}
 --- !u!95 &155855610
 Animator:
   serializedVersion: 5
@@ -263,6 +264,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5fe4ce010d75e4d8abef8c523f753e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player:
+    name: 
+    description: 
+    image: 
+    properties: []
   json: 
   test123: 
   _title: {fileID: 786270579}
@@ -5449,10 +5455,13 @@ MonoBehaviour:
   wildBokemons:
   - _base: {fileID: 11400000, guid: 8814e5bdc5e640b4fbe2cdcf4896c4c2, type: 2}
     _level: 10
+    _experience: 0
   - _base: {fileID: 11400000, guid: 6f5764cd28aeea841944ab1651c78b02, type: 2}
     _level: 7
+    _experience: 0
   - _base: {fileID: 11400000, guid: 9799da11c4828834dace24b8331200fe, type: 2}
     _level: 9
+    _experience: 0
 --- !u!1 &680489109
 GameObject:
   m_ObjectHideFlags: 0
