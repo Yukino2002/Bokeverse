@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed;
     public LayerMask solidObjectsLayer;
     public LayerMask longGrassLayer;
+    public LayerMask sensei;
 
     private int partyCount;
 
@@ -83,6 +84,10 @@ public class PlayerController : MonoBehaviour {
 
         if (partyCount == 0 && Physics2D.OverlapCircle(targetPos, 0.2f, longGrassLayer) != null) {
             canvas.SetActive(true);
+            return false;
+        }
+
+        if (Physics2D.OverlapCircle(targetPos, 0.2f, sensei) != null) {
             return false;
         }
 
