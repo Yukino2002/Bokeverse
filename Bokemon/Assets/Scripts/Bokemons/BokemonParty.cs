@@ -111,42 +111,63 @@ public class BokemonParty : MonoBehaviour {
 
     // function to distribute experience to the bokemon in the party
     async public void PartyGainExperience(int experience) {
-        Bokemon bokemon = bokemons[0];
-        bokemon.Experience += experience;
-        bokemon.Level = 15 + bokemon.Experience / 100;
+        bokemons[0].Experience += experience;
+        bokemons[0].Level = 15 + bokemons[0].Experience / 100;
 
-        // var contract = SDKManager.Instance.SDK.GetContract("0xcA84E4960d562642a7Ca868Aadcb1D45F38628dC");
+        // var contract = SDKManager.Instance.SDK.GetContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
         // var result = await contract.Write("increaseExperience", bokemon.Base.UID, experience);
         // Debug.Log(result);
     }
 
+    // function to reward a starter bokemon to the player
+    public async void GetStarterBokemon() {
+        var contract = SDKManager.Instance.SDK.GetContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
+        string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
+        var result = await contract.Write("mintTo", playerAddress, 2, "ipfs://QmSgbfYSXEN1mZKwf4uWdUX1XgT7nyXB2KXBb6DxzB2jN2/0", 1);
+        Debug.Log(result);
+        if (result.isSuccessful()) {
+            Debug.Log("Transaction successful");
+            fetchBokemons();
+        } else {
+            Debug.Log("Transaction failed");
+        }
+    }
+
     // function to fetch the bokemon in the party from the contract
     public async void fetchBokemons() {
-        // // create a contract instance
-        // var contract = SDKManager.Instance.SDK.GetContract("0xcA84E4960d562642a7Ca868Aadcb1D45F38628dC");
-        // // get the player's wallet address
-        // string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
+        // create a contract instance
+        var contract = SDKManager.Instance.SDK.GetContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
+        // get the player's wallet address
+        string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
         
-        // // debug purposes to print the player's wallet address
-        // _title.text = playerAddress;
+        // debug purposes to print the player's wallet address
+        _title.text = playerAddress;
         
-        // // get the list of metadata and uid from the blockchain
-        // // List<string> metadata = await contract.Read<List<string>>("getMetaDataBokemonPerUser", playerAddress);
-        // List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
+        // get the list of metadata and uid from the blockchain
+        // List<string> metadata = await contract.Read<List<string>>("getMetaDataBokemonPerUser", playerAddress);
+        List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
 
         // string ipfs = "ipfs://QmT53i4kjSKGkNZgi8tprkBt7vk6PffuT1LKdPGXQud742/0";
         // StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1));
 
-        // // loop through the list of metadata and uid parallelly
-        // for (int i = 0; i < uid.Count; i++) {
-        //     string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
-        //     int experience = await contract.Read<int>("experience", uid[i]);
-        //     Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
-        //     StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1));
-        // }
+        for (int i = 0; i < uid.Count; i++) {
+            string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
+            int experience = await contract.Read<int>("experience", uid[i]);
+            Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
+            bool create = true;
+            for (int j = 0; j < bokemons.Count; j++) {
+                if (bokemons[j].Base.UID == uid[i]) {
+                    create = false;
+                    break;
+                }
+            }
+            if (create) {
+                StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), experience, uid[i]));
+            }
+        }
     }
 
-    IEnumerator LoadString(string url, int experience) {
+    IEnumerator LoadString(string url, int experience, int uid) {
         using (UnityWebRequest www = UnityWebRequest.Get(url)) {
             yield return www.SendWebRequest();
 
@@ -161,12 +182,12 @@ public class BokemonParty : MonoBehaviour {
 
                 // Or retrieve results as binary data
                 byte[] results = www.downloadHandler.data;
-                yield return StartCoroutine(GenerateBokemon("https://gateway.ipfscdn.io/ipfs/" + player.image.Substring(7), player, experience));
+                yield return StartCoroutine(GenerateBokemon("https://gateway.ipfscdn.io/ipfs/" + player.image.Substring(7), player, experience, uid));
             }
         }
     }
     
-    IEnumerator GenerateBokemon(string url, Player bokemon, int experience) {
+    IEnumerator GenerateBokemon(string url, Player bokemon, int experience, int uid) {
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
         yield return www.SendWebRequest();
 
@@ -185,7 +206,7 @@ public class BokemonParty : MonoBehaviour {
                 bokemon.description, 
                 sprite, 
                 BokemonType.Fire, 
-                1, 
+                uid, 
                 bokemon.properties[0].hp, 
                 bokemon.properties[0].attack, 
                 bokemon.properties[0].defense, 
