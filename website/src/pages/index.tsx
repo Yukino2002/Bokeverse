@@ -29,14 +29,17 @@ export default function Home() {
         <div className='flex flex-col gap-20'>
           <section className="bg-white text-black mt-[80px]">
             <div className='flex flex-row gap-3 justify-between'>
-              <div className='pt-28 flex flex-col font-boogaloo text-xl w-[50%] pl-12 justify-between'>
-                <h3>
-                  Discover a world of adventure with our latest 2D RPG game that offers a unique and exciting gaming experience. Imagine a beautifully crafted and expansive map with turn-based player versus environment battles, where you can showcase your skills and strategy. And now, you can take it to the next level with our decentralized game that requires only your wallet to connect, giving you the freedom to play and explore at any time.
+              <div className='pt-20 flex flex-col font-boogaloo w-[50%] pl-12 justify-between'>
+                <h2 className='text-2xl'>
+                  Discover a world of adventure with our latest 2D RPG game that offers a unique and exciting gaming experience. Imagine a beautifully crafted and expansive map with turn-based player versus environment battles, where you can showcase your skills and strategy. And now, you can take it to the next level with our decentralized game that requires only your wallet to connect, giving you the freedom to play and explore at any time!
+                </h2>
+
+                <h3 className='text-2xl'>
+                  With PvP mode on the horizon, the competition is about to heat up. Don't miss out on this opportunity to dive right in and be a part of this exciting new world. Get ready for an unforgettable adventure filled with challenges and rewards.
                 </h3>
-                What sets our game apart is the integration of blockchain technology, which provides a secure and transparent way to own and trade in-game collectibles as NFTs. Our marketplace provides an opportunity for players to trade their valuable assets, making the gaming experience even more thrilling.
-                <h3>
-                  With PvP mode on the horizon, the competition is about to heat up. Don't miss out on this opportunity to dive right in and be a part of this exciting new world. Get ready for an unforgettable adventure filled with challenge and reward. Start playing today!
-                </h3>
+
+                <h1 className='text-[#3A3771] text-4xl'>Start playing today!</h1>
+
                 <section className="bg-white text-black pb-8 pt-4">
                   <h2 className="font-boogaloo text-5xl pb-10">
                     Made with
@@ -44,7 +47,7 @@ export default function Home() {
                   <div className="flex flex-col gap-10">
                     <div className="flex flex-row gap-6">
                       <Image src={UnityLogo} alt="Unity" width={200} />
-                      <Image src={ThirdwebLogo} alt="Unity" width={400} />
+                      <Image src={ThirdwebLogo} alt="Unity" width={450} />
                     </div>
                   </div>
                 </section>
