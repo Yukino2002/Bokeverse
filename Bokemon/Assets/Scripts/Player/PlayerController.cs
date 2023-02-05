@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask solidObjectsLayer;
     public LayerMask longGrassLayer;
     public LayerMask sensei;
+    public LayerMask healer;
 
     private int partyCount;
 
@@ -95,8 +96,14 @@ public class PlayerController : MonoBehaviour {
 
         if (Physics2D.OverlapCircle(targetPos, 0.2f, sensei) != null) {
             if (partyCount == 0) {
-                // starterBokemon = false;
                 bokemonParty.GetStarterBokemon();
+            }
+            return false;
+        }
+
+        if (Physics2D.OverlapCircle(targetPos, 0.2f, healer) != null) {
+            if (partyCount > 0) {
+                bokemonParty.HealBokemons();
             }
             return false;
         }

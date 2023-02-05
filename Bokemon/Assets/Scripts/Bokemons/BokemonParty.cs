@@ -109,6 +109,13 @@ public class BokemonParty : MonoBehaviour {
         return bokemons.Where(b => b.HP > 0).OrderBy(b => b.HP).FirstOrDefault();
     }
 
+    // function to heal the bokemons in the party
+    public void HealBokemons() {
+        foreach (Bokemon bokemon in bokemons) {
+            bokemon.HP = bokemon.MaxHP;
+        }
+    }
+
     // function to distribute experience to the bokemon in the party
     async public void PartyGainExperience(int experience) {
         var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
@@ -135,36 +142,36 @@ public class BokemonParty : MonoBehaviour {
 
     // function to fetch the bokemon in the party from the contract
     public async void fetchBokemons() {
-        // create a contract instance
-        var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
-        // get the player's wallet address
-        string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
+        // // create a contract instance
+        // var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
+        // // get the player's wallet address
+        // string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
         
-        // debug purposes to print the player's wallet address
-        _title.text = playerAddress;
+        // // debug purposes to print the player's wallet address
+        // _title.text = playerAddress;
         
-        // get the list of metadata and uid from the blockchain
-        // List<string> metadata = await contract.Read<List<string>>("getMetaDataBokemonPerUser", playerAddress);
-        List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
+        // // get the list of metadata and uid from the blockchain
+        // // List<string> metadata = await contract.Read<List<string>>("getMetaDataBokemonPerUser", playerAddress);
+        // List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
 
-        // string ipfs = "ipfs://QmT53i4kjSKGkNZgi8tprkBt7vk6PffuT1LKdPGXQud742/0";
-        // StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1, 1));
+        string ipfs = "ipfs://QmT53i4kjSKGkNZgi8tprkBt7vk6PffuT1LKdPGXQud742/0";
+        StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1, 1));
 
-        for (int i = 0; i < uid.Count; i++) {
-            string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
-            int experience = await contract.Read<int>("experience", uid[i]);
-            Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
-            bool create = true;
-            for (int j = 0; j < bokemons.Count; j++) {
-                if (bokemons[j].Base.UID == uid[i]) {
-                    create = false;
-                    break;
-                }
-            }
-            if (create) {
-                StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), experience, uid[i]));
-            }
-        }
+        // for (int i = 0; i < uid.Count; i++) {
+        //     string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
+        //     int experience = await contract.Read<int>("experience", uid[i]);
+        //     Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
+        //     bool create = true;
+        //     for (int j = 0; j < bokemons.Count; j++) {
+        //         if (bokemons[j].Base.UID == uid[i]) {
+        //             create = false;
+        //             break;
+        //         }
+        //     }
+        //     if (create) {
+        //         StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), experience, uid[i]));
+        //     }
+        // }
     }
 
     IEnumerator LoadString(string url, int experience, int uid) {

@@ -14,7 +14,7 @@ TagManager:
   - SolidObjects
   - LongGrass
   - Sensei
-  - 
+  - Healer
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Sensei
     uniqueID: 2148876567
+    locked: 0
+  - name: Healer
+    uniqueID: 789477543
     locked: 0
   - name: Player
     uniqueID: 133017135
