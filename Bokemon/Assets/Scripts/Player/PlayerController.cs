@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     private bool starterBokemon;
 
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject healthIndicator;
     [SerializeField] BokemonParty bokemonParty;
 
     // create an event for encounters in the long grass
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour {
 
     public void HandleUpdate() {
         partyCount = bokemonParty.Bokemons.Count;
+        if (bokemonParty.GetHealthyBokemon() == null && partyCount > 0) {
+            healthIndicator.SetActive(true);
+        } else {
+            healthIndicator.SetActive(false);
+        }
 
         if (!isMoving) {
             // get axis raw returns 1, 0, or -1
@@ -104,7 +110,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void CheckForEncounters() {
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, longGrassLayer) != null) {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, longGrassLayer) != null && bokemonParty.GetHealthyBokemon() != null) {
             if (UnityEngine.Random.Range(1, 101) <= 10) {
                 // otherwise the player will continue to move after the encounter
                 animator.SetBool("isMoving", false);
