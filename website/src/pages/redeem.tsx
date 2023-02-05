@@ -38,7 +38,7 @@ class App extends React.Component {
             {
               this.state.showButton &&
               <Web3Button
-                contractAddress="0xA6565eA363C92430fB674bc056e618D34f1Bf61C"
+                contractAddress="0x5679B3Fe5f66c68875210A99eC8C788f377B41c6"
                 action={(contract) =>
                   contract.call("redeemItem", this.state.result)
                 }
