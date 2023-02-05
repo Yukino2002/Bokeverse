@@ -1,4 +1,6 @@
-/** @type {import('tailwindcss').Config} */
+// /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     // Or if using `src` directory:
@@ -7,7 +9,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        concertOne: ['"Concert One"', ...defaultTheme.fontFamily.sans],
+        pressStart2P: ['"Press Start 2P"', ...defaultTheme.fontFamily.sans],
+        boogaloo: ['"Boogaloo"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
