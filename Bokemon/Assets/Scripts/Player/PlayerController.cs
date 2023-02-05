@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour {
     public LayerMask sensei;
 
     private int partyCount;
-    private bool starterBokemon;
 
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject healthIndicator;
@@ -24,10 +23,6 @@ public class PlayerController : MonoBehaviour {
     private Vector2 input;
 
     private Animator animator;
-
-    private void Start() {
-        starterBokemon = true;
-    }
     
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -99,8 +94,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (Physics2D.OverlapCircle(targetPos, 0.2f, sensei) != null) {
-            if (starterBokemon) {
-                starterBokemon = false;
+            if (partyCount == 0) {
+                // starterBokemon = false;
                 bokemonParty.GetStarterBokemon();
             }
             return false;
