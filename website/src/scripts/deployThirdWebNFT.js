@@ -9,7 +9,7 @@ const GOERLI_PRIVATE_KEY = "a12e71ebe9a4bc009a99f6b0a99c8f24163ce13d39979100adb2
 const sdk = ThirdwebSDK.fromPrivateKey(GOERLI_PRIVATE_KEY, "goerli");
 // First, instantiate the SDK
 const storage = new ThirdwebStorage();
-const contract = await sdk.getContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
+const contract = await sdk.getContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
 
 for (let i = 0; i < dataMonster.length; i++) {
     const filepath="../contract/images/"+dataMonster[i].name+".png";

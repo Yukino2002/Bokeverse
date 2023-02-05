@@ -27,6 +27,28 @@ contract web3GAME is ERC1155Base {
     // mapping to store experience of each bokemon
     mapping (uint256 => uint256) public experience;
 
+    function mintTo(
+        address _to,
+        uint256 _tokenId,
+        string memory _tokenURI,
+        uint256 _amount
+    ) public virtual override {
+        
+        uint256 tokenIdToMint;
+        uint256 nextIdToMint = nextTokenIdToMint();
+
+        if (_tokenId == type(uint256).max) {
+            tokenIdToMint = nextIdToMint;
+            nextTokenIdToMint_ += 1;
+            _setTokenURI(nextIdToMint, _tokenURI);
+        } else {
+            require(_tokenId < nextIdToMint, "invalid id");
+            tokenIdToMint = _tokenId;
+        }
+
+        _mint(_to, tokenIdToMint, _amount, "");
+    }
+
     function mint(address account, string memory uri, uint256 _experience) public returns (uint256) {
         require(bytes(uri).length > 0, "Metadata must be provided");
         require(_experience > 0, "Experience must be provided");
@@ -34,6 +56,19 @@ contract web3GAME is ERC1155Base {
         // requrie size of metadata and experience to be the same
         uint256 newItemId = _tokenIds.current();
         mintTo(account, type(uint256).max, uri, 1);
+        experience[newItemId] = _experience;
+        _tokenIds.increment();
+        return newItemId;
+    }
+
+    function mintSimilar(address account, string memory uri, uint256 _experience, uint256 _id) public returns (uint256) {
+        require(bytes(uri).length > 0, "Metadata must be provided");
+        require(_experience > 0, "Experience must be provided");
+        require(account != address(0), "Account must be provided");
+        require(_id < _tokenIds.current(), "Id must be provided");
+        // requrie size of metadata and experience to be the same
+        uint256 newItemId = _tokenIds.current();
+        mintTo(account, _id, uri, 1);
         experience[newItemId] = _experience;
         _tokenIds.increment();
         return newItemId;
