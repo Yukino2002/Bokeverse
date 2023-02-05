@@ -1,9 +1,8 @@
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import web3GAME from '../../../contract/artifacts/contracts/web3GAME.sol/web3GAME.json' assert { type: "json" };
-import dataMonster from '../../../contract/data.json' assert { type: "json" };
-import {} from 'dotenv/config' 
-import fs from 'fs';
-import { NFTStorage, File, Blob } from "nft.storage";
+const { ThirdwebSDK } =  require("@thirdweb-dev/sdk");
+const dataMonster =  require('../../../contract/data.json');
+const {} =  require('dotenv/config');
+const fs =  require('fs');
+const { NFTStorage, File, Blob } =  require("nft.storage");
 
 const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
 const sdk = ThirdwebSDK.fromPrivateKey(GOERLI_PRIVATE_KEY, "goerli");
@@ -16,9 +15,14 @@ const client = new NFTStorage({ token: NFT_STORE_API_KEY });
 
 // console.log(cid);
 
-const contract = await sdk.getContract("0xA6565eA363C92430fB674bc056e618D34f1Bf61C");
-var result = await contract.call("metadata", 1);
-console.log(result);
+start();
+
+async function start() {
+
+    const contract = await sdk.getContract("0xA6565eA363C92430fB674bc056e618D34f1Bf61C");
+    var result = await contract.call("metadata", 1);
+    console.log(result);
+}
 // for (let i = 0; i < dataMonster.length; i++) {
 //     const filepath="../../../images/"+dataMonster[i].name+".png";
 //     const imageData = new Blob([await fs.promises.readFile(filepath)]);

@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Shiny_Girasion",
+        "type": "fire",
+        "hp": 14,
+        "attack": 39,
+        "defense": 42,
+        "speed": 9
+        }
+]

@@ -24,6 +24,8 @@
     "next": "13.1.6",
     "nft.storage": "^7.0.0",
     "postcss": "^8.4.21",
+    "qrcode": "^1.5.1",
+    "randomstring": "^1.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
