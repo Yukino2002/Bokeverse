@@ -10,6 +10,12 @@ import MarketplaceLogo from '../../public/Marketplace.png';
 import UnityLogo from '../../public/Unity.png';
 import ThirdwebLogo from '../../public/Thirdweb.png';
 import PlayerImage from '../../public/PlayerLarge.png';
+import StateMenuImage from '../../public/StartMenu.jpg';
+import BanditsImage from '../../public/Bandits.jpg';
+import PartyScreenImage from '../../public/PartyScreen.jpg';
+import BattleImage from '../../public/Battle.jpg';
+import TownSquareImage from '../../public/TownSquare.jpg';
+import WildImage from '../../public/Wild.jpg';
 
 import Feature from '@/components/feature';
 
@@ -38,7 +44,7 @@ export default function Home() {
                   With PvP mode on the horizon, the competition is about to heat up. Don't miss out on this opportunity to dive right in and be a part of this exciting new world. Get ready for an unforgettable adventure filled with challenges and rewards.
                 </h3>
 
-                <h1 className='text-[#3A3771] text-4xl'>Start playing today!</h1>
+                <h1 className='text-[#3A3771] text-4xl font-base'>Start playing today!</h1>
 
                 <section className="bg-white text-black pb-8 pt-4">
                   <h2 className="font-boogaloo text-5xl pb-10">
@@ -58,7 +64,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="bg-white px-[275px] text-black pb-16">
+          <section className="bg-white px-[275px] text-black pb-6">
             <h2 className="font-boogaloo text-center text-6xl p-6 pb-12">
               Games have never been this fun and accessible at the same time!
             </h2>
@@ -73,23 +79,21 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          <section className="bg-white px-[275px] text-black pb-16">
+            <h2 className="font-boogaloo text-center text-6xl p-6 pb-12">
+              Get a glimpse of the immersive world of Bokeverse!
+            </h2>
+            <div className="grid grid-cols-3 items-center text-center gap-5">
+              <Image src={StateMenuImage} alt="StartMenu" className='border border-black' />
+              <Image src={WildImage} alt="Wild" className='border border-black' />
+              <Image src={BattleImage} alt="Wild" className='border border-black' />
+              <Image src={TownSquareImage} alt="TownSquare" className='border border-black' />
+              <Image src={PartyScreenImage} alt="PartyScreen" className='border border-black' />
+              <Image src={BanditsImage} alt="Wild" className='border border-black' />
+            </div>
+          </section>
         </div>
-
-
-        <section className="container mx-auto text-center py-6 mb-12">
-          <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
-            Call to Action
-          </h2>
-          <div className="w-full mb-4">
-            <div className="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
-          </div>
-          <h3 className="my-4 text-3xl leading-tight">
-            Main Hero Message to sell yourself!
-          </h3>
-          <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            Action!
-          </button>
-        </section>
       </main>
     </>
   )
