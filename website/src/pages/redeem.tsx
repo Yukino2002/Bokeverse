@@ -1,7 +1,7 @@
 import React from 'react';
 import Html5QrcodePlugin from '../components/qrcode/Html5QrcodePlugin.jsx'
 import ResultContainerPlugin from '../components/qrcode/ResultContainerPlugin.jsx'
-import { ConnectWallet, Web3Button} from "@thirdweb-dev/react";
+import { ConnectWallet, Web3Button } from "@thirdweb-dev/react";
 import { ethers } from 'ethers'
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
@@ -29,11 +29,11 @@ class App extends React.Component {
             <br />
             <br />
             <br />
-            <Html5QrcodePlugin 
+            <Html5QrcodePlugin
               fps={10}
               qrbox={1000}
               disableFlip={false}
-              qrCodeSuccessCallback={this.onNewScanResult}/>
+              qrCodeSuccessCallback={this.onNewScanResult} />
             <ResultContainerPlugin results={this.state.decodedResults} />
             {
               this.state.showButton &&
@@ -61,11 +61,11 @@ class App extends React.Component {
     });
     this.setState((state, props) => {
       state.decodedResults.push(decodedResult);
-      console.log( state.decodedResults);
+      console.log(state.decodedResults);
       return state;
     });
   }
-  
+
   async redeemItem(result) {
     // let ethProvider = new ethers.providers.Web3Provider(window.ethereum);
     // let signer = ethProvider.getSigner()
