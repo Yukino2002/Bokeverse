@@ -13,19 +13,16 @@ MonoBehaviour:
   m_Name: Embre
   m_EditorClassIdentifier: 
   name: Embre
-  description: 
+  description: A cute evil fire type bokemon, who eats everything up.
   frontSprite: {fileID: 21300000, guid: 09e43006797c73741a68facdb893e1e8, type: 3}
   backSprite: {fileID: 21300000, guid: a386abcb1a0085f46825d9bdfa4b8226, type: 3}
-  type1: 2
-  type2: 5
-  uid: 997
-  experience: 100
+  type: 2
   maxHP: 100
-  attack: 50
-  defense: 50
-  specialAttack: 50
+  attack: 48
+  defense: 34
+  specialAttack: 56
   specialDefense: 50
-  speed: 50
+  speed: 40
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: cc2dc61bc6e3752448075f7720fae6ff, type: 2}
     level: 1

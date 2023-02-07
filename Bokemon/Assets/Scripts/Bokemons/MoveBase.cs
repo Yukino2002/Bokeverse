@@ -20,5 +20,5 @@ public class MoveBase : ScriptableObject {
     public int Power { get => power; set => power = value; }
     public int Accuracy { get => accuracy; set => accuracy = value; }
     public int PP { get => pp; set => pp = value; }
-    public bool isSpecial { get => type == BokemonType.Fire || type == BokemonType.Water || type == BokemonType.Grass; }
+    public bool isSpecial { get => type == BokemonType.Fire || type == BokemonType.Ice || type == BokemonType.Grass || type == BokemonType.Earth || type == BokemonType.Steel; }
 }

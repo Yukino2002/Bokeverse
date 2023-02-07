@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Scratch
   description: Scratch the damn bokemon
-  type: 0
+  type: 1
   power: 30
   accuracy: 95
   pp: 30

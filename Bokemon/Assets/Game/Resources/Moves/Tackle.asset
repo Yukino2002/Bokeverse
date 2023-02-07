@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Tackle
   description: Hit the damn bokemon
-  type: 0
+  type: 1
   power: 40
   accuracy: 90
   pp: 20

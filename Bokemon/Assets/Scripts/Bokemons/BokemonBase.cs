@@ -15,10 +15,8 @@ public class BokemonBase : ScriptableObject {
     [SerializeField] Sprite frontSprite;
     [SerializeField] Sprite backSprite;
 
-    [SerializeField] BokemonType type1;
-    [SerializeField] BokemonType type2;
+    [SerializeField] BokemonType type;
 
-    [SerializeField] int uid;
     [SerializeField] int maxHP;
     [SerializeField] int attack;
     [SerializeField] int defense;
@@ -34,9 +32,7 @@ public class BokemonBase : ScriptableObject {
     public string Description { get => description; set => description = value; }
     public Sprite FrontSprite { get => frontSprite; set => frontSprite = value; }
     public Sprite BackSprite { get => backSprite; set => backSprite = value; }
-    public BokemonType Type1 { get => type1; set => type1 = value; }
-    public BokemonType Type2 { get => type2; set => type2 = value; }
-    public int UID { get => uid; set => uid = value; }
+    public BokemonType Type { get => type; set => type = value; }
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public int Attack { get => attack; set => attack = value; }
     public int Defense { get => defense; set => defense = value; }
@@ -61,45 +57,23 @@ public enum BokemonType {
     None,
     Normal,
     Fire,
-    Water,
-    Grass,
-    Electric,
+    Earth,
     Ice,
-    Fighting,
-    Poison,
-    Ground,
-    Flying,
-    Psychic,
-    Bug,
-    Rock,
-    Ghost,
-    Dragon,
-    Dark,
     Steel,
-    Fairy
+    Grass
 }
 
 // chart for type effectiveness, 2f super effective, 0f not effective, 1f normal
 public class TypeChart {
     // static to use it directly from the class without creating an instance
     static float[][] chart = {
-        new float[] { 1f,  1f,   1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f, 0.5f, 0f,  1f,  1f, 0.5f },
-        new float[] { 1f, 0.5f, 0.5f, 1f,  2f,  2f,  1f,  1f,  1f,  1f,  1f,  2f, 0.5f, 1f, 0.5f, 1f,  2f },
-        new float[] { 1f,  2f,  0.5f, 2f, 0.5f, 1f,  1f,  1f,  2f,  1f,  1f,  1f,  2f,  1f, 0.5f, 1f,  1f },
-        new float[] { 1f,  1f,   2f, 0.5f,0.5f, 2f,  1f,  1f,  0f,  2f,  1f,  1f,  1f,  1f, 0.5f, 1f,  1f },
-        new float[] { 1f, 0.5f,  2f,  2f, 0.5f, 1f,  1f, 0.5f, 2f, 0.5f, 1f, 0.5f, 2f,  1f, 0.5f, 1f, 0.5f },
-        new float[] { 1f, 0.5f, 0.5f, 1f,  2f, 0.5f, 1f,  1f,  2f,  2f,  1f,  1f,  1f,  1f,  2f,  1f, 0.5f },
-        new float[] { 2f,  1f,   1f,  1f,  1f,  2f,  1f, 0.5f, 1f, 0.5f, 0.5f, 0.5f, 2f, 0f, 1f,  2f,  2f },      
-        new float[] { 1f,  1f,   1f,  1f,  2f,  1f,  1f, 0.5f, 0.5f, 1f, 1f,  1f, 0.5f, 0.5f, 1f, 1f,  0f },  
-        new float[] { 1f,  2f,   1f,  2f, 0.5f, 1f,  1f,  2f,  1f,  0f,  1f, 0.5f, 2f,  1f,  1f,  1f,  2f },
-        new float[] { 1f,  1f,   1f, 0.5f, 2f,  1f,  2f,  1f,  1f,  1f,  1f,  2f, 0.5f, 1f,  1f,  1f, 0.5f },
-        new float[] { 1f,  1f,   1f,  1f,  1f,  1f,  2f,  2f,  1f,  1f, 0.5f, 1f,  1f,  1f,  1f,  0f, 0.5f },
-        new float[] { 1f, 0.5f,  1f,  1f,  2f, 1f, 0.5f, 0.5f, 1f, 0.5f, 2f,  1f,  1f, 0.5f, 1f,  2f, 0.5f },
-        new float[] { 1f,  2f,   1f,  1f,  1f,  2f, 0.5f, 1f, 0.5f, 2f,  1f,  2f,  1f,  1f,  1f,  1f, 0.5f },
-        new float[] { 0f,  1f,   1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  2f,  1f,  1f,  2f, 1f, 0.5f, 0.5f },
-        new float[] { 1f,  1f,   1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  1f,  2f,  1f,  0.5f},
-        new float[] { 1f,  1f,   1f,  1f,  1f,  1f, 0.5f, 1f,  1f,  1f,  2f,  1f,  1f,  2f, 1f, 0.5f, 0.5f },
-        new float[] { 1f, 0.5f, 0.5f, 0.5f, 1f, 2f,  1f,  1f,  1f,  1f,  1f,  1f,  2f,  1f,  1f,  1f,  0.5f }
+        /*                      NOR FIR ERT ICE STL GRS */
+        /* NOR */ new float[] { 1f, 1f, 1f, 1f, 1f, 1f },
+        /* FIR */ new float[] { 1f, 1f, 0.5f, 2f, 1f, 2f },
+        /* ERT */ new float[] { 1f, 2f, 1f, 1f, 1f, 0.5f },
+        /* ICE */ new float[] { 1f, 0.5f, 1f, 1f, 2f, 1f },
+        /* STL */ new float[] { 1f, 2f, 1f, 0.5f, 1f, 1f },
+        /* GRS */ new float[] { 1f, 0.5f, 0.5f, 1f, 1f, 1f }
     };
 
     // get the effectiveness of a move against a bokemon

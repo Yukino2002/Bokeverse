@@ -8,10 +8,12 @@ public class Bokemon {
     [SerializeField] BokemonBase _base;
     [SerializeField] int _level;
     [SerializeField] int _experience;
+    [SerializeField] int _uid;
 
     public BokemonBase Base { get => _base; set => _base = value; }
     public int Level { get => _level; set => _level = value; }
     public int Experience { get => _experience; set => _experience = value; }
+    public int UID { get => _uid; set => _uid = value; }
     public int HP { get; set; }
 
     // move list for the bokemon
@@ -49,7 +51,7 @@ public class Bokemon {
         }
 
         // calculate the damage
-        float type = TypeChart.GetEffectiveness(move.Base.Type, Base.Type1) * TypeChart.GetEffectiveness(move.Base.Type, Base.Type2);
+        float type = TypeChart.GetEffectiveness(move.Base.Type, Base.Type);
         
         var damageDetails = new DamageDetails() {
             Fainted = false,

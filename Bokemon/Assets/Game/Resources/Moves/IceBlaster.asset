@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 050a8fb68af821f4b8008d003a9a5849, type: 3}
-  m_Name: HydroGun
+  m_Name: IceBlaster
   m_EditorClassIdentifier: 
-  name: Hydro Gun
+  name: Ice Blaster
   description: Blast the damn bokemon
-  type: 3
-  power: 1200
-  accuracy: 90
+  type: 4
+  power: 120
+  accuracy: 80
   pp: 15
