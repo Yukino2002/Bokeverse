@@ -33,7 +33,8 @@ public class BokemonParty : MonoBehaviour {
     public Player player;
 
     public string json;
-    // public Player player;
+
+    [SerializeField] GameObject transactionMessage;
 
     [SerializeField] string test123;
     [SerializeField] private TextMeshProUGUI _title;
@@ -44,16 +45,34 @@ public class BokemonParty : MonoBehaviour {
 
     // create the learnable moves in the game
     LearnableMove scratch = new LearnableMove();
-    LearnableMove fireCannon = new LearnableMove();
     LearnableMove tackle = new LearnableMove();
+    LearnableMove fireCannon = new LearnableMove();
+    LearnableMove lavaShoot = new LearnableMove();
+    LearnableMove iceBlaster = new LearnableMove();
+    LearnableMove snowStorm = new LearnableMove();
+    LearnableMove earthBomb = new LearnableMove();
+    LearnableMove earthQuake = new LearnableMove();
+    LearnableMove steelBlade = new LearnableMove();
+    LearnableMove steelDash = new LearnableMove();
+    LearnableMove grassTornado = new LearnableMove();
+    LearnableMove grassSlice = new LearnableMove();
     
     private void Start() {
         bokemons = new List<Bokemon>();
 
         // create the learnable moves in the game
-        fireCannon = CreateMove("Fire Cannon", "A weak fire attack", BokemonType.Fire, 100, 100, 25, 7);
         scratch = CreateMove("Scratch", "A weak cutting attack", BokemonType.Normal, 40, 100, 35, 3);
         tackle = CreateMove("Tackle", "A weak physical hit attack", BokemonType.Normal, 60, 100, 30, 5);
+        fireCannon = CreateMove("Fire Cannon", "A fire attack", BokemonType.Fire, 120, 100, 35, 7);
+        lavaShoot = CreateMove("Lava Shoot", "A fire attack", BokemonType.Fire, 100, 100, 30, 11);
+        iceBlaster = CreateMove("Ice Blaster", "A ice attack", BokemonType.Ice, 90, 100, 25, 7);
+        snowStorm = CreateMove("Snow Storm", "A ice attack", BokemonType.Ice, 120, 100, 30, 11);
+        earthBomb = CreateMove("Earth Bomb", "A earth attack", BokemonType.Earth, 95, 100, 30, 7);
+        earthQuake = CreateMove("Earth Quake", "A earth attack", BokemonType.Earth, 150, 100, 20, 11);
+        steelBlade = CreateMove("Steel Blade", "A steel attack", BokemonType.Steel, 150, 100, 20, 7);
+        steelDash = CreateMove("Steel Dash", "A steel attack", BokemonType.Steel, 120, 100, 25, 11);
+        grassTornado = CreateMove("Grass Tornado", "A grass attack", BokemonType.Grass, 110, 100, 20, 7);
+        grassSlice = CreateMove("Grass Slice", "A grass attack", BokemonType.Grass, 120, 100, 25, 11);
     }
 
     // function to create a learnable move object in the game
@@ -120,6 +139,10 @@ public class BokemonParty : MonoBehaviour {
 
         bokemons[0].Experience += experience;
         bokemons[0].Level = 8 + bokemons[0].Experience / 100;
+
+        bokemons[0].Init();
+
+        transactionMessage.SetActive(false);
     }
 
     // function to reward a starter bokemon to the player
@@ -134,6 +157,8 @@ public class BokemonParty : MonoBehaviour {
         } else {
             Debug.Log("Transaction failed");
         }
+
+        transactionMessage.SetActive(false);
     }
 
     // function to fetch the bokemon in the party from the contract
@@ -204,6 +229,25 @@ public class BokemonParty : MonoBehaviour {
 
             Debug.Log(experience);
 
+            // list of learnable moves
+            List <LearnableMove> learnableMoves = new List<LearnableMove> { scratch, tackle };
+            if (bokemon.properties[0].type == "fire") {
+                learnableMoves.Add(fireCannon);
+                learnableMoves.Add(lavaShoot);
+            } else if (bokemon.properties[0].type == "ice") {
+                learnableMoves.Add(iceBlaster);
+                learnableMoves.Add(snowStorm);
+            } else if (bokemon.properties[0].type == "grass") {
+                learnableMoves.Add(grassTornado);
+                learnableMoves.Add(grassSlice);
+            } else if (bokemon.properties[0].type == "steel") {
+                learnableMoves.Add(steelBlade);
+                learnableMoves.Add(steelDash);
+            } else if (bokemon.properties[0].type == "earth") {
+                learnableMoves.Add(earthBomb);
+                learnableMoves.Add(earthQuake);
+            }
+
             Bokemon playerBokemon = CreateBokemon(
                 bokemon.name, 
                 bokemon.description, 
@@ -214,8 +258,8 @@ public class BokemonParty : MonoBehaviour {
                 bokemon.properties[0].attack, 
                 bokemon.properties[0].defense, 
                 bokemon.properties[0].speed, 
-                experience, 
-                new List<LearnableMove> { fireCannon, scratch, tackle }
+                experience,
+                learnableMoves
             );
 
             bokemons.Add(playerBokemon);

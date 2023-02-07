@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] Camera worldCamera;
     [SerializeField] Camera minimapCamera;
     [SerializeField] GameObject menuSystem;
+    [SerializeField] GameObject transactionMessage;
 
     
     GameState state;
@@ -58,6 +59,7 @@ public class GameController : MonoBehaviour {
         minimapCamera.gameObject.SetActive(true);
 
         if (won) {
+            transactionMessage.SetActive(true);
             bokemonParty.PartyGainExperience(UnityEngine.Random.Range(1, 100) * 10);
         }
     }

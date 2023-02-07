@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject healthIndicator;
     [SerializeField] BokemonParty bokemonParty;
+    [SerializeField] GameObject transactionMessage;
 
     // create an event for encounters in the long grass
     // this is to avoid circular dependency as player controller is already referenced in the game controller
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour {
 
         if (Physics2D.OverlapCircle(targetPos, 0.2f, sensei) != null) {
             if (partyCount == 0) {
+                transactionMessage.SetActive(true);
                 bokemonParty.GetStarterBokemon();
             }
             return false;
