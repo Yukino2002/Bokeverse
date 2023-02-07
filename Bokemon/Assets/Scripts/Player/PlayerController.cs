@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (Physics2D.OverlapCircle(targetPos, 0.2f, sensei) != null) {
+            Debug.Log("Sensei");
             if (partyCount == 0) {
                 transactionMessage.SetActive(true);
                 bokemonParty.GetStarterBokemon();
