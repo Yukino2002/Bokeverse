@@ -103,6 +103,8 @@ public class PlayerController : MonoBehaviour {
                 transactionMessage.SetActive(true);
                 bokemonParty.GetStarterBokemon();
             }
+
+            
             return false;
         }
 
