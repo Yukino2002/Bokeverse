@@ -137,11 +137,15 @@ public class BokemonParty : MonoBehaviour {
         var result = await contract.Write("increaseExperience", bokemons[0].UID, experience);
         Debug.Log(result);
 
-        bokemons[0].Experience += experience;
-        bokemons[0].Level = 8 + bokemons[0].Experience / 100;
-
-        bokemons[0].Init();
-
+        if (result.isSuccessful()) {
+            bokemons[0].Experience += experience;
+            bokemons[0].Level = 8 + bokemons[0].Experience / 100;
+            bokemons[0].Init();
+            Debug.Log("Transaction successful");
+        } else {
+            Debug.Log("Transaction failed");
+        }
+        
         transactionMessage.SetActive(false);
     }
 
