@@ -19,7 +19,6 @@ public class Bokemon {
     // move list for the bokemon
     public List<Move> Moves { get; set; }
 
-    // no requirement of a constructor, because we initialize the bokemon from the inspector
     public void Init() {
         HP = MaxHP;
 

@@ -30,8 +30,8 @@ public class BokemonParty : MonoBehaviour {
         public string image;
         public Property[] properties;
     }
-    public Player player;
 
+    public Player player;
     public string json;
 
     [SerializeField] GameObject transactionMessage;
@@ -60,19 +60,18 @@ public class BokemonParty : MonoBehaviour {
     private void Start() {
         bokemons = new List<Bokemon>();
 
-        // create the learnable moves in the game
-        scratch = CreateMove("Scratch", "A weak cutting attack", BokemonType.Normal, 40, 100, 35, 3);
-        tackle = CreateMove("Tackle", "A weak physical hit attack", BokemonType.Normal, 60, 100, 30, 5);
-        fireCannon = CreateMove("Fire Cannon", "A fire attack", BokemonType.Fire, 120, 100, 35, 7);
-        lavaShoot = CreateMove("Lava Shoot", "A fire attack", BokemonType.Fire, 100, 100, 30, 11);
-        iceBlaster = CreateMove("Ice Blaster", "A ice attack", BokemonType.Ice, 90, 100, 25, 7);
-        snowStorm = CreateMove("Snow Storm", "A ice attack", BokemonType.Ice, 120, 100, 30, 11);
-        earthBomb = CreateMove("Earth Bomb", "A earth attack", BokemonType.Earth, 95, 100, 30, 7);
-        earthQuake = CreateMove("Earth Quake", "A earth attack", BokemonType.Earth, 150, 100, 20, 11);
-        steelBlade = CreateMove("Steel Blade", "A steel attack", BokemonType.Steel, 150, 100, 20, 7);
-        steelDash = CreateMove("Steel Dash", "A steel attack", BokemonType.Steel, 120, 100, 25, 11);
-        grassTornado = CreateMove("Grass Tornado", "A grass attack", BokemonType.Grass, 110, 100, 20, 7);
-        grassSlice = CreateMove("Grass Slice", "A grass attack", BokemonType.Grass, 120, 100, 25, 11);
+        scratch = CreateMove("Scratch", "A weak cutting attack", BokemonType.Normal, 60, 100, 35, 3);
+        tackle = CreateMove("Tackle", "A weak physical hit attack", BokemonType.Normal, 80, 100, 30, 5);
+        fireCannon = CreateMove("Fire Cannon", "A fire attack", BokemonType.Fire, 140, 100, 35, 7);
+        lavaShoot = CreateMove("Lava Shoot", "A fire attack", BokemonType.Fire, 120, 100, 30, 11);
+        iceBlaster = CreateMove("Ice Blaster", "A ice attack", BokemonType.Ice, 110, 100, 25, 7);
+        snowStorm = CreateMove("Snow Storm", "A ice attack", BokemonType.Ice, 140, 100, 30, 11);
+        earthBomb = CreateMove("Earth Bomb", "A earth attack", BokemonType.Earth, 120, 100, 30, 7);
+        earthQuake = CreateMove("Earth Quake", "A earth attack", BokemonType.Earth, 170, 100, 20, 11);
+        steelBlade = CreateMove("Steel Blade", "A steel attack", BokemonType.Steel, 170, 100, 20, 7);
+        steelDash = CreateMove("Steel Dash", "A steel attack", BokemonType.Steel, 140, 100, 25, 11);
+        grassTornado = CreateMove("Grass Tornado", "A grass attack", BokemonType.Grass, 130, 100, 20, 7);
+        grassSlice = CreateMove("Grass Slice", "A grass attack", BokemonType.Grass, 140, 100, 25, 11);
     }
 
     // function to create a learnable move object in the game
@@ -167,36 +166,33 @@ public class BokemonParty : MonoBehaviour {
 
     // function to fetch the bokemon in the party from the contract
     public async void fetchBokemons() {
-        // create a contract instance
-        var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
-        // get the player's wallet address
-        string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
+        // var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
+        // string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
         
-        // debug purposes to print the player's wallet address
-        _title.text = playerAddress;
+        // // debug purposes to print the player's wallet address
+        // _title.text = playerAddress;
         
-        // get the list of metadata and uid from the blockchain
-        // List<string> metadata = await contract.Read<List<string>>("getMetaDataBokemonPerUser", playerAddress);
-        List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
+        // // get the list of metadata and uid from the blockchain
+        // List<int> uid = await contract.Read<List<int>>("getBokemonPerUser", playerAddress);
 
-        // string ipfs = "ipfs://QmT53i4kjSKGkNZgi8tprkBt7vk6PffuT1LKdPGXQud742/0";
-        // StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1, 1));
+        string ipfs = "ipfs://QmT53i4kjSKGkNZgi8tprkBt7vk6PffuT1LKdPGXQud742/0";
+        StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), 1, 1));
 
-        for (int i = 0; i < uid.Count; i++) {
-            string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
-            int experience = await contract.Read<int>("experience", uid[i]);
-            Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
-            bool create = true;
-            for (int j = 0; j < bokemons.Count; j++) {
-                if (bokemons[j].UID == uid[i]) {
-                    create = false;
-                    break;
-                }
-            }
-            if (create) {
-                StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), experience, uid[i]));
-            }
-        }
+        // for (int i = 0; i < uid.Count; i++) {
+        //     string ipfs = await contract.Read<string>("getBokemonUri", uid[i]);
+        //     int experience = await contract.Read<int>("experience", uid[i]);
+        //     Debug.Log("IPFS: " + ipfs + " Experience: " + experience);
+        //     bool create = true;
+        //     for (int j = 0; j < bokemons.Count; j++) {
+        //         if (bokemons[j].UID == uid[i]) {
+        //             create = false;
+        //             break;
+        //         }
+        //     }
+        //     if (create) {
+        //         StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), experience, uid[i]));
+        //     }
+        // }
     }
 
     IEnumerator LoadString(string url, int experience, int uid) {

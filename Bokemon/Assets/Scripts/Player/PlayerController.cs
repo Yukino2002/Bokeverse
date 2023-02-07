@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] GameObject transactionMessage;
 
     // create an event for encounters in the long grass
-    // this is to avoid circular dependency as player controller is already referenced in the game controller
     public event Action OnEncounter;
 
     private bool isMoving;
@@ -26,10 +25,12 @@ public class PlayerController : MonoBehaviour {
 
     private Animator animator;
     
+    // run during compile time
     private void Awake() {
         animator = GetComponent<Animator>();
     }
 
+    // Update is called once per frame, handleUpdate called from the game controller
     public void HandleUpdate() {
         partyCount = bokemonParty.Bokemons.Count;
         if (bokemonParty.GetHealthyBokemon() == null && partyCount > 0) {
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour {
         CheckForEncounters();
     }
 
+    // function to check if the player can move to a certain position, with multiple use cases
     private bool IsWalkable(Vector3 targetPos, int partyCount) {
         // first parameter is the position, second is the radius, third is the layer of the object we want to check
         if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer) != null) {
@@ -113,6 +115,7 @@ public class PlayerController : MonoBehaviour {
         return true;
     }
 
+    // function to check for encounters in the long grass
     private void CheckForEncounters() {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, longGrassLayer) != null && bokemonParty.GetHealthyBokemon() != null) {
             if (UnityEngine.Random.Range(1, 101) <= 10) {

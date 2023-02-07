@@ -42,8 +42,7 @@ public class BokemonBase : ScriptableObject {
     public List<LearnableMove> LearnableMoves { get => learnableMoves; set => learnableMoves = value; }
 }
 
-// learnable move class for a bokemon
-// display in inspector
+// learnable move class for a bokemon, display in inspector
 [System.Serializable]
 public class LearnableMove {
     [SerializeField] MoveBase moveBase;

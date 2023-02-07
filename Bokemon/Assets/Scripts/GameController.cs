@@ -45,6 +45,10 @@ public class GameController : MonoBehaviour {
         // reset and start a new battle
         var playerParty = playerController.GetComponent<BokemonParty>();
         var wildBokemon = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildBokemon();
+
+        // initialize the wild bokemon with random level
+        wildBokemon.Level = UnityEngine.Random.Range(1, 20);
+        wildBokemon.Init();
         battleSystem.StartBattle(playerParty, wildBokemon);
     }
 
@@ -73,7 +77,7 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    // common function to connect to a wallet, then
+    // common function to connect to a wallet
     public async void ConnectWallet(WalletProvider provider) {
         try {
             address = await SDKManager.Instance.SDK.wallet.Connect(new WalletConnection() {
