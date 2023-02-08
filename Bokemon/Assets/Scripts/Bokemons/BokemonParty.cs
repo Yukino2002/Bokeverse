@@ -35,6 +35,7 @@ public class BokemonParty : MonoBehaviour {
     public string json;
 
     [SerializeField] GameObject transactionMessage;
+    [SerializeField] PlayerController playerController;
 
     [SerializeField] string test123;
     [SerializeField] private TextMeshProUGUI _title;
@@ -132,17 +133,24 @@ public class BokemonParty : MonoBehaviour {
 
     // function to distribute experience to the bokemon in the party
     async public void PartyGainExperience(int experience) {
-        var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
-        var result = await contract.Write("increaseExperience", bokemons[0].UID, experience);
-        Debug.Log(result);
+        transactionMessage.SetActive(true);
+        
+        try {
+            var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
+            var result = await contract.Write("increaseExperience", bokemons[0].UID, experience);
+            
+            Debug.Log(result);
 
-        if (result.isSuccessful()) {
-            bokemons[0].Experience += experience;
-            bokemons[0].Level = 8 + bokemons[0].Experience / 100;
-            bokemons[0].Init();
-            Debug.Log("Transaction successful");
-        } else {
-            Debug.Log("Transaction failed");
+            if (result.isSuccessful()) {
+                Debug.Log("Transaction successful");
+                bokemons[0].Experience += experience;
+                bokemons[0].Level = 8 + bokemons[0].Experience / 100;
+                bokemons[0].Init();
+            } else {
+                Debug.Log("Transaction failed");
+            }
+        } catch (System.Exception e) {
+            Debug.Log(e);
         }
         
         transactionMessage.SetActive(false);
@@ -150,15 +158,25 @@ public class BokemonParty : MonoBehaviour {
 
     // function to reward a starter bokemon to the player
     public async void GetStarterBokemon() {
-        var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
-        string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
-        var result = await contract.Write("mint", playerAddress, "ipfs://QmSgbfYSXEN1mZKwf4uWdUX1XgT7nyXB2KXBb6DxzB2jN2/0", 1);
-        Debug.Log(result);
-        if (result.isSuccessful()) {
-            Debug.Log("Transaction successful");
-            fetchBokemons();
-        } else {
-            Debug.Log("Transaction failed");
+        transactionMessage.SetActive(true);
+        
+        try {
+            var contract = SDKManager.Instance.SDK.GetContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
+            string playerAddress = await SDKManager.Instance.SDK.wallet.GetAddress();
+            var result = await contract.Write("mint", playerAddress, "ipfs://QmSgbfYSXEN1mZKwf4uWdUX1XgT7nyXB2KXBb6DxzB2jN2/0", 1);
+            
+            Debug.Log(result);
+
+            if (result.isSuccessful()) {
+                Debug.Log("Transaction successful");
+                fetchBokemons();
+            } else {
+                playerController.StarterBokemon = true;
+                Debug.Log("Transaction failed");
+            }
+        } catch (System.Exception e) {
+            playerController.StarterBokemon = true;
+            Debug.Log(e);
         }
 
         transactionMessage.SetActive(false);

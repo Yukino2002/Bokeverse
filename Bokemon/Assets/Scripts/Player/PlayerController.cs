@@ -11,11 +11,12 @@ public class PlayerController : MonoBehaviour {
     public LayerMask healer;
 
     private int partyCount;
+    private bool starterBokemon;
+    public bool StarterBokemon { get => starterBokemon; set => starterBokemon = value; }
 
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject healthIndicator;
     [SerializeField] BokemonParty bokemonParty;
-    [SerializeField] GameObject transactionMessage;
 
     // create an event for encounters in the long grass
     public event Action OnEncounter;
@@ -24,6 +25,10 @@ public class PlayerController : MonoBehaviour {
     private Vector2 input;
 
     private Animator animator;
+
+    private void Start() {
+        starterBokemon = true;
+    }
     
     // run during compile time
     private void Awake() {
@@ -99,11 +104,10 @@ public class PlayerController : MonoBehaviour {
 
         if (Physics2D.OverlapCircle(targetPos, 0.2f, sensei) != null) {
             Debug.Log("Sensei");
-            if (partyCount == 0) {
-                transactionMessage.SetActive(true);
+            if (starterBokemon && partyCount == 0) {
+                starterBokemon = false;
                 bokemonParty.GetStarterBokemon();
             }
-
             
             return false;
         }
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour {
             if (partyCount > 0) {
                 bokemonParty.HealBokemons();
             }
+            
             return false;
         }
 
