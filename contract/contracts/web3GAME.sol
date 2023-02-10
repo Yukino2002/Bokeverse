@@ -104,6 +104,12 @@ contract web3GAME is ERC1155Base {
         experience[_id] += _experience;
     }
 
+    function increaseExperienceBatch(uint256[] memory _ids, uint256[] memory _experience) public {
+        for (uint i = 0; i < _ids.length; i++) {
+            experience[_ids[i]] += _experience[i];
+        }
+    }
+
     // create redeemable bokemon if code is correct give the user a bokemon
     mapping (string => uint256) private redeemableItems;
     mapping (uint256 => string) private redeemableItemsUri;

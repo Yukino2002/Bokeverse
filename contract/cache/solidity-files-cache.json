@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\contracts\\web3GAME.sol": {
-      "lastModificationDate": 1675504497968,
-      "contentHash": "39c1a4cddeba27daaabf8a17401d0938",
+      "lastModificationDate": 1676025574662,
+      "contentHash": "038ab78503adca68483385520286114d",
       "sourceName": "contracts/web3GAME.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -75,6 +75,41 @@
         "Counters"
       ]
     },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IMintableERC1155.sol": {
+      "lastModificationDate": 1675317634413,
+      "contentHash": "78d52af952e16c929cb16371880a823e",
+      "sourceName": "@thirdweb-dev/contracts/extension/interface/IMintableERC1155.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IMintableERC1155"
+      ]
+    },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\base\\ERC1155Base.sol": {
       "lastModificationDate": 1675317634006,
       "contentHash": "b480a67258a28b0efb06cf5035abeda1",
@@ -117,41 +152,6 @@
       ],
       "artifacts": [
         "ERC1155Base"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IMintableERC1155.sol": {
-      "lastModificationDate": 1675317634413,
-      "contentHash": "78d52af952e16c929cb16371880a823e",
-      "sourceName": "@thirdweb-dev/contracts/extension/interface/IMintableERC1155.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IMintableERC1155"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\ContractMetadata.sol": {
@@ -266,6 +266,43 @@
         "Multicall"
       ]
     },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\Ownable.sol": {
+      "lastModificationDate": 1675317634613,
+      "contentHash": "b131c3cdf31ccc8f039ba7c89170eafe",
+      "sourceName": "@thirdweb-dev/contracts/extension/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interface/IOwnable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\eip\\ERC1155.sol": {
       "lastModificationDate": 1675317633991,
       "contentHash": "89d0aa75e7dad6b4f86d5229935517aa",
@@ -303,43 +340,6 @@
       ],
       "artifacts": [
         "ERC1155"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\Ownable.sol": {
-      "lastModificationDate": 1675317634613,
-      "contentHash": "b131c3cdf31ccc8f039ba7c89170eafe",
-      "sourceName": "@thirdweb-dev/contracts/extension/Ownable.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interface/IOwnable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Ownable"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\Royalty.sol": {
@@ -629,41 +629,6 @@
         "IOperatorFilterToggle"
       ]
     },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\lib\\TWAddress.sol": {
-      "lastModificationDate": 1675317635169,
-      "contentHash": "8d6d64d5a883a9fd1703c7e528df95d7",
-      "sourceName": "@thirdweb-dev/contracts/lib/TWAddress.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "TWAddress"
-      ]
-    },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IMulticall.sol": {
       "lastModificationDate": 1675317634416,
       "contentHash": "7c8d43c8ace471cd8e4ebfe9bf6f8535",
@@ -699,10 +664,10 @@
         "IMulticall"
       ]
     },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\eip\\interface\\IERC1155.sol": {
-      "lastModificationDate": 1675317634355,
-      "contentHash": "6f9311b2b8aa121626bb9bb0eb650d67",
-      "sourceName": "@thirdweb-dev/contracts/eip/interface/IERC1155.sol",
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\lib\\TWAddress.sol": {
+      "lastModificationDate": 1675317635169,
+      "contentHash": "8d6d64d5a883a9fd1703c7e528df95d7",
+      "sourceName": "@thirdweb-dev/contracts/lib/TWAddress.sol",
       "solcConfig": {
         "version": "0.8.17",
         "settings": {
@@ -731,7 +696,42 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "IERC1155"
+        "TWAddress"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IOwnable.sol": {
+      "lastModificationDate": 1675317634445,
+      "contentHash": "3bd6304b9bbfe4f27cbddd75dee02517",
+      "sourceName": "@thirdweb-dev/contracts/extension/interface/IOwnable.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IOwnable"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\eip\\interface\\IERC1155Metadata.sol": {
@@ -767,6 +767,41 @@
       ],
       "artifacts": [
         "IERC1155Metadata"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\eip\\interface\\IERC1155.sol": {
+      "lastModificationDate": 1675317634355,
+      "contentHash": "6f9311b2b8aa121626bb9bb0eb650d67",
+      "sourceName": "@thirdweb-dev/contracts/eip/interface/IERC1155.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC1155"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\eip\\interface\\IERC1155Receiver.sol": {
@@ -839,41 +874,6 @@
       ],
       "artifacts": [
         "IERC165"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IOwnable.sol": {
-      "lastModificationDate": 1675317634445,
-      "contentHash": "3bd6304b9bbfe4f27cbddd75dee02517",
-      "sourceName": "@thirdweb-dev/contracts/extension/interface/IOwnable.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IOwnable"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IRoyalty.sol": {
