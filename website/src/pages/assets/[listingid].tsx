@@ -3,6 +3,7 @@ import { useContract, useListing, MediaRenderer } from "@thirdweb-dev/react";
 import Image from "next/image";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BigNumber } from "ethers";
+import AuthProvider from '../AuthProvider';
 export default function NFT() {
   const router = useRouter();
   const { listingid } = router.query;
@@ -23,9 +24,12 @@ export default function NFT() {
 
   if (isLoading || !nft) {
     return (
-      <div className="flex flex-col items-center w-screen justify-center font-concertOne italic text-5xl text-[#3A3771] bg-white h-[83vh]">
-        Loading your NFT ...
-      </div>
+      <AuthProvider>
+        <div className="flex flex-col items-center w-screen justify-center font-concertOne italic text-5xl text-[#3A3771] bg-white h-[83vh]">
+          Loading your NFT ...
+        </div>
+      </AuthProvider>
+
     );
   }
 

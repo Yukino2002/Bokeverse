@@ -1,9 +1,10 @@
 import React from 'react';
 import Html5QrcodePlugin from '../components/qrcode/Html5QrcodePlugin.jsx'
 import ResultContainerPlugin from '../components/qrcode/ResultContainerPlugin.jsx'
-import { ConnectWallet, Web3Button } from "@thirdweb-dev/react";
+import { ConnectWallet, Web3Button, useContract } from "@thirdweb-dev/react";
 import { ethers } from 'ethers'
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import AuthProvider from './AuthProvider';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,35 +21,37 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="pt-24">
-        {/* <div>
-          <ConnectWallet />
-        </div> */}
-        <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
-          <section className="App-section w-1/2">
-            <br />
-            <br />
-            <br />
-            <Html5QrcodePlugin
-              fps={10}
-              qrbox={1000}
-              disableFlip={false}
-              qrCodeSuccessCallback={this.onNewScanResult} />
-            <ResultContainerPlugin results={this.state.decodedResults} />
-            {
-              this.state.showButton &&
-              <Web3Button
-                contractAddress="0x5679B3Fe5f66c68875210A99eC8C788f377B41c6"
-                action={(contract) =>
-                  contract.call("redeemItem", this.state.result)
-                }
-              >
-                Redeem NFT
-              </Web3Button>
-            }
-          </section>
+      <AuthProvider>
+        <div className="pt-24">
+          {/* <div>
+            <ConnectWallet />
+          </div> */}
+          <div className="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
+            <section className="App-section w-1/2">
+              <br />
+              <br />
+              <br />
+              <Html5QrcodePlugin
+                fps={10}
+                qrbox={1000}
+                disableFlip={false}
+                qrCodeSuccessCallback={this.onNewScanResult} />
+              <ResultContainerPlugin results={this.state.decodedResults} />
+              {
+                this.state.showButton &&
+                <Web3Button
+                  contractAddress="0xfbFaAB92b0444c36770190F22ea0C116B0Dea1a2"
+                  action={(contract) =>
+                    contract.call("redeemItem", this.state.result)
+                  }
+                >
+                  Redeem NFT
+                </Web3Button>
+              }
+            </section>
+          </div>
         </div>
-      </div>
+      </AuthProvider>
     );
   }
 

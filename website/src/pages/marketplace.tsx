@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import type { NextPage } from "next";
 import { useActiveListings, useContract } from "@thirdweb-dev/react";
 import NFTCard from "../components/NFTCard/NFTCard";
+import AuthProvider from './AuthProvider';
 import Link from "next/link";
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,32 +21,33 @@ const Home: NextPage = () => {
         );
 
     return (
-
-        <div className="pt-24 bg-white pl-12">
-            <div className={"space-y-4 h-[83vh]"}>
-                <div className={"text-4xl text-[#3A3771] font-semibold font-concertOne pb-2"}>Active Listings</div>
-                <div className={`nft-grid`}>
-                    {nfts &&
-                        nfts.map((nft) => {
-                            return (
-                                <Link legacyBehavior
-                                    href={`/assets/${nft.id}`}
-                                    key={nft.assetContractAddress + nft.id} >
-                                    <a>
-                                        <NFTCard
-                                            nft={{
-                                                name: nft.asset.name as string,
-                                                tokenUri: nft.asset.image as string,
-                                                price: nft.buyoutCurrencyValuePerToken?.displayValue,
-                                            }}
-                                        />
-                                    </a>
-                                </Link>
-                            );
-                        })}
+        <AuthProvider>
+            <div className="pt-24 bg-white pl-12">
+                <div className={"space-y-4 h-[83vh]"}>
+                    <div className={"text-4xl text-[#3A3771] font-semibold font-concertOne pb-2"}>Active Listings</div>
+                    <div className={`nft-grid`}>
+                        {nfts &&
+                            nfts.map((nft) => {
+                                return (
+                                    <Link legacyBehavior
+                                        href={`/assets/${nft.id}`}
+                                        key={nft.assetContractAddress + nft.id} >
+                                        <a>
+                                            <NFTCard
+                                                nft={{
+                                                    name: nft.asset.name as string,
+                                                    tokenUri: nft.asset.image as string,
+                                                    price: nft.buyoutCurrencyValuePerToken?.displayValue,
+                                                }}
+                                            />
+                                        </a>
+                                    </Link>
+                                );
+                            })}
+                    </div>
                 </div>
             </div>
-        </div>
+        </AuthProvider>
 
     );
 };

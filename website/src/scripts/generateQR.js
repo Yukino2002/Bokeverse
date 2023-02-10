@@ -4,20 +4,20 @@ const dataMonster =  require('./QRcodeMonster/data.json');
 const fs =  require('fs');
 const { ThirdwebSDK } =  require("@thirdweb-dev/sdk");
 const {} =  require('dotenv/config');
-
-// createa a random string like password 
+const moment = require('moment');
 const randomString = require("randomstring");
 const password = randomString.generate(8);
 const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
 const sdk = ThirdwebSDK.fromPrivateKey(GOERLI_PRIVATE_KEY, "goerli");
 const storage = new ThirdwebStorage();
+const date = new Date();
 
 
 
 start();
 
 async function start() {
-    const contract = await sdk.getContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
+    const contract = await sdk.getContract("0xfbFaAB92b0444c36770190F22ea0C116B0Dea1a2");
     for (let i = 0; i < dataMonster.length; i++) {
         const filepath="./src/scripts/QRcodeMonster/"+dataMonster[i].name+".png";
         const metadata = {
@@ -42,8 +42,8 @@ async function start() {
         console.log("https://gateway.ipfscdn.io/ipfs/"+uri.slice(7));
         var result = await contract.call("createRedeemableItem", password, uri, 1);
         console.log(result);
-
-        qr.toFile("./src/scripts/QRCodeResults/"+dataMonster[i].name+".png", password, function (err) {
+        // use moment to add time to end of file
+        qr.toFile("./src/scripts/QRCodeResults/"+dataMonster[i].name+ ".png", password, function (err) {
             if (err) throw err;
             console.log("saved");
         });
