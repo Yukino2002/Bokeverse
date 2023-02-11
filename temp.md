@@ -313,8 +313,8 @@ Don't forget to give the project a star! Thanks again!
 
 ## Acknowledgements
 
-(Best-README-Template)[https://github.com/othneildrew/Best-README-Template]
-(Marketplace-Frontend)[https://blog.thirdweb.com/guides/how-to-create-an-nft-marketplace-with-nextjs-and-thirdweb-on-polygon-network/]
+ - [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+ - [Marketplace-Frontend](https://blog.thirdweb.com/guides/how-to-create-an-nft-marketplace-with-nextjs-and-thirdweb-on-polygon-network/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
