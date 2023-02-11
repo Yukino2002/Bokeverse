@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour {
         minimapCamera.gameObject.SetActive(true);
 
         if (won) {
-            bokemonParty.PartyGainExperience(UnityEngine.Random.Range(1, 100) * 10);
+            bokemonParty.PartyGainExperience(UnityEngine.Random.Range(1, 50) * 10);
         }
     }
 
