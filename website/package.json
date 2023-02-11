@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "node ./src/scripts/generateQR.js"
   },
   "dependencies": {
     "@next/font": "13.1.6",

@@ -42,8 +42,10 @@ async function start() {
         console.log("https://gateway.ipfscdn.io/ipfs/"+uri.slice(7));
         var result = await contract.call("createRedeemableItem", password, uri, 1);
         console.log(result);
-        // use moment to add time to end of file
-        qr.toFile("./src/scripts/QRCodeResults/"+dataMonster[i].name+ ".png", password, function (err) {
+        const date = moment().format('YYYY-MM-DD_HH-mm-ss');
+        const fileName = dataMonster[i].name + '_' + date + '.png';
+
+        qr.toFile("./src/scripts/QRCodeResults/" + fileName, password, function (err) {
             if (err) throw err;
             console.log("saved");
         });
