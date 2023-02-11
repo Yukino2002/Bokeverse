@@ -145,3 +145,22 @@ a {
     color-scheme: dark;
   }
 }
+
+.qrcode img {
+  width: 80px;
+  margin: 10px auto;
+  margin-top: 0px;
+}
+
+.qrcode button {
+  padding: 5px;
+}
+
+
+.Result-container {
+  margin-top: 20px;
+}
+
+.Result-header {
+  margin-bottom: 5px;
+}
