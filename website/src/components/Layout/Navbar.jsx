@@ -6,16 +6,19 @@ import { useState } from 'react';
 export default function Navbar() {
 	const navItems = [
 		{
-			link: '/game',
+			link: 'https://gateway.ipfscdn.io/ipfs/QmR74z73Z2SMA4jVgAkwkgyFfUk16BWLxy7uyWd23BQ2JV/',
 			name: 'Game',
+			target: "_blank"
 		},
 		{
 			link: '/redeem',
 			name: 'Redeem',
+			target: ""
 		},
 		{
 			link: '/marketplace',
 			name: 'Marketplace',
+			target: ""
 		},
 	];
 	const navClass = 'px-8 flex justify-between text-secondary h-full';
@@ -37,7 +40,7 @@ export default function Navbar() {
 					</Link>
 					<div id="" className="flex flex-row items-stretch font-semibold font-bogaloo text-xl content-center align-middle text-[#3A3771] gap-5">
 						{navItems.map((item, index) => (
-							<Link href={item.link} key={index} className="flex mt-5 align-middle px-5 h-9 hover:opacity-90 hover:border-b-2 hover:border-[#3A3771] border-accent duration-100">
+							<Link href={item.link} key={index} target={item.target} className="flex mt-5 align-middle px-5 h-9 hover:opacity-90 hover:border-b-2 hover:border-[#3A3771] border-accent duration-100">
 								<div className="my-auto">{item.name}</div>
 							</Link>
 						))}
