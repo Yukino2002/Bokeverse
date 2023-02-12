@@ -33,7 +33,7 @@ export default function NFTCard({
                <div>
                   <div className={`text-xl font-boogaloo`}>Price</div>
                   <div className={`flex items-center gap-x-1`}>
-                     <Image src={ethLogo} height={16} width={16} />
+                     <Image src={ethLogo} height={16} width={16} alt="nft-image" />
                      <p className={`p-2 text-base font-boogaloo`}>{nft.price}</p>
                   </div>
                </div>

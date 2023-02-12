@@ -6,8 +6,8 @@ import { ethers } from 'ethers'
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import AuthProvider from './AuthProvider';
 
-class App extends React.Component {
-  constructor(props) {
+class App extends React.Component <any, any> {
+  constructor(props: any) {
     super(props);
     this.state = {
       decodedResults: [],

@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import type { AppProps } from 'next/app';
 import Navbar from '../components/Layout/Navbar';
 import Footer from '../components/Layout/Footer';
 import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
