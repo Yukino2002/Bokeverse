@@ -6,27 +6,40 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#utilization-of-web3-technology-in-the-game">Utilization of Web3 technology in the game</a></li>
+        <li><a href="#overview">Overview</a></li>
+        <ul>
+          <li><a href="#game-smart-contract">Game Smart Contract</a></li>
+          <li><a href="#marketplace">Marketplace</a></li>
+          <li><a href="#qr-redeeming">QR Redeeming</a></li>
+        </ul>
         <li><a href="#technologies-used">Technologies Used</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#running-the-game">Running the game</a></li>
+        <li><a href="#deploying-the-smart-contract">Deploying the smart contract</a></li>
+        <li><a href="#deploying-the-website">Deploying the website</a></li>
+        <li><a href="#minting-bokemons(NFTs)-to-your-account">Minting Bokemons(NFTs) to your account</a></li>
+        <li><a href="#creating-a-qr-code-to-scan">Creating a QR Code to Scan</a></li>
       </ul>
     </li>
     <li>
       <a href="#usage">Usage</a>
       <ul>
+        <li><a href="#demo-links">Demo Links</a></li>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#playing-the-game">Playing the Game</a></li>
         <li><a href="#navigating-the-website">Navigating the Website</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Overveiw</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </details>
@@ -39,9 +52,66 @@ The game is a decentralized 2D open-world RPG with turn-based battles. It is set
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Utilization of Web3 technology in the game
+## Overview
 
-Lorem ipsum
+### Game Smart Contract
+
+The smart contract that the Bokeverse game runs on is a non-fungible token (NFT) contract that is built on the ERC1155Base contract by thirdweb which implements the ERC1155 NFT standard along with some additional functionality. This contract allows the creation of unique, collectible bokemons that can be owned by users and can have a unique experience level assigned to them.
+
+The contract includes the following functions:
+
+- `MintTo`: 
+  This function is responsible for minting new bokemons. It takes in parameters such as the recipient's address, the token ID, token URI, and the amount to be minted. This function also handles assigning a unique token ID to the bokemon if none is provided.
+
+- `Mint`: 
+  This function is a higher-level implementation of the MintTo function that takes in additional parameters such as the experience level of the bokemon being minted.
+
+- `GetBokemon`: 
+  This function returns the token URI and experience level of a bokemon specified by its ID.
+
+- `GetBokemonUri`: 
+  This function returns the token URI of a bokemon specified by its ID.
+
+- `GetBokemonPerUser`: 
+  This function returns an array of all the bokemons owned by a specific user.
+
+- `IncreaseExperience`: 
+  This function allows for the experience level of a bokemon to be increased.
+
+- `IncreaseExperienceBatch`: 
+  This function allows for the experience level of multiple bokemons to be increased in bulk.
+
+- `Redeem`: 
+  This function allows users to redeem a bokemon by providing a redeem code. If the code is correct, the user will receive the specified bokemon.
+
+Overall, the Bokeverse contract allows for the creation and management of unique, collectible bokemons that can be owned by users and can have a unique experience level assigned to them. This contract provides a number of functions that allow users to interact with their bokemons and manage their experience levels.
+
+### Marketplace
+
+The NFT marketplace for Bokeverse was built on the marketplace contract by Thirdweb. The frontend of the marketplace was developed using Thirdweb and Tailwind. The marketplace provides a platform for users to view and purchase Bokemons that are listed for sale by other users.
+
+The marketplace includes the following functions:
+
+- View Listings: 
+  Users can view all the Bokemons that are currently listed for sale on the marketplace.
+
+- Buy Bokemon: 
+  Users can purchase a Bokemon by selecting the desired listing and submitting the transaction to the smart contract.
+
+- List Bokemon (Workaround using Thirdweb Dashboard): 
+  Users can list a Bokemon for sale by interacting with the smart contract via the Thirdweb dashboard. They can specify the desired price and other relevant information for the listing.
+
+The NFT marketplace for Bokeverse provides a user-friendly platform for buying and selling Bokemons. The integration with the smart contract allows for secure and transparent transactions on the blockchain. 
+
+### QR Redeeming
+
+The QR Redeeming feature in Bokeverse allows users to redeem a Bokemon by uploading or scanning a QR code using their camera. This feature is part of the plan to make physical trading cards for collecting Bokemons. The trading cards will include a QR code that can be scanned to redeem the corresponding Bokemon.
+
+The QR Redeeming feature provides a convenient way for users to collect Bokemons and adds an additional layer of engagement to the Bokeverse game. By allowing for physical trading cards, the QR Redeeming feature combines the traditional collectible experience with the benefits of blockchain technology. 
+
+Users can generate a new QR code at website using `npm run generate` . This code can be printed on a physical trading card or displayed on a screen for scanning.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Technologies Used
 
@@ -108,7 +178,7 @@ Before getting a local copy up, you must ensure that you have the necessary soft
 
 ### Running the game
 
-1. Open the project `Bokemon` in Unity
+1. Open the project `Bokemon` in Unity (Editor version is 2021.3.16f1)
 2. Open the scene "SampleScene.unity" in `/Bokemon/Assets/Scenes/SampleScene.unity`
 3. Open your `Build settings`, select `WebGL` as the target platform.
 4. Open `Player settings` > `Resolution and Presentation` and under `WebGLTemplate` choose `Thirdweb`.
@@ -127,7 +197,7 @@ npx thirdweb deploy .
 3. Confirm the 2 transactions on unitys dashboard
 
 ### Deploying the website
-1. Navigaate to the folder `website`
+1. Navigate to the folder `website`
 ```sh
 cd website
 ```
@@ -139,8 +209,8 @@ npm i
 ```sh
 npm run dev
 ```
-### Minting Bokemons(NFTs) to your account.
-You can get a starting Bokemon(Walruse) from the game if you want another Bokemon you can use the scripts
+### Minting Bokemons(NFTs) to your account
+You can get a starting Bokemon(Walruse) from the game. If you want another Bokemon you can use the scripts
 1. Navigaate to the folder `website`
 ```sh
 cd website
@@ -172,11 +242,15 @@ npm run createBokemon
 
 ## Usage
 
+### Demo Links
 The links to the working demos and articles of the project are as follows:
 
 * [Website](https://bokemon.vercel.app/)
 * [Game](https://bokemon.vercel.app/game)
-* [Github Repository](https://github.com/Yukino2002/Bokeverse)
+* [Dev.to Article]()
+* [Marketplace Thirdweb dashboard](https://thirdweb.com/goerli/0x61067EbAe343f6047271704d63B3f493c0810742)
+* [Game Contract dashboard](https://thirdweb.com/goerli/0xfbFaAB92b0444c36770190F22ea0C116B0Dea1a2)
+
 
 ### Prerequisites
 
@@ -221,67 +295,6 @@ You're all set to go! You can now battle other Bokemons, explore the map, and ha
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Overview
-
-### Game Smart Contract
-
-The smart contract that the Bokeverse game runs on is a non-fungible token (NFT) contract that is built on the ERC1155Base contract by thirdweb which implements the ERC1155 NFT standard along with some additional functionality. This contract allows the creation of unique, collectible bokemons that can be owned by users and can have a unique experience level assigned to them.
-
-The contract includes the following functions:
-
-- `MintTo`: 
-  This function is responsible for minting new bokemons. It takes in parameters such as the recipient's address, the token ID, token URI, and the amount to be minted. This function also handles assigning a unique token ID to the bokemon if none is provided.
-
-- `Mint`: 
-  This function is a higher-level implementation of the MintTo function that takes in additional parameters such as the experience level of the bokemon being minted.
-
-- `GetBokemon`: 
-  This function returns the token URI and experience level of a bokemon specified by its ID.
-
-- `GetBokemonUri`: 
-  This function returns the token URI of a bokemon specified by its ID.
-
-- `GetBokemonPerUser`: 
-  This function returns an array of all the bokemons owned by a specific user.
-
-- `IncreaseExperience`: 
-  This function allows for the experience level of a bokemon to be increased.
-
-- `IncreaseExperienceBatch`: 
-  This function allows for the experience level of multiple bokemons to be increased in bulk.
-
-- `Redeem`: 
-  This function allows users to redeem a bokemon by providing a redeem code. If the code is correct, the user will receive the specified bokemon.
-
-Overall, the Bokeverse contract allows for the creation and management of unique, collectible bokemons that can be owned by users and can have a unique experience level assigned to them. This contract provides a number of functions that allow users to interact with their bokemons and manage their experience levels.
-
-### Marketplace
-
-The NFT marketplace for Bokeverse was built on the marketplace contract by Thirdweb. The frontend of the marketplace was developed using Thirdweb and Tailwind. The marketplace provides a platform for users to view and purchase Bokemons that are listed for sale by other users.
-
-The marketplace includes the following functions:
-
-- View Listings: 
-  Users can view all the Bokemons that are currently listed for sale on the marketplace.
-
-- Buy Bokemon: 
-  Users can purchase a Bokemon by selecting the desired listing and submitting the transaction to the smart contract.
-
-- List Bokemon (Workaround using Thirdweb Dashboard): 
-  Users can list a Bokemon for sale by interacting with the smart contract via the Thirdweb dashboard. They can specify the desired price and other relevant information for the listing.
-
-The NFT marketplace for Bokeverse provides a user-friendly platform for buying and selling Bokemons. The integration with the smart contract allows for secure and transparent transactions on the blockchain. 
-
-### QR Redeeming
-
-The QR Redeeming feature in Bokeverse allows users to redeem a Bokemon by uploading or scanning a QR code using their camera. This feature is part of the plan to make physical trading cards for collecting Bokemons. The trading cards will include a QR code that can be scanned to redeem the corresponding Bokemon.
-
-The QR Redeeming feature provides a convenient way for users to collect Bokemons and adds an additional layer of engagement to the Bokeverse game. By allowing for physical trading cards, the QR Redeeming feature combines the traditional collectible experience with the benefits of blockchain technology. 
-
-Users can generate a new QR code at website using `npm run generate` . This code can be printed on a physical trading card or displayed on a screen for scanning.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Roadmap
 
 - [ ] Improving the graphics and overall visual appearance of the game
@@ -311,10 +324,17 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Acknowledgements
 
  - [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
  - [Marketplace-Frontend](https://blog.thirdweb.com/guides/how-to-create-an-nft-marketplace-with-nextjs-and-thirdweb-on-polygon-network/)
+ - [Tileset](https://cypor.itch.io/12x12-rpg-tileset)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
