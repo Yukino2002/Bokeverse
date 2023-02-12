@@ -52,6 +52,7 @@
 The game is a decentralized 2D open-world RPG with turn-based battles. It is set in a fantasy world, allowing players to explore, fight monsters and possess NFT characters and collectibles registered to their wallet address. We have also included a trading marketplace for NFTs and a QR code generation system to easily access and purchase these NFTs.
 
 [Youtube Demo](https://youtu.be/4CLOIO5XweI)
+
 [dev.to Article](https://dev.to/yukino2002/bokeverse-the-decentralised-2d-open-world-rpg-5b64)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
