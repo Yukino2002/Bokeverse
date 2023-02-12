@@ -193,6 +193,17 @@ public class BokemonParty : MonoBehaviour {
         transactionMessage.SetActive(false);
     }
 
+    public int GetHighestLevelBokemon() {
+        int highestLevel = 0;
+        foreach (Bokemon bokemon in bokemons) {
+            if (bokemon.Level > highestLevel) {
+                highestLevel = bokemon.Level;
+            }
+        }
+
+        return highestLevel;
+    }
+
     // function to fetch the bokemon in the party from the contract
     public async void fetchBokemons() {
         var contract = SDKManager.Instance.SDK.GetContract("0xfbFaAB92b0444c36770190F22ea0C116B0Dea1a2");
@@ -222,6 +233,9 @@ public class BokemonParty : MonoBehaviour {
                 StartCoroutine(LoadString("https://gateway.ipfscdn.io/ipfs/" + ipfs.Substring(7), experience, uid[i]));
             }
         }
+
+        // sort the bokemons by uid
+        bokemons.Sort((x, y) => x.UID.CompareTo(y.UID));
     }
 
     IEnumerator LoadString(string url, int experience, int uid) {

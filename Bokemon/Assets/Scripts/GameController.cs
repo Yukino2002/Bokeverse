@@ -19,12 +19,14 @@ public class GameController : MonoBehaviour {
     [SerializeField] GameObject menuSystem;
     [SerializeField] GameObject GameMusic;
     [SerializeField] GameObject BattleMusic;
+    [SerializeField] GameObject bokemonMaster;
 
     
     GameState state;
 
     public Text walletInfotext;
     string address;
+    
     public void Start() {
         // set the game state to free roam
         state = GameState.FreeRoam;
@@ -81,8 +83,12 @@ public class GameController : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         if (state == GameState.FreeRoam) {
+            if(bokemonParty.GetHighestLevelBokemon() >= 25) {
+                bokemonMaster.SetActive(true);
+            }
             playerController.HandleUpdate();
         } else if (state == GameState.Battle) {
+            bokemonMaster.SetActive(false);
             battleSystem.HandleUpdate();
         }
     }
