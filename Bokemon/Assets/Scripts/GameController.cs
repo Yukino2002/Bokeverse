@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour {
     [SerializeField] Camera worldCamera;
     [SerializeField] Camera minimapCamera;
     [SerializeField] GameObject menuSystem;
+    [SerializeField] GameObject GameMusic;
+    [SerializeField] GameObject BattleMusic;
 
     
     GameState state;
@@ -26,6 +28,8 @@ public class GameController : MonoBehaviour {
     public void Start() {
         // set the game state to free roam
         state = GameState.FreeRoam;
+        // set game music to active
+        GameMusic.SetActive(true);
         // subscribe to the OnEncounter event
         playerController.OnEncounter += StartBattle;
         // subscribe to the OnBattleOver event
@@ -35,6 +39,10 @@ public class GameController : MonoBehaviour {
     private void StartBattle() {
         // set the game state to battle mode
         state = GameState.Battle;
+        // set game music to inactive
+        GameMusic.SetActive(false);
+        // set battle music to active
+        BattleMusic.SetActive(true);
         // as the battle system is initially disabled, enable it
         battleSystem.gameObject.SetActive(true);
         // disable our main and minimap camera, so that the battle camera can be used
@@ -55,6 +63,10 @@ public class GameController : MonoBehaviour {
     void EndBattle(bool won) {
         // set the game state to free roam
         state = GameState.FreeRoam;
+        // set battle music to inactive
+        BattleMusic.SetActive(false);
+        // set game music to active
+        GameMusic.SetActive(true);
         // disable the battle system
         battleSystem.gameObject.SetActive(false);
         // enable the main camera and minimap

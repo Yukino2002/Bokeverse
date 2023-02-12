@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050a8fb68af821f4b8008d003a9a5849, type: 3}
   m_Name: Tackle
   m_EditorClassIdentifier: 
-  name: Tackle
+  name: Body Slam
   description: Hit the damn bokemon
   type: 1
   power: 40

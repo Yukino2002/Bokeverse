@@ -66,7 +66,7 @@ public class BattleSystem : MonoBehaviour {
     // the series of events that happen during the player action state
     public void PlayerAction() {
         state = BattleState.PlayerAction;
-        dialogBox.SetDialog("   Choose an action.");
+        dialogBox.SetDialog("   Choose an action. (Z = Select, X = Back)");
         dialogBox.EnableActionSelector(true);
     }
 
