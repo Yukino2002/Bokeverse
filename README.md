@@ -6,6 +6,24 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
+<div align="center">
+  <a href="https://github.com/Yukino2002/Bokeverse">
+    <img src="website/public/logo2.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">Bokeverse</h3>
+
+  <p align="center">
+    Explore the decentralized world of Bokeverse!
+    <br />
+    <a href="https://youtu.be/4CLOIO5XweI">View Demo</a>
+    ·
+    <a href="https://github.com/Yukino2002/Bokeverse/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Yukino2002/Bokeverse/issues">Request Feature</a>
+  </p>
+</div>
+
 ## Table of Contents
 <details> 
   <ul>
