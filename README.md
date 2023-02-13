@@ -215,7 +215,7 @@ npm run createBokemon
 ### Demo Links
 The links to the working demos and articles of the project are as follows:
 
-* [Website](https://bokemon.vercel.app/)
+* [Website](https://bokeverse.netlify.app/)
 * [Game](https://gateway.ipfscdn.io/ipfs/QmXoX5jmrt5kDTR8VQvCWY9viCe9k84JahsCodqhFiXBai/)
 * [Video](https://youtu.be/4CLOIO5XweI)
 * [Dev.to Article](https://dev.to/yukino2002/bokeverse-the-decentralised-2d-open-world-rpg-5b64)
