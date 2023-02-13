@@ -117,6 +117,8 @@ A Detailed overview of the game can be found in the [dev.to article](https://goo
     * Logo and website images:
       * <img src="website/public/logo2.png" width="250" /> <img src="website/public/PlayerLarge.png" width="250" />
 
+* [Coinbase](https://wallet.coinbase.com/)
+  * We have integrated Coinbase Wallet connect feature for the players.
 * [Next.js](https://nextjs.org/)
   * We used the powerful Next.js framework to create our website.
 
