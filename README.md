@@ -215,7 +215,7 @@ npm run createBokemon
 ## Usage
 
 ### Demo Links
-The links to the working demos and articles of the project are as follows:
+The links to the working demos(in case of any error, kindly reload, the game will run smoothly) and articles of the project are as follows:
 
 * [Website](https://bokeverse.netlify.app/)
 * [Game](https://gateway.ipfscdn.io/ipfs/QmXoX5jmrt5kDTR8VQvCWY9viCe9k84JahsCodqhFiXBai/)
