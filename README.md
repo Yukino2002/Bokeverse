@@ -65,7 +65,7 @@
 
 ## About The Project
 
-![Town Square](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/uy2o22cqgz8s9cfv2j1g.jpg)
+![Town Square](website/public/TownSquare.jpg)
 
 The game is a decentralized 2D open-world RPG with turn-based battles. It is set in a fantasy world, allowing players to explore, fight monsters and possess NFT characters and collectibles registered to their wallet address. We have also included a trading marketplace for NFTs and a QR code generation system to easily access and purchase these NFTs.
 
@@ -109,11 +109,13 @@ A Detailed overview of the game can be found in the [dev.to article](https://goo
       * We have used the Thirdweb Storage to store our Bokemon(NFT) metadata and image to IPFS which are implemented in the QR code and NFT generation scripts.
 
 * [Scenario.gg](https://www.scenario.gg/)
-  * We made use of AI-generated assets for our game. These assets include:
+  * We made use of AI-generated assets for our game and website. These assets include:
     * Playable Bokemon characters. Some of the characters are:
-      * <img src="contract/images/Steeleton.png" width="300" /> <img src="contract/images/Girasion.png" width="300"/>
-    * Start menu and Battleground backgrounds
-      * <img src="Bokemon/Assets/gfx/start-menu.png" width="300" /> <img src="Bokemon/Assets/Battle/battle-background.png" width="300" />
+      * <img src="contract/images/Steeleton.png" width="250" /> <img src="contract/images/Girasion.png" width="250"/>
+    * Start menu and Battleground backgrounds:
+      * <img src="Bokemon/Assets/gfx/start-menu.png" width="250" /> <img src="Bokemon/Assets/Battle/battle-background.png" width="250" />
+    * Logo and website images:
+      * <img src="website/public/logo2.png" width="250" /> <img src="website/public/PlayerLarge.png" width="250" />
 
 * [Next.js](https://nextjs.org/)
   * We used the powerful Next.js framework to create our website.
@@ -230,35 +232,35 @@ The links to the working demos and articles of the project are as follows:
 
 * On start, the user sees the start menu, where they must connect a wallet to play. The wallet options are MetaMask, Coinbase Wallet, etc.
 
-![Start Menu](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/daqs6cobpvc8l0m2hvvg.jpg)
+![Start Menu](website/public/StartMenu.jpg)
 
 * With a connected wallet, players can explore, battle Bokemons, etc. They must first have a Bokemon linked to their wallet. Otherwise, they can't access the wild grass where Bokemons appear. A message appears, telling the player to talk to the white-haired NPC for a starter Bokemon.
 
-![Getting Bokemon](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xr7cl0rmcxzpexxbt2d6.jpg)
+![Getting Bokemon](website/public/Wild.jpg)
 
 * The player visits the white-haired NPC. If they lack a Bokemon and their party size is 0, they'll sign a transaction for a Bokemon NFT. The NFT is made using the player's wallet as seed and sent to the wallet. Wait briefly for transaction completion. If transaction fails or rejected, try again.
 
-![Transaction Execution](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2mc8w9ywxvmqetppiqwl.jpg)
+![Transaction Execution](website/public/StarterBokemon.jpg)
 
 * Receive Walruse, the popular Ice-type Bokemon! Explore the wild grass and battle other Bokemons. On the battle screen, you can attack, flee, or switch Bokemons. Use the right attack for the right Bokemon as some are more effective against certain types. Use 'Z' to choose and 'X' to return.
 
-![The Battle Screen](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1hb0j2k20od2ix6bw81i.jpg)
+![The Battle Screen](website/public/StarterWalruse.jpg)
 
 * After winning, experience points are earned and a write operation updates the Bokemon data. If the transaction is rejected, the Bokemon won't level up. If accepted, you'll see a message to wait for the transaction to complete.
 
 * If all party Bokemons are defeated, the battle ends and you'll be asked to heal them. Go to the sleeping healing tree to heal your Bokemons.
 
-![Heal Bokemons](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/78twf6bs6s74cjkh96l8.jpg)
+![Heal Bokemons](website/public/PartyDefeated.jpg)
 
 ### Navigating the Website
 
 * You can purchase bokemons from the marketplace and increase your party size, and find rare bokemons!
 
-![Marketplace](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/cpkc9qqzjvfdlrifpcct.jpg)
+![Marketplace](website/public/Marketplace.jpg)
 
 * You can also redeem bokemons from QR codes.
 
-![Redeem](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/025ogsioe9cw9p1qm9be.jpg)
+![Redeem](website/public/Redeem.jpg)
 
 You're all set to go! You can now battle other Bokemons, explore the map, and have fun! If you want more Bokemons, you can visit the Bokeverse marketplace and buy a Bokemon NFT or redeeem through external QR codes.
 
