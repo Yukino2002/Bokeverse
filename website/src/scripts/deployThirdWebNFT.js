@@ -10,14 +10,14 @@ start();
 
 async function start()
 {
-  const GOERLI_PRIVATE_KEY = process.env.FANTOM_PRIVATE_KEY;
-  const sdk = ThirdwebSDK.fromPrivateKey(FANTOM_PRIVATE_KEY, "goerli");
+  const FANTOM_PRIVATE_KEY = process.env.FANTOM_PRIVATE_KEY;
+  const sdk = ThirdwebSDK.fromPrivateKey(FANTOM_PRIVATE_KEY, "fantom");
   // First, instantiate the SDK
   const storage = new ThirdwebStorage();
-  const contract = await sdk.getContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");
+  const contract = await sdk.getContract("0xFF999F6c675d400E7A12BB6E763056C19788da3C");
   
   for (let i = 0; i < dataMonster.length; i++) {
-      const filepath="./contract/images/"+dataMonster[i].name+".png";
+      const filepath="../contract/images/"+dataMonster[i].name+".png";
       const metadata = {
           name: dataMonster[i].name,
           description: "A Bokeverse NFT",
@@ -35,10 +35,10 @@ async function start()
           ],
         };
       const uri = await storage.upload(metadata);
-      // console.log("https://cloudflare-ipfs.com/ipfs/"+jsonCID);
-      console.log("https://gateway.ipfscdn.io/ipfs/"+uri.slice(7));
-      var result = await contract.call("mint", "0xB7E99669e9eDdD2975511FBF059d01969f43D409", uri, 1);
-      console.log(result);
+      console.log(uri)
+      // console.log("https://gateway.ipfscdn.io/ipfs/"+uri.slice(7));
+      // var result = await contract.call("mint", "0xA0A4CfffA2470E0d82fe307137Fc2880d6Efa3bf", uri, 1);
+      // console.log(result);
   }
 
 }

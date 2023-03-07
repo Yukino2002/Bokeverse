@@ -98,7 +98,7 @@ public class GameController : MonoBehaviour {
         try {
             address = await SDKManager.Instance.SDK.wallet.Connect(new WalletConnection() {
                 provider = provider,
-                chainId = 5
+                chainId = 250
             });
             walletInfotext.text = address;
             menuSystem.gameObject.SetActive(false);

@@ -8,8 +8,8 @@ const {} =  require('dotenv/config');
 // createa a random string like password 
 const randomString = require("randomstring");
 const password = randomString.generate(8);
-const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
-const sdk = ThirdwebSDK.fromPrivateKey(GOERLI_PRIVATE_KEY, "goerli");
+const FANTOM_PRIVATE_KEY = process.env.FANTOM_PRIVATE_KEY;
+const sdk = ThirdwebSDK.fromPrivateKey(FANTOM_PRIVATE_KEY, "fantom");
 const storage = new ThirdwebStorage();
 
 
@@ -17,7 +17,7 @@ const storage = new ThirdwebStorage();
 start();
 
 async function start() {
-    const contract = await sdk.getContract("0x5679B3Fe5f66c68875210A99eC8C788f377B41c6");
+    const contract = await sdk.getContract("0xFF999F6c675d400E7A12BB6E763056C19788da3C");
     for (let i = 0; i < dataMonster.length; i++) {
         const filepath="./src/scripts/QRcodeMonster/"+dataMonster[i].name+".png";
         const metadata = {
@@ -40,8 +40,10 @@ async function start() {
         const uri = await storage.upload(metadata);
         // // console.log("https://cloudflare-ipfs.com/ipfs/"+jsonCID);
         console.log("https://gateway.ipfscdn.io/ipfs/"+uri.slice(7));
-        var result = await contract.call("createRedeemableItem", password, uri, 1);
-        console.log(result);
+        console.log(password);
+        console.log(uri);
+        // var result = await contract.call("createRedeemableItem", password, uri, 1);
+        // console.log(result);
 
         qr.toFile("./src/scripts/QRCodeResults/"+dataMonster[i].name+".png", password, function (err) {
             if (err) throw err;
