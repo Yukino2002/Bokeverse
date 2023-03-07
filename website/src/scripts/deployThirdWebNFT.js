@@ -10,8 +10,8 @@ start();
 
 async function start()
 {
-  const GOERLI_PRIVATE_KEY = "a12e71ebe9a4bc009a99f6b0a99c8f24163ce13d39979100adb2a1a74c7519b7";
-  const sdk = ThirdwebSDK.fromPrivateKey(GOERLI_PRIVATE_KEY, "goerli");
+  const GOERLI_PRIVATE_KEY = process.env.FANTOM_PRIVATE_KEY;
+  const sdk = ThirdwebSDK.fromPrivateKey(FANTOM_PRIVATE_KEY, "goerli");
   // First, instantiate the SDK
   const storage = new ThirdwebStorage();
   const contract = await sdk.getContract("0x0D21a294d856190c393c52bb1d16C2E4AfDFE7Ad");

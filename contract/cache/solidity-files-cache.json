@@ -40,6 +40,50 @@
         "web3GAME"
       ]
     },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\base\\ERC1155Base.sol": {
+      "lastModificationDate": 1675317634006,
+      "contentHash": "b480a67258a28b0efb06cf5035abeda1",
+      "sourceName": "@thirdweb-dev/contracts/base/ERC1155Base.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../eip/ERC1155.sol",
+        "../extension/ContractMetadata.sol",
+        "../extension/Multicall.sol",
+        "../extension/Ownable.sol",
+        "../extension/Royalty.sol",
+        "../extension/BatchMintMetadata.sol",
+        "../extension/DefaultOperatorFilterer.sol",
+        "../lib/TWStrings.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC1155Base"
+      ]
+    },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
       "lastModificationDate": 1675449764812,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
@@ -108,124 +152,6 @@
       ],
       "artifacts": [
         "IMintableERC1155"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\base\\ERC1155Base.sol": {
-      "lastModificationDate": 1675317634006,
-      "contentHash": "b480a67258a28b0efb06cf5035abeda1",
-      "sourceName": "@thirdweb-dev/contracts/base/ERC1155Base.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../eip/ERC1155.sol",
-        "../extension/ContractMetadata.sol",
-        "../extension/Multicall.sol",
-        "../extension/Ownable.sol",
-        "../extension/Royalty.sol",
-        "../extension/BatchMintMetadata.sol",
-        "../extension/DefaultOperatorFilterer.sol",
-        "../lib/TWStrings.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ERC1155Base"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\ContractMetadata.sol": {
-      "lastModificationDate": 1675317633746,
-      "contentHash": "16b6bf6c285026ce94063a03474a3f35",
-      "sourceName": "@thirdweb-dev/contracts/extension/ContractMetadata.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interface/IContractMetadata.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ContractMetadata"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\DefaultOperatorFilterer.sol": {
-      "lastModificationDate": 1675317633779,
-      "contentHash": "f57d8aecb6e8ff20cc1aa794812ca417",
-      "sourceName": "@thirdweb-dev/contracts/extension/DefaultOperatorFilterer.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./OperatorFilterer.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "DefaultOperatorFilterer"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\Multicall.sol": {
@@ -342,10 +268,10 @@
         "ERC1155"
       ]
     },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\Royalty.sol": {
-      "lastModificationDate": 1675317634825,
-      "contentHash": "f8b65df8d02bdabf094cb8b8dcfd9033",
-      "sourceName": "@thirdweb-dev/contracts/extension/Royalty.sol",
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\ContractMetadata.sol": {
+      "lastModificationDate": 1675317633746,
+      "contentHash": "16b6bf6c285026ce94063a03474a3f35",
+      "sourceName": "@thirdweb-dev/contracts/extension/ContractMetadata.sol",
       "solcConfig": {
         "version": "0.8.17",
         "settings": {
@@ -370,13 +296,13 @@
         }
       },
       "imports": [
-        "./interface/IRoyalty.sol"
+        "./interface/IContractMetadata.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "Royalty"
+        "ContractMetadata"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\BatchMintMetadata.sol": {
@@ -414,6 +340,80 @@
         "BatchMintMetadata"
       ]
     },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\DefaultOperatorFilterer.sol": {
+      "lastModificationDate": 1675317633779,
+      "contentHash": "f57d8aecb6e8ff20cc1aa794812ca417",
+      "sourceName": "@thirdweb-dev/contracts/extension/DefaultOperatorFilterer.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./OperatorFilterer.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "DefaultOperatorFilterer"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\Royalty.sol": {
+      "lastModificationDate": 1675317634825,
+      "contentHash": "f8b65df8d02bdabf094cb8b8dcfd9033",
+      "sourceName": "@thirdweb-dev/contracts/extension/Royalty.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interface/IRoyalty.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Royalty"
+      ]
+    },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\lib\\TWStrings.sol": {
       "lastModificationDate": 1675317635206,
       "contentHash": "51ab4021ca10be37124c176e4c301efd",
@@ -449,10 +449,10 @@
         "TWStrings"
       ]
     },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IContractMetadata.sol": {
-      "lastModificationDate": 1675317634263,
-      "contentHash": "dbd1c5f32e626fc34414eb0d89ac6db8",
-      "sourceName": "@thirdweb-dev/contracts/extension/interface/IContractMetadata.sol",
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\lib\\TWAddress.sol": {
+      "lastModificationDate": 1675317635169,
+      "contentHash": "8d6d64d5a883a9fd1703c7e528df95d7",
+      "sourceName": "@thirdweb-dev/contracts/lib/TWAddress.sol",
       "solcConfig": {
         "version": "0.8.17",
         "settings": {
@@ -481,152 +481,7 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "IContractMetadata"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\OperatorFilterer.sol": {
-      "lastModificationDate": 1675317634585,
-      "contentHash": "2af350a5d119d997d93da68ac58a94ad",
-      "sourceName": "@thirdweb-dev/contracts/extension/OperatorFilterer.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interface/IOperatorFilterRegistry.sol",
-        "./OperatorFilterToggle.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "OperatorFilterer"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\OperatorFilterToggle.sol": {
-      "lastModificationDate": 1675317634612,
-      "contentHash": "6529c6cc6d7582a117ebde02a4503baa",
-      "sourceName": "@thirdweb-dev/contracts/extension/OperatorFilterToggle.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interface/IOperatorFilterToggle.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "OperatorFilterToggle"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IOperatorFilterRegistry.sol": {
-      "lastModificationDate": 1675317634443,
-      "contentHash": "7446dc0ec714f1891626a2c9e07951ac",
-      "sourceName": "@thirdweb-dev/contracts/extension/interface/IOperatorFilterRegistry.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IOperatorFilterRegistry"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IOperatorFilterToggle.sol": {
-      "lastModificationDate": 1675317634444,
-      "contentHash": "8a6bcce3b6739dde95f5f207c7c62073",
-      "sourceName": "@thirdweb-dev/contracts/extension/interface/IOperatorFilterToggle.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IOperatorFilterToggle"
+        "TWAddress"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IMulticall.sol": {
@@ -662,41 +517,6 @@
       ],
       "artifacts": [
         "IMulticall"
-      ]
-    },
-    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\lib\\TWAddress.sol": {
-      "lastModificationDate": 1675317635169,
-      "contentHash": "8d6d64d5a883a9fd1703c7e528df95d7",
-      "sourceName": "@thirdweb-dev/contracts/lib/TWAddress.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "TWAddress"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IOwnable.sol": {
@@ -874,6 +694,186 @@
       ],
       "artifacts": [
         "IERC165"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IContractMetadata.sol": {
+      "lastModificationDate": 1675317634263,
+      "contentHash": "dbd1c5f32e626fc34414eb0d89ac6db8",
+      "sourceName": "@thirdweb-dev/contracts/extension/interface/IContractMetadata.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IContractMetadata"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\OperatorFilterer.sol": {
+      "lastModificationDate": 1675317634585,
+      "contentHash": "2af350a5d119d997d93da68ac58a94ad",
+      "sourceName": "@thirdweb-dev/contracts/extension/OperatorFilterer.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interface/IOperatorFilterRegistry.sol",
+        "./OperatorFilterToggle.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "OperatorFilterer"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IOperatorFilterRegistry.sol": {
+      "lastModificationDate": 1675317634443,
+      "contentHash": "7446dc0ec714f1891626a2c9e07951ac",
+      "sourceName": "@thirdweb-dev/contracts/extension/interface/IOperatorFilterRegistry.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IOperatorFilterRegistry"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\OperatorFilterToggle.sol": {
+      "lastModificationDate": 1675317634612,
+      "contentHash": "6529c6cc6d7582a117ebde02a4503baa",
+      "sourceName": "@thirdweb-dev/contracts/extension/OperatorFilterToggle.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interface/IOperatorFilterToggle.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "OperatorFilterToggle"
+      ]
+    },
+    "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IOperatorFilterToggle.sol": {
+      "lastModificationDate": 1675317634444,
+      "contentHash": "8a6bcce3b6739dde95f5f207c7c62073",
+      "sourceName": "@thirdweb-dev/contracts/extension/interface/IOperatorFilterToggle.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IOperatorFilterToggle"
       ]
     },
     "C:\\Users\\asimj\\Documents\\Bokeverse\\contract\\node_modules\\@thirdweb-dev\\contracts\\extension\\interface\\IRoyalty.sol": {
