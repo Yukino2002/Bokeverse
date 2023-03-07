@@ -8,7 +8,7 @@ export default function NFT() {
   const router = useRouter();
   const { listingid } = router.query;
   const { contract } = useContract(
-    "0x61067EbAe343f6047271704d63B3f493c0810742",
+    "0x059100D2988AAc39Bc14A99F8ad9d39dBdBA22e4",
     "marketplace"
   );
 
