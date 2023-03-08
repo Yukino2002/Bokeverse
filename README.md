@@ -16,7 +16,7 @@
   <p align="center">
     Explore the decentralized world of Bokeverse!
     <br />
-    <a href="https://youtu.be/4CLOIO5XweI">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=n_NLohdWMUc">View Demo</a>
     ·
     <a href="https://github.com/Yukino2002/Bokeverse/issues">Report Bug</a>
     ·
@@ -69,17 +69,17 @@
 
 The game is a decentralized 2D open-world RPG with turn-based battles. It is set in a fantasy world, allowing players to explore, fight monsters and possess NFT characters and collectibles registered to their wallet address. We have also included a trading marketplace for NFTs and a QR code generation system to easily access and purchase these NFTs.
 
-[Youtube Demo](https://youtu.be/4CLOIO5XweI)
+[Marketplace Fantom Mainnet Contract](https://ftmscan.com/address/0x059100D2988AAc39Bc14A99F8ad9d39dBdBA22e4)
 
-[dev.to Article](https://dev.to/yukino2002/bokeverse-the-decentralised-2d-open-world-rpg-5b64)
+[Game Fantom Mainnet Contract](https://ftmscan.com/address/0xFF999F6c675d400E7A12BB6E763056C19788da3C)
+
+[Youtube Demo](https://www.youtube.com/watch?v=n_NLohdWMUc)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Game Mechanics
 
 The game is made using Unity. As a game engine, Unity is able to provide many of the most important built-in features that make a game work. That means things like physics, animations, 3D/2D rendering, collision detection etc. We can create different game objects and add components to provide them with functionality, and make them interact with each other. These components can be in-built components provided by Unity, or custom scripts that we write ourselves in C#.
-
-A Detailed overview of the game can be found in the [dev.to article](https://google.com)
 
 ## Technologies Used
 
@@ -89,36 +89,7 @@ A Detailed overview of the game can be found in the [dev.to article](https://goo
 
 * [Thirdweb](https://thirdweb.com/)
   * We used the Thirdweb web3 development framework to integrate web3 into our game and website.
-  * Solutions used:
-    * GamingKit:
-      * Utilised Thirdweb UnitySDK to connect players' wallets, interact with the smart contracts within the game.
-      * Additionally, we used the Thirdweb dashboard to manage and interact with the smart contracts deployed in the game and the marketplace.
-    * ContractKit: 
-        * With the Thirdweb ContractKit, we wrote the contracts for our game and marketplace.
-        * The [Thirdweb ERC1155 base](https://thirdweb.com/goerli/0xfbFaAB92b0444c36770190F22ea0C116B0Dea1a2/) contracts were utilized for creating NFTs and other related purposes.
-        * THe [Thirdweb marketplace contracts](https://thirdweb.com/goerli/0x61067EbAe343f6047271704d63B3f493c0810742/) were used to create the marketplace for our NFTs.
-    * UIKit:
-      * We used the Thirdweb UIKit components to create the website and marketplace more efficiently. Some of the components used are: 
-        * Connect Wallet Button: The Connect Wallet Button connects players' wallets (MetaMask, Coinbase Wallet, etc.) within the website.
-        * Web3Button: The Web3Button allows players to interact with the smart contracts on the blockchain.
-        * NFT Metadata Renderer: The NFT Metadata Renderer displays the metadata of NFTs and lists them on the marketplace.    
-    * ReactSDK: We utilised the Thirdweb ReactSDK for the development of our website, QR code redemption and marketplace. Some of the functions used are:
-        * Connection of players' digital wallets, including MetaMask and Coinbase Wallet, directly within the website.
-        * Interact and call on-chain functions on our website.
-    * Thirdweb Storage:
-      * We have used the Thirdweb Storage to store our Bokemon(NFT) metadata and image to IPFS which are implemented in the QR code and NFT generation scripts.
 
-* [Scenario.gg](https://www.scenario.gg/)
-  * We made use of AI-generated assets for our game and website. These assets include:
-    * Playable Bokemon characters. Some of the characters are:
-      * <img src="contract/images/Steeleton.png" width="250" /> <img src="contract/images/Girasion.png" width="250"/>
-    * Start menu and Battleground backgrounds:
-      * <img src="Bokemon/Assets/gfx/start-menu.png" width="250" /> <img src="Bokemon/Assets/Battle/battle-background.png" width="250" />
-    * Logo and website images:
-      * <img src="website/public/logo2.png" width="250" /> <img src="website/public/PlayerLarge.png" width="250" />
-
-* [Coinbase](https://wallet.coinbase.com/)
-  * We have integrated Coinbase Wallet connect feature for the players.
 * [Next.js](https://nextjs.org/)
   * We used the powerful Next.js framework to create our website.
 
@@ -219,16 +190,14 @@ The links to the working demos(in case of any error, kindly reload, the game wil
 
 * [Website](https://bokeverse.netlify.app/)
 * [Game](https://gateway.ipfscdn.io/ipfs/QmXoX5jmrt5kDTR8VQvCWY9viCe9k84JahsCodqhFiXBai/)
-* [Video](https://youtu.be/4CLOIO5XweI)
-* [Dev.to Article](https://dev.to/yukino2002/bokeverse-the-decentralised-2d-open-world-rpg-5b64)
-* [Marketplace Thirdweb dashboard](https://thirdweb.com/goerli/0x61067EbAe343f6047271704d63B3f493c0810742)
-* [Game Contract dashboard](https://thirdweb.com/goerli/0xfbFaAB92b0444c36770190F22ea0C116B0Dea1a2)
-
+* [Video](https://www.youtube.com/watch?v=n_NLohdWMUc)
+* [Marketplace Fantom Mainnet Contract](https://ftmscan.com/address/0x059100D2988AAc39Bc14A99F8ad9d39dBdBA22e4)
+* [Game Fantom Mainnet Contract](https://ftmscan.com/address/0xFF999F6c675d400E7A12BB6E763056C19788da3C)
 
 ### Prerequisites
 
 * [MetaMask](https://metamask.io/), [Coinbase](https://wallet.coinbase.com/) or any other wallet that supports the Ethereum network.
-* Some Goerli ETH to carry out transactions and pay for gas fees. You can grab some from a faucet [here](https://testnet.help/en/ethfaucet/goerli#log).
+* Some mainnet FTM to pay for gas fees.
 
 ### Playing the Game
 
