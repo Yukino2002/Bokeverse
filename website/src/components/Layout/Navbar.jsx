@@ -6,7 +6,7 @@ import { useState } from 'react';
 export default function Navbar() {
 	const navItems = [
 		{
-			link: 'https://gateway.ipfscdn.io/ipfs/QmXoX5jmrt5kDTR8VQvCWY9viCe9k84JahsCodqhFiXBai/',
+			link: 'https://gateway.ipfscdn.io/ipfs/QmZ7MykGBg2dEneW6RjGV9AHsat27SrJFXhjCNkRYGmd3i/',
 			name: 'Game',
 			target: "_blank"
 		},
