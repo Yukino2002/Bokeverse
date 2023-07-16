@@ -5,7 +5,7 @@ class App extends React.Component {
   render() {
     return (
         <div className="mt-[80px] container-iframe">
-          <iframe src="https://gateway.ipfscdn.io/ipfs/QmXoX5jmrt5kDTR8VQvCWY9viCe9k84JahsCodqhFiXBai/" className="responsive-iframe"></iframe>
+          <iframe src="https://ipfs.io/ipfs/bafybeifabelk6r27wqfdl6vee6ybih7fmq5k5jl7ocvsgsog7yqkudvplu/" className="responsive-iframe"></iframe>
         </div>
     );
   }
