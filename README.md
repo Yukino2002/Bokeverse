@@ -189,7 +189,7 @@ npm run createBokemon
 The links to the working demos(in case of any error, kindly reload, the game will run smoothly) and articles of the project are as follows:
 
 * [Website](https://bokeverse.netlify.app/)
-* [Game](https://gateway.ipfscdn.io/ipfs/QmXoX5jmrt5kDTR8VQvCWY9viCe9k84JahsCodqhFiXBai/)
+* [Game](https://ipfs.io/ipfs/bafybeifabelk6r27wqfdl6vee6ybih7fmq5k5jl7ocvsgsog7yqkudvplu/)
 * [Video](https://www.youtube.com/watch?v=n_NLohdWMUc)
 * [Marketplace Fantom Mainnet Contract](https://ftmscan.com/address/0x059100D2988AAc39Bc14A99F8ad9d39dBdBA22e4)
 * [Game Fantom Mainnet Contract](https://ftmscan.com/address/0xFF999F6c675d400E7A12BB6E763056C19788da3C)
